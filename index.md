@@ -45,6 +45,8 @@ there. Regrade requests can be made and are processed on Gradescope as
 well. You must join the Gradescope course page through Canvas.
 
 ## News
+
+<!--
 * **November 13** — [Final Project](https://jhu-ip.github.io/cs220-f25/assign/final.html) is posted!
 * **November 6** — [Homework 7](https://jhu-ip.github.io/cs220-f25/assign/hw7.html) is posted!
 * **October 31** — [Homework 6](https://www.gradescope.com/courses/1070771/assignments/7035238/) is posted!
@@ -55,4 +57,6 @@ well. You must join the Gradescope course page through Canvas.
 * **September 12** — [Homework 2](https://www.gradescope.com/courses/1070771/assignments/6675631/) is posted.
 * **September 5** — [Homework 1](https://www.gradescope.com/courses/1070771/assignments/6675620/) is posted.
 * **August 28** — [Homework 0](https://www.gradescope.com/courses/1070771/assignments/6615745/) is posted.
-* **August 25** — Welcome to Intermediate Programming! Check out Week 1 material under the "Course Material" tab.
+-->
+
+* **January 20** — Welcome to Intermediate Programming! Check out Week 1 material under the "Course Material" tab.
