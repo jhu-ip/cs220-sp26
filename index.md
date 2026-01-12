@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Intermediate Programming, Fall 2025"
+title: "Intermediate Programming, Spring 2026"
 category: "home"
 ---
 
-Welcome to the website for Intermediate Programming (Fall 2025) at
+Welcome to the website for Intermediate Programming (Spring 2026) at
 <a class="external" target="_blank" href="https://www.jhu.edu/">Johns Hopkins University</a>!
 
 *Course description*: This course teaches intermediate to advanced
@@ -24,12 +24,7 @@ Use the links at the top of the page to navigate the site.
 
 ## Important links
 
-<a class="external" target="_blank" href="https://github.com">Github</a> is used to facilitate
-team collaborations as well as group and individual
-source code version control. Scaffolding/starter files of
-exercises, homeworks, and projects are shared via the course
-<a class="external" target="_blank" href="https://github.com/jhu-ip/cs220-f25-public">public repository</a>.
-You may never share your private repository with anyone else.
+<a class="external" target="_blank" href="https://github.com">Github</a> is used to facilitate team collaborations as well as group and individual source code version control. Scaffolding/starter files of exercises, homeworks, and projects are shared via the course public repository. You may never share your private repository with anyone else.
 
 <a class="external" target="_blank" href="https://piazza.com">Piazza</a> is
 the main communication channel. You will be automatically enrolled through your JHU Canvas account which you can link to any previous Piazza accounts you may have. If you have any questions or concerns about the course,
