@@ -18,113 +18,108 @@ Then add, commit, and push both material.csv and material.md.
 You can click on the header for a specific week to expand or collapse
 the materials for that week.
 
-<button type="button" id="week_1_toggle" class="week_control_button">Week 1 (25-Aug to 29-Aug)</button>
+<button type="button" id="week_1_toggle" class="week_control_button">Week 1 (21-Jan to 24-Jan)</button>
 <div id="week_1" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 1 (25-Aug)</th>
-      <th>Day 2 (27-Aug)</th>
-      <th>Day 3 (29-Aug)</th>
+      <th>NA</th>
+      <th>Day 1 (22-Jan)</th>
+      <th>Day 2 (24-Jan)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
+      <td>NA</td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9e328953-5564-49fe-b03a-b0690123dcf1'>Course intro</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1273cccc-b312-47d4-802a-ae2200fefc22'>Linux, ugrad accounts</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a42038f-6e6e-43cb-958a-ae230027ad23'>Hello world program in C</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c7fc4118-f301-40bb-8693-ae230027ac09'>C basics</a></td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d7af51c6-fffc-4c79-9e8e-ae230027adb4'>Editors (emacs)</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7f332c5e-6ad8-4ff8-a702-ae23002793cf'>Git</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4c4f67dd-677c-40d9-8bbc-ae230027ac60'>Submission workflow</a></td>
     </tr>
     <tr>
       <td>Slides</td>
+      <td>NA</td>
       <td><a href='slides/day01_intro.pdf'>Course intro</a><br><a href='slides/day01_linux_basics.pdf'>Linux, ugrad accounts</a></td>
       <td><a href='slides/day02_hello_world_c.pdf'>Hello world program in C</a><br><a href='slides/day02_c_basics.pdf'>C basics</a></td>
-      <td><a href='slides/day03_editors.pdf'>Editors (emacs)</a><br><a href='slides/day03_git.pdf'>Git</a><br><a href='slides/day03_submission_workflow.pdf'>Submission workflow</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
+      <td>NA</td>
       <td><a href='questions/day01.html'>Day 1</a></td>
       <td><a href='questions/day02.html'>Day 2</a></td>
-      <td><a href='questions/day03.html'>Day 3</a></td>
     </tr>
     <tr>
       <td>Exercise</td>
+      <td>NA</td>
       <td><a href='exercise/ex01.html'>Exercise 1</a></td>
       <td><a href='exercise/ex02.html'>Exercise 2</a></td>
-      <td><a href='exercise/ex03a.html'>Exercise 3-A</a><br><a href='exercise/ex03b.html'>Exercise 3-B</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-unix.html'>NOTES: Unix</a><br><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unix.html'>Unix/Linux Tutorial</a><br><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unixRC.pdf'>Unix/Linux Reference Card</a><br><a class='external' target='_blank' href='https://jslinux.org/'>JSLinux</a></td>
-      <td><a href='notes/notes-Cbasics.html'>NOTES: C Basics</a><br />
-      <a href='notes/notes-C-IO.html'>NOTES: I/O in C</a><br />
-      <a class='external' target='_blank' href='https://www.onlinegdb.com/online_c_compiler'>Online C compiler</a></td>
-      <td><a class='external' target='_blank' href='https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf'>Emacs reference card</a><br><a class='external' target='_blank' href='https://www.openvim.com/'>Interactive Vim tutorial</a><br><a class='external' target='_blank' href='https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf'>Git cheatsheet</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9efa206a-6849-4bab-b630-ae3200303731'>Setting Up VS Code</a>
-	  <br><a href='resources/github-ssh.html'>GitHub Token & SSH key setup</a></td>
+      <td>NA</td>
+      <td><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unix.html'>Unix/Linux Tutorial</a><br><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unixRC.pdf'>Unix/Linux Reference Card</a></td>
+      <td><a class='external' target='_blank' href='https://www.onlinegdb.com/online_c_compiler'>Online C compiler</a></td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<button type="button" id="week_2_toggle" class="week_control_button">Week 2 (1-Sep to 5-Sep)</button>
+<button type="button" id="week_2_toggle" class="week_control_button">Week 2 (27-Jan to 31-Jan)</button>
 <div id="week_2" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Labor Day (1-Sep)</th>
-      <th>Day 4 (3-Sep)</th>
-      <th>Day 5 (5-Sep)</th>
+      <th>Day 3 (27-Jan)</th>
+      <th>Day 4 (29-Jan)</th>
+      <th>Day 5 (31-Jan)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td>NA</td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d7af51c6-fffc-4c79-9e8e-ae230027adb4'>Editors (emacs)</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7f332c5e-6ad8-4ff8-a702-ae23002793cf'>Git</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4c4f67dd-677c-40d9-8bbc-ae230027ac60'>Submission workflow</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=45b14d44-3d4e-4fd7-b0c0-ae230027aef2'>Logical operators, control flow</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=58f4d402-fd0d-4868-b805-ae230027ab93'>Arrays, ASCII</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=06a4f1da-f6a1-4212-b686-ae230027ab33'>C strings</a></td>
     </tr>
     <tr>
       <td>Slides</td>
-      <td>NA</td>
+      <td><a href='slides/day03_editors.pdf'>Editors (emacs)</a><br><a href='slides/day03_git.pdf'>Git</a><br><a href='slides/day03_submission_workflow.pdf'>Submission workflow</a></td>
       <td><a href='slides/day04_control_flow.pdf'>Logical operators, control flow</a></td>
       <td><a href='slides/day05_arrays.pdf'>Arrays</a><br><a href='slides/day05_c_strings.pdf'>C strings</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td>NA</td>
+      <td><a href='questions/day03.html'>Day 3</a></td>
       <td><a href='questions/day04.html'>Day 4</a></td>
       <td><a href='questions/day05.html'>Day 5</a></td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td>NA</td>
+      <td><a href='exercise/ex03a.html'>Exercise 3-A</a><br><a href='exercise/ex03b.html'>Exercise 3-B</a></td>
       <td><a href='exercise/ex04.html'>Exercise 4</a></td>
       <td><a href='exercise/ex05.html'>Exercise 5</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td>NA</td>
-      <td><a href='notes/notes-Cbasics.html'>NOTES: C Basics</a><br />
-<a href='notes/notes-control.html'>NOTES: Control Structures</a> </td>
-      <td><a href='notes/notes-Carrays.html'>NOTES: C Arrays</a><br />
-      <a href='notes/notes-Cstrings.html'>NOTES: C Strings</a></td>
+      <td><a class='external' target='_blank' href='https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf'>Emacs reference card</a><br><a class='external' target='_blank' href='https://www.openvim.com/'>Interactive Vim tutorial</a><br><a class='external' target='_blank' href='https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf'>Git cheatsheet</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9efa206a-6849-4bab-b630-ae3200303731'>Setting Up VS Code</a>
+<br><a href='resources/github-ssh.html'>GitHub Token & SSH key setup</a></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<button type="button" id="week_3_toggle" class="week_control_button">Week 3 (8-Sep to 12-Sep)</button>
+<button type="button" id="week_3_toggle" class="week_control_button">Week 3 (3-Feb to 7-Feb)</button>
 <div id="week_3" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 6 (8-Sep)</th>
-      <th>Day 7 (10-Sep)</th>
-      <th>Day 8 (12-Sep)</th>
-      
+      <th>Day 6 (3-Feb)</th>
+      <th>Day 7 (5-Feb)</th>
+      <th>Day 8 (7-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -158,26 +153,23 @@ the materials for that week.
 	  <a href="https://cplusplus.com/reference/cmath/">C Math Library Reference</a>
 	  <a href="https://stackoverflow.com/a/8114031">Discussion on `assert`</a>
 	  </td>
-      <td><a href='notes/notes-Cfunctions.html'>NOTES: C Functions (including make)</a>
-</td>
+      <td></td>
       <td>
         <a href="https://makefiletutorial.com/">Makefile Reference/Tutorial</a>
       </td>
     </tr>
-    
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_4_toggle" class="week_control_button">Week 4 (15-Sep to 19-Sep)</button>
+<button type="button" id="week_4_toggle" class="week_control_button">Week 4 (10-Feb to 14-Feb)</button>
 <div id="week_4" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 9 (15-Sep)</th>
-      <th>Day 10 (17-Sep)</th>
-      <th>Day 11 (19-Sep)</th>
+      <th>Day 9 (10-Feb)</th>
+      <th>Day 10 (12-Feb)</th>
+      <th>Day 11 (14-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -207,23 +199,23 @@ the materials for that week.
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a class='external' target='_blank' href='https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf'>GDB Cheat Sheet</a><br /> <a href='notes/notes-storage.html'>NOTES: Storage classes</a> (including gdb)</td>
-      <td><a class='external' target='_blank' href='https://www.youtube.com/watch?v=5VnDaHBi8dM'>Binky the Pointer (Video)</a><br /> <a href='notes/notes-pointers.html'>NOTES: Pointers & Dynamic Memory Allocation</a> (including valgrind)</td>
+      <td><a class='external' target='_blank' href='https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf'>GDB Cheat Sheet</a></td>
+      <td><a class='external' target='_blank' href='https://www.youtube.com/watch?v=5VnDaHBi8dM'>Binky the Pointer (Video)</a></td>
       <td><code>valgrind --leak-check=full --show-leak-kinds=all</code></td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<button type="button" id="week_5_toggle" class="week_control_button">Week 5 (22-Sep to 26-Sep)</button>
+<button type="button" id="week_5_toggle" class="week_control_button">Week 5 (17-Feb to 21-Feb)</button>
 <div id="week_5" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 12 (22-Sep)</th>
-      <th>Day 13 (24-Sep)</th>
-      <th>Day 14 (26-Sep)</th>
+      <th>Day 12 (17-Feb)</th>
+      <th>Day 13 (19-Feb)</th>
+      <th>Day 14 (21-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -252,27 +244,22 @@ the materials for that week.
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-pointers.html'>NOTES: Pointers & Dynamic Memory Allocation</a> (includes valgrind)</td>
-      <td><a href='notes/notes-storage.html'>NOTES: Storage Classes</a><br />
-      <a href='notes/notes-Cstructs.html'>NOTES: Struct Definitions</a><br />
-      <a href='notes/notes-Cfunctions.html'>NOTES: Functions</a> (includes rand())</td>
-      <td><a href='notes/notes-C-IO.html'>NOTES: C I/O</a> (includes binary files)<br />
-      <a href='notes/notes-Cbasics.html'>NOTES: C Basics</a> (includes bitwise ops)
-      </td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_6_toggle" class="week_control_button">Week 6 (30-Sep to 4-Oct)</button>
+<button type="button" id="week_6_toggle" class="week_control_button">Week 6 (24-Feb to 28-Feb)</button>
 <div id="week_6" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 15 (30-Sep)</th>
-      <th>Day 16 (2-Oct)</th>
-      <th>Day 17 (4-Oct)</th>
+      <th>Day 15 (24-Feb)</th>
+      <th>Day 16 (26-Feb)</th>
+      <th>Day 17 (28-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -298,27 +285,26 @@ the materials for that week.
       <td>Exercise</td>
       <td><a href='exercise/ex15.html'>Exercise 15</a></td>
       <td><a href='exercise/ex16.html'>Exercise 16</a></td>
-      <td><a href="assign/midterm">Midterm Project</a></td>
+      <td><a href='assign/midterm.html'>Midterm Project</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-Cbasics.html'>NOTES: C Basics</a> (includes typecasting)</td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_7_toggle" class="week_control_button">Week 7 (7-Oct to 11-Oct)</button>
+<button type="button" id="week_7_toggle" class="week_control_button">Week 7 (3-March to 7-March)</button>
 <div id="week_7" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 18 (7-Oct)</th>
-      <th>Day 19 (9-Oct)</th>
-      <th>Day 20 (11-Oct)</th>
+      <th>Day 18 (3-March)</th>
+      <th>Day 19 (5-March)</th>
+      <th>Day 20 (7-March)</th>
     </tr>
   </thead>
   <tbody>
@@ -330,21 +316,21 @@ the materials for that week.
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day18_more_linked_lists.pdf'>More Linked lists</a></td>
+      <td><a href='slides/day17_more_linked_lists.pdf'>More Linked lists</a></td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day18.html'>Day 18</a></td>
+      <td><a href='questions/day17.html'>Day 18</a></td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td><a href='exercise/ex18.html'>Exercise 18</a></td>
-      <td>Midterm Project</td>
-      <td>Midterm Project</td>
+      <td><a href='exercise/ex17.html'>Exercise 17</a></td>
+      <td>Work on midterm project</td>
+      <td>Work on midterm project</td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
@@ -356,15 +342,15 @@ the materials for that week.
 </table>
 </div>
 
-<button type="button" id="week_8_toggle" class="week_control_button">Week 8 (14-Oct to 18-Oct)</button>
+<button type="button" id="week_8_toggle" class="week_control_button">Week 8 (10-March to 14-March)</button>
 <div id="week_8" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 21 (14-Oct)</th>
-      <th>Day 22 (16-Oct)</th>
-      <th>Fall Break (18-Oct)</th>
+      <th>Day 21 (10-March)</th>
+      <th>Day 22 (12-March)</th>
+      <th>Day 23 (14-March)</th>
     </tr>
   </thead>
   <tbody>
@@ -372,325 +358,300 @@ the materials for that week.
       <td>Videos</td>
       <td>Midterm Exam</td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2760c264-312d-49f2-9e43-ae2300279acb'>Introduction to C++</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=954ea030-61b3-482d-96e8-ae2300279a4f'>C++ Strings</a></td>
-      <td>Fall Break (no class)!</td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04905da6-f193-4a6e-9f3e-ae2300279736'>Introduction to STL and templates</a></td>
     </tr>
     <tr>
       <td>Slides</td>
       <td>Midterm Exam</td>
       <td><a href='slides/day22_intro_cpp.pdf'>Introduction to C++</a><br><a href='slides/day22_cpp_strings.pdf'>C++ Strings</a></td>
-      <td>N/A</td> 
+      <td><a href='slides/day23_stl_templates.pdf'>Introduction to STL and templates</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
       <td>N/A</td>
       <td><a href='questions/day22.html'>Day 22</a></td>
-      <td>N/A</td>
+      <td><a href='questions/day23.html'>Day 23</a></td>
       </tr>
     <tr>
       <td>Exercise</td>
       <td>N/A</td>
       <td>Midterm Project</td>
-      <td>N/A</td>
+      <td><a href='exercise/ex23.html'>Exercise 23</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
       <td></td>
-      <td><a href='notes/notes-CppBasics.html'>NOTES: C++ Basics</a>,
-      <a href='notes/notes-CppIO.html'>NOTES: I/O in C++</a>,
-      <a href='notes/notes-CppStrings.html'>NOTES: C++ string class</a></td>
+      <td></td>
       <td></td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<button type="button" id="week_9_toggle" class="week_control_button">Week 9 (21-Oct to 25-Oct)</button>
+<button type="button" id="week_9_toggle" class="week_control_button">Week 9 (24-March to 28-March)</button>
 <div id="week_9" class="collapsible">
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th>Day 23 (21-Oct)</th>
-      <th>Day 24 (23-Oct)</th>
-      <th>Day 25 (25-Oct)</th>
+      <th></th> 
+      <th>Day 24 (24-March)</th>
+      <th>Day 25 (26-March)</th>
+      <th>Day 26 (28-March)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04905da6-f193-4a6e-9f3e-ae2300279736'>Introduction to STL and templates</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c12342a6-6af3-4859-9da6-ae2300279661'>STL Containers - map, pair, and tuple</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c08d312c-963d-485b-84bf-ae23002796be'>STL Algorithms</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f35cdf8e-80d0-4d88-b9e3-ae2300279562'>C++ I/O stream and stringstream</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=090adf84-0330-4c2f-9c73-ae230027a599'>Intro to Object Oriented Programming</a></td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4fcd7033-f754-429f-b55b-ae230027a516'>C++ Reference</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d9978853-6c9b-4cc3-b62d-ae230027a4cc'>C++ Dynamic Memory Allocation</a></td>
     </tr>
     <tr>
-      <td>Slides</td>
-      <td><a href='slides/day23_stl_templates.pdf'>Introduction to STL and templates</a></td>
+      <td>Slides</td> 
       <td><a href='slides/day24_more_stl_containers.pdf'>STL Containers - map, pair, and tuple</a><br><a href='slides/day24_stl_algorithms.pdf'>STL Algorithms</a></td>
       <td><a href='slides/day25_cpp_file_io_stringstream.pdf'>C++ I/O stream and stringstream</a><br><a href='slides/day25_intro_to_oo.pdf'>Intro to Object Oriented Programming</a></td>
+      <td><a href='slides/day26_cpp_reference.pdf'>References</a><br><a href='slides/day26_dynamic_memory_allocation.pdf'>Dynamic Memory Allocation</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day23.html'>Day 23</a></td>
       <td><a href='questions/day24.html'>Day 24</a></td>
       <td><a href='questions/day25.html'>Day 25</a></td>
+      <td><a href='questions/day26.html'>Day 26</a></td> 
     </tr>
     <tr>
-      <td>Exercise</td>
-      <td><a href='exercise/ex23.html'>Exercise 23</a></td>
+      <td>Exercise</td>   
       <td><a href='exercise/ex24.html'>Exercise 24</a></td>
       <td><a href='exercise/ex25.html'>Exercise 25</a></td>
+      <td><a href='exercise/ex26.html'>Exercise 26</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-CppSTL.html'>NOTES: STL</a></td>
-      <td><a href='notes/notes-CppSTL.html'>NOTES: STL</a></td>
-      <td><a href='notes/notes-CppIO.html'>NOTES: C++ I/O</a>, <a href='notes/notes-CppStrings.html'>NOTES: string class</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_10_toggle" class="week_control_button">Week 10 (27-Oct to 31-Oct)</button>
+<button type="button" id="week_10_toggle" class="week_control_button">Week 10 (31-March to 4-April)</button>
 <div id="week_10" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 26 (27-Oct)</th>
-      <th>Day 27 (29-Oct)</th>
-      <th>Day 28 (31-Oct)</th>
+      <th>Day 27 (31-March)</th>
+      <th>Day 28 (2-April)</th>
+      <th>Day 29 (4-April)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4fcd7033-f754-429f-b55b-ae230027a516'>C++ Reference</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d9978853-6c9b-4cc3-b62d-ae230027a4cc'>C++ Dynamic Memory Allocation</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5a1a7afe-6165-4e33-9567-ae230027a431'>C++ Classes</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0e485b33-028d-45e6-be18-ae230027a3d3'>Default Constructors</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=62080530-d06e-4a0e-be06-ae230027a050'>Constructors and default arguments</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2ea9792a-afab-4319-85f1-ae2300279fe3'>Destructors</a></td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2c8031d1-8509-4b22-881b-ae2300279f65'>Function overloading</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=17d06e46-549a-4e55-a7b0-b21c016f04ac'>Operator overloading</a></td>
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day26_cpp_reference.pdf'>References</a><br><a href='slides/day26_dynamic_memory_allocation.pdf'>Dynamic Memory Allocation</a></td>
       <td><a href='slides/day27_cpp_classes.pdf'>C++ Classes</a><br><a href='slides/day27_default_constructor.pdf'>Default Constructors</a></td>
-      <td><a href='slides/day28_constructors.pdf'>Constructors and default arguments</a><br><a href='slides/day28_destructors.pdf'>Destructors</a></td>  
+      <td><a href='slides/day28_constructors.pdf'>Constructors and default arguments</a><br><a href='slides/day28_destructors.pdf'>Destructors</a></td>
+      <td><a href='slides/day29_function_overloading.pdf'>Function overloading</a><br><a href='slides/day29_operator_overloading.pdf'>Operator overloading</a></td>  
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day26.html'>Day 26</a></td>
       <td><a href='questions/day27.html'>Day 27</a></td>
       <td><a href='questions/day28.html'>Day 28</a></td>
+      <td><a href='questions/day29.html'>Day 29</a></td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td><a href='exercise/ex26.html'>Exercise 26</a></td>
       <td><a href='exercise/ex27.html'>Exercise 27</a></td>
       <td><a href='exercise/ex28.html'>Exercise 28</a></td>
+      <td><a href='exercise/ex29.html'>Exercise 29</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-CppBasics.html'>NOTES: C++ Basics</a><br />
-      <a href='notes/notes-CppMemory.html'>NOTES: C++ Dynamic Memory</a></td>
-      <td><a href='notes/notes-classes.html'>NOTES: C++ classes</a></td>
-      <td><a href='notes/notes-classes.html'>NOTES: C++ classes</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_11_toggle" class="week_control_button">Week 11 (3-Nov to 7-Nov)</button>
+<button type="button" id="week_11_toggle" class="week_control_button">Week 11 (7-April to 11-April)</button>
 <div id="week_11" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 29 (3-Nov)</th>
-      <th>Day 30 (5-Nov)</th>
-      <th>Day 31 (7-Nov)</th>
+      <th>Day 30 (7-April)</th>
+      <th>Day 31 (9-April)</th>
+      <th>Day 32 (11-April)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2c8031d1-8509-4b22-881b-ae2300279f65'>Function overloading</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ee4c0ea7-24f8-426a-9291-ae2300279f0e'>Operator overloading</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f9091b95-ab29-46fe-82b8-ae2300279e93'>Initialization and assignment</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=181313b7-6b07-400c-addf-ae2300279df3'>Rule of 3</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fed0c83c-bcd8-4341-8b0e-ae2300279cf6'>Template functions</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=06bf6f38-8f76-4b19-80f4-ae2300279c79'>Template classes</a></td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7cdea279-e109-4ba8-b99d-ae2300279bea'>Inheritance</a><br>
+      <a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=873d6ec0-a562-47f2-b098-ae2300279b28'>Polymorphism</a></td>
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day29_function_overloading.pdf'>Function overloading</a><br><a href='slides/day29_operator_overloading.pdf'>Operator overloading</a></td>
       <td><a href='slides/day30_initialization_assignments.pdf'>Initialization and assignment</a><br><a href='slides/day30_rule_of_3.pdf'>Rule of 3</a></td>
       <td><a href='slides/day31_template_functions.pdf'>Template functions</a><br><a href='slides/day31_template_classes.pdf'>Template classes</a></td>
+      <td><a href='slides/day32_inheritance.pdf'>Inheritance</a><br>
+      <a href='slides/day32_polymorphism.pdf'>Polymorphism</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day29.html'>Day 29</a></td>
       <td><a href='questions/day30.html'>Day 30</a></td>
       <td><a href='questions/day31.html'>Day 31</a></td>
+      <td><a href='questions/day32.html'>Day 32</a></td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td><a href='exercise/ex29.html'>Exercise 29</a></td>
       <td><a href='exercise/ex30.html'>Exercise 30</a></td>
       <td><a href='exercise/ex31.html'>Exercise 31</a></td>
+      <td><a href='exercise/ex32.html'>Exercise 32</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-overloading.html'>NOTES: Overloading</a></td>
       <td></td>
-      <td><a href='notes/notes-templates.html'>NOTES: Function & Class Templates</a>
-</td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_12_toggle" class="week_control_button">Week 12 (11-Nov to 15-Nov)</button>
+<button type="button" id="week_12_toggle" class="week_control_button">Week 12 (14-April to 18-April)</button>
 <div id="week_12" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 32 (10-Nov)</th>
-      <th>Day 33 (12-Nov)</th>
-      <th>Day 34 (14-Nov)</th>
+      <th>Day 33 (14-April)</th>
+      <th>Day 34 (16-April)</th>
+      <th>Day 35 (18-April)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7cdea279-e109-4ba8-b99d-ae2300279bea'>Inheritance</a><br>
-      <a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=873d6ec0-a562-47f2-b098-ae2300279b28'>Polymorphism</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=162dba01-3c6a-4358-8179-ae23002799fe'>Dynamic dispatch</a><br>
       <a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0e849f80-9dec-47c1-aaac-ae2300279986'>Function hiding & abstract classes</a><br>
       <a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5d6fdb70-910c-4823-b4a0-ae23002797a1'>Virtual destructors</a></td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2edb2b97-e40e-4200-94ce-ae23002790c9'>OO Design & UML Diagrams</a></td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=00c8e477-aa8e-4357-bd0e-ae230027992c'>Enumerated Types</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7e2654d0-197a-49fb-8d90-ae23002798b8'>Exceptions</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=53afa435-461a-4814-bfc2-ae2300279850'>Customized Exceptions</a></td>
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day32_inheritance.pdf'>Inheritance</a><br>
-      <a href='slides/day32_polymorphism.pdf'>Polymorphism</a></td>
       <td><a href='slides/day33_dynamic_dispatch.pdf'>Dynamic dispatch</a><br>
       <a href='slides/day33_function_hiding_abstract_classes.pdf'>Function hiding & abstract classes</a><br>
       <a href='slides/day33_virtual_destructors.pdf'>Virtual destructors</a></td>
       <td><a href='slides/day34_oo_design_uml.pdf'>OO Design & UML Diagrams</a></td>
+      <td><a href='slides/day35_enum.pdf'>Enumerated Types</a><br><a href='slides/day35_exceptions.pdf'>Exceptions</a><br><a href='slides/day35_customized_exceptions.pdf'>Customized Exceptions</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day32.html'>Day 32</a></td>
       <td><a href='questions/day33.html'>Day 33</a></td>
       <td><a href='questions/day34.html'>Day 34</a></td>
+      <td><a href='questions/day35.html'>Day 35</a></td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td><a href='exercise/ex32.html'>Exercise 32</a></td>
       <td><a href='exercise/ex33.html'>Exercise 33</a></td>
-      <td>Work on final project</td>
+      <td>N/A</td>
+      <td><a href='exercise/ex35.html'>Exercise 35</a></td>  
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-polymorphism.html'>NOTES: Inheritance & Polymorphism</a>
-</td>
-      <td><a href='notes/notes-polymorphism.html'>NOTES: Inheritance & Polymorphism</a>
-</td>
-     <td><a href='notes/notes-OOdesign.html'>NOTES: Object Oriented Design</a>
-</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_13_toggle" class="week_control_button">Week 13 (17-Nov to 21-Nov)</button>
+<button type="button" id="week_13_toggle" class="week_control_button">Week 13 (21-April to 25-April)</button>
 <div id="week_13" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 35 (17-Nov)</th>
-      <th>Day 36 (19-Nov)</th>
-      <th>Day 37 (21-Nov)</th>
+      <th>Day 36 (21-April)</th>
+      <th>Day 37 (23-April)</th>
+      <th>Day 38 (25-April)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=00c8e477-aa8e-4357-bd0e-ae230027992c'>Enumerated Types</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7e2654d0-197a-49fb-8d90-ae23002798b8'>Exceptions</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=53afa435-461a-4814-bfc2-ae2300279850'>Customized Exceptions</a></td>
       <td>N/A</td>
       <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=737a8372-4317-47c5-8492-ae23002795c1'>Iterators</a></td>
+      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5eb3773f-b093-4630-8e18-ae810038ea47'>Lambdas</a></td>
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day35_enum.pdf'>Enumerated Types</a><br><a href='slides/day35_exceptions.pdf'>Exceptions</a><br><a href='slides/day35_customized_exceptions.pdf'>Customized Exceptions</a></td>
       <td>N/A</td>
       <td><a href='slides/day36_iterators.pdf'>Iterators</a></td>
+      <td><a href='slides/day37_lambdas.pdf'>Lambdas</a></td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day35.html'>Day 35</a></td>
       <td>N/A</td>
-       <td><a href='questions/day37.html'>Day 37</a></td>
+      <td><a href='questions/day37.html'>Day 37</a></td>
+      <td><a href='questions/day38.html'>Day 38</a></td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td><a href='exercise/ex35.html'>Exercise 35</a></td>
       <td>Work on final project</td>
       <td><a href='exercise/ex37.html'>Exercise 37</a></td>
+      <td>Work on final project</td> 
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-exceptions.html'>NOTES: Error & Exception Handling</a></td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-
-<button type="button" id="week_14_toggle" class="week_control_button">Week 14 (1-Dec to 5-Dec)</button>
+<button type="button" id="week_14_toggle" class="week_control_button">Week 14 (28-April)</button>
 <div id="week_14" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 38 (1-Dec)</th>
-      <th>Day 39 (3-Dec)</th>
-      <th>Day 40 (5-Dec)</th>
+      <th>Day 39 (28-April)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Videos</td>
-      <td><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5eb3773f-b093-4630-8e18-ae810038ea47'>Lambdas</a></td>
-      <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day37_lambdas.pdf'>Lambdas</a></td>
-      <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day38.html'>Day 38</a></td>
-      <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Exercise</td>
       <td>Work on final project</td>
-      <td>Work on final project</td>
-      <td>Work on final project</td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a href='notes/notes-lambdas-misc.html'>Lambdas & Miscellany</a></td>
-      <td><a href='resources/FinalReview.pdf'>Final Exam Review Questions</a></td>
-      <td><a href='resources/FinalReview_SOLUTIONS.pdf'>Final Exam Review Solutions</a></td>
+      <td><a href='resources/FinalReview.pdf'>Final Exam Review Questions</a><br/><a href='resources/FinalReview_SOLUTIONS.pdf'>Final Exam Review Solutions</a></td>
     </tr>
   </tbody>
 </table>
 </div>
-
 
 <script type="text/javascript">
   // Create and register a click handler for button clicks to expand/contract
@@ -721,7 +682,7 @@ the materials for that week.
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    var active_week_id = 'week_1';
+    var active_week_id = 'week_15';
 
     var content_divs = document.getElementsByClassName("collapsible");
     for (i = 0; i < content_divs.length; i++) {
