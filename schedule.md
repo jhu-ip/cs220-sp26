@@ -11,10 +11,10 @@ and announced on Piazza.
 Unless mentioned otherwise, assignments and projects are due at 11pm (Baltimore time)
 on the due date. See the syllabus for our late days policy and also the collaboration policy and ethics expectations for this semester. 
 
-
-
 Assignment/Exam | Posted | Due Date
 --------------- | ------ | ----------
+
+<!--
 [Homework 0](assign/hw0.html) | 8/29 | Friday Sep 5, 11pm
 [Homework 1](assign/hw1.html) | 9/5 | Friday Sep 12, 11pm
 [Homework 2](https://www.gradescope.com/courses/1070771/assignments/6675631/) | 9/12 | Friday Sep 19, 11pm
@@ -26,3 +26,4 @@ Midterm (C material) | n/a | Monday Oct 13th, in section
 [Homework 6](https://www.gradescope.com/courses/1070771/assignments/7035238/) | 10/31 | Friday Nov 7, 11pm
 [Homework 7](https://jhu-ip.github.io/cs220-f25/assign/hw7.html) | 11/6 | Friday Nov 14, 11pm
 [Final Project](assign/final.html) | 11/13 | Fri 11/21 (plan and UML diagram), Fri 12/5 (code, partner eval form) 11pm
+-->
