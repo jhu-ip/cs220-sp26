@@ -13,6 +13,7 @@ on the due date. See the syllabus for our late days policy and also the collabor
 
 Assignment/Exam | Posted | Due Date
 --------------- | ------ | ----------
+N/A             | N/A    | N/A
 
 <!--
 [Homework 0](assign/hw0.html) | 8/29 | Friday Sep 5, 11pm
