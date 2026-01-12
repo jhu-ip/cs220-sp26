@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 35</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 35</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>This exercise is designed to be an introduction to throwing and catching exceptions in C++. As you work on this exercise, you may find the following list of standard C++ exceptions useful: <a href="http://en.cppreference.com/w/cpp/error/exception">http://en.cppreference.com/w/cpp/error/exception</a>.</p>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Log into ugrad, then navigate to the public repo and type <code class="language-plaintext highlighter-rouge">git pull</code> to synchronize your local working copy with the remote repo.</p>
+  </li>
+  <li>
+    <p>Copy the above files from the public repository (in the <code class="language-plaintext highlighter-rouge">/exercises/ex35/</code> directory) into your personal repo where desired. Then navigate to your personal repo folder for this exercise. Confirm that you can see the starter files for today’s exercise – files named <code class="language-plaintext highlighter-rouge">exceptionExercise.cpp</code>, <code class="language-plaintext highlighter-rouge">goodData.txt</code>, <code class="language-plaintext highlighter-rouge">tooManyInts.txt</code>, and <code class="language-plaintext highlighter-rouge">nonIntData.txt</code>.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<p>Compile <code class="language-plaintext highlighter-rouge">exceptionExercise.cpp</code> and run the program to see how the existing version behaves. Notice that it expects an input filename as a command-line argument, so try running it with <code class="language-plaintext highlighter-rouge">goodData.txt</code> as input. In the remaining parts, we will consider various types of error conditions the program might encounter and try to deal with them gracefully.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>What if the file contains more than ten integers? Execute the program using <code class="language-plaintext highlighter-rouge">tooManyInts.txt</code> and watch what happens. You can see that the program crashes with a particular exception condition. Add a try/catch block in main that can handle the situation and print a useful error message.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>What if the user specifies the name of a file that does not exist? Execute the program and type in <code class="language-plaintext highlighter-rouge">notAFile.txt</code> (the name of a file that does not exist) and watch what happens. Edit <code class="language-plaintext highlighter-rouge">exceptionExercise.cpp</code> to handle this more gracefully. In particular, it would be useful to throw an exception from within <code class="language-plaintext highlighter-rouge">readFile</code> if you detect such a situation.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>The method called <code>is_open()</code> can be helpful here.</p>
+</div>
+</div>
+
+<p>Then add a try/catch structure in main that can handle the situation and print a useful error message. If your catch block catches an exception called <code class="language-plaintext highlighter-rouge">e</code>, it might be useful to output <code class="language-plaintext highlighter-rouge">e.what()</code> to give the user additional information.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>It might be a good idea to throw and catch an <code>std::ios_base::failure</code> type exception in a situation like this.</p>
+</div>
+</div>
+
+<h3 id="part-5">Part 5</h3>
+<p>What if the input file contains something other than <code class="language-plaintext highlighter-rouge">int</code>s? Execute the program with <code class="language-plaintext highlighter-rouge">nonIntData.txt</code> and watch what happens. Add a try/catch structure that can handle the situation and print a useful error message.</p>
+
+<h3 id="part-6-optional">Part 6 (optional)</h3>
+<p>If you have time, add a <code class="language-plaintext highlighter-rouge">try/catch</code> block to the <code class="language-plaintext highlighter-rouge">readFile()</code> function so that if we try to go past the end of the array, the exception will be caught and things will be “fixed” (by re-sizing the array so it will hold the new element and then re-adding it).</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

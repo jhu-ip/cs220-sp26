@@ -1,0 +1,101 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 27</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 27</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today meeting:</p>
+<ul>
+<li>C++ classes</li>
+<li>Fields &amp; member functions</li>
+<li>Access modifiers (public &amp; private)</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Navigate to the public repo and run <code class="language-plaintext highlighter-rouge">git pull</code> to update your clone of the public repository, and then copy the <code class="language-plaintext highlighter-rouge">exercises/ex27</code> directory into your personal git repository.</p>
+  </li>
+  <li>
+    <p>Confirm that you can see the template files for today’s exercise by typing <code class="language-plaintext highlighter-rouge">ls exercises/ex27</code> – you should see files named <code class="language-plaintext highlighter-rouge">Makefile</code>, <code class="language-plaintext highlighter-rouge">README</code>, <code class="language-plaintext highlighter-rouge">grade_list.[h/cpp]</code>, and <code class="language-plaintext highlighter-rouge">main[1/2/3].cpp</code> inside.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<p>Read the instructional comments in <code class="language-plaintext highlighter-rouge">grade_list.h</code> and <code class="language-plaintext highlighter-rouge">grade_list.cpp</code>. Read <code class="language-plaintext highlighter-rouge">main1.cpp</code>.  It shows an example of how to use the given code for the <code class="language-plaintext highlighter-rouge">GradeList</code> class. You can compile and run the code using commands <code class="language-plaintext highlighter-rouge">make main1</code> and <code class="language-plaintext highlighter-rouge">./main1</code>.</p>
+
+<p>Follow the instructions in the comments in <code class="language-plaintext highlighter-rouge">grade_list.h</code> and <code class="language-plaintext highlighter-rouge">grade_list.cpp</code>.  Specifically, the comments will ask you to implement the mean and median member functions by putting a function definition for each in the <code class="language-plaintext highlighter-rouge">grade_list.cpp</code> file. You should not change anything in the <code class="language-plaintext highlighter-rouge">grade_list.h</code> file.</p>
+
+<p>After you’ve implemented these, uncomment the lines at the end of <code class="language-plaintext highlighter-rouge">main1.cpp</code> to check your code is running correctly.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Follow the instructions in the comments in <code class="language-plaintext highlighter-rouge">main2.cpp</code>.  Specifically, the comments will ask you to fix the code, which does not work as written.  You may modify the <code class="language-plaintext highlighter-rouge">GradeList</code> class but do not change the access modifier (e.g. <code class="language-plaintext highlighter-rouge">private</code>) of any of the members.</p>
+
+<p>You can compile and run the code using commands <code class="language-plaintext highlighter-rouge">make main2</code> and <code class="language-plaintext highlighter-rouge">./main2</code>.</p>
+
+<p>Hints: think about the best way to access the private variables such that data that should not be changed, cannot be changed by <code class="language-plaintext highlighter-rouge">main2</code>. Also consider the efficiency of your code and whether it is doing unnecessary copying. Discuss possible approaches with your classmates and instructor.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>Follow the instructions in the comments in <code class="language-plaintext highlighter-rouge">main3.cpp</code>.  Specifically, the comments will ask you write some new code using the <code class="language-plaintext highlighter-rouge">GradeList</code> class.  You should not need to modify the <code class="language-plaintext highlighter-rouge">GradeList</code> class for this part.</p>
+
+<p>You can compile and run the code using commands <code class="language-plaintext highlighter-rouge">make main3</code> and <code class="language-plaintext highlighter-rouge">./main3</code>.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also scp and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

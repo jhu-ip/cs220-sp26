@@ -1,0 +1,725 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Midterm Project</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Midterm Project</div>
+
+    <div class="admonition caution">
+<div class="title">Important Dates</div>
+<div class="content">
+<ul>
+<li>You are expected to work in a team of two.</li>
+<li>Released: Friday Oct 3rd</li>
+<li><strong>Development Plan Due: Friday Oct 10th at 11pm</strong></li>
+<li><strong>Project Zip Due: Wednesday Oct 22nd at 11pm</strong></li>
+<li><strong>Partner Evaluation Form Due: Wednesday Oct 29th at 11pm</strong></li>
+<li>This project is worth 150 points total</li>
+<li>No late days may be used!</li>
+<li>Collaboration is with your partner only.</li>
+</ul>
+</div>
+</div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<p>To practice with:</p>
+<ul>
+<li>structs</li>
+<li>binary file I/O</li>
+<li>data representations</li>
+<li>dynamic memory allocation</li>
+<li>random numbers</li>
+<li>makefile</li>
+<li>development tools `gdb`, `valgrind`, `git`</li>
+</ul>
+</div>
+</div>
+
+<h2 id="general-requirements">General Requirements</h2>
+
+<p>This is a team of two programming assignment, meaning you and a partner will collaboratively write and submit the source code for a program. You and your partner should take a “paired programming” approach, where you frequently work together at a single screen. In this approach, at any given time one person is the “driver” with their hands on the keyboard, and the other is the “navigator” watching and guiding the driver. You should switch roles regularly. This method is particularly effective when you are testing and debugging your program. Remember, you are both responsible for all the code you submit and will receive the same grade.</p>
+
+<p>As usual for coding assignments, you are required to use the <code class="language-plaintext highlighter-rouge">git</code> version control system and include a <em>log file</em> with your project submission. Both partners must make sigificant commits to the project. A new team repo will be created for you in our cs220 organization on github which both teammates must use for this project.</p>
+
+<div class="admonition caution">
+<div class="title">Project Repo</div>
+<div class="content">
+We will provision you a separate repo for your midterm project under the `jhu-ip` organization and both team members along with course staff will be invited to have an admin role on the repo. You will both need to clone this new repo to get started. You should anticipate some conflicts when sharing a repo, and will need to resolve and merge them appropriately. Frequent commit/push/pull sequences are even more important in this situation.
+</div>
+</div>
+
+<p>This project is larger and more complex than previous programming assignments. Additionally, since you have now been exposed to most of what C can do, there are no restrictions on what language features you can use (other than the conventions of good style, of course; you still shouldn’t use global variables, for example).</p>
+
+<div class="admonition danger">
+<div class="title">Valgrind Note</div>
+<div class="content">
+From this point forward in the semester, your programs will need to not only compile and run cleanly (i.e. with no warnings, errors, or crashes), but also must not have any memory-related issues as reported by valgrind.
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Viewing Images</div>
+<div class="content">
+<p>For this project, you will be working with images in a PPM formt (described below). If you wish to view images over the terminal while connected to ugrad servers, it will require a few extra steps:
+
+1. Set up X-tunnelling by installing <a href="https://sourceforge.net/projects/xming/">XMING</a> on Windows or <a href="https://www.xquartz.org/">XQuartz</a> on Mac.
+2. Once you have an X-tunnelling program running on your machine, enable X-tunnelling when you connect to the ugrad server: use -Y on a Mac when you `ssh` into ugrad or with Putty, simply enable the X-11 forwarding option before connecting.
+3. `feh` is a very simple command-line image viewer.  It is available on ugrad machines and you can simply run the program with the name of an image file as a command-line argument, and it will [slowly] display the image on your screen. e.g.
+</p>
+<p>
+<code>$ feh myimage.ppm</code>
+</p>
+
+Please note that if you are using emacs while X-tunnelling is enabled, you will have to run it with the command `emacs -nw` to still run it in the terminal ("nw" stands for "no window".) Other in-terminal editors may have similar options.
+
+<strong>Note:</strong> Before connecting to ugrad and running `feh`, make sure either Xming or Xquartz is running and x-tunneling is enabled as described above.
+</div>
+</div>
+
+<p>If you are using a different platform, you are welcome to use an image viewer of your choice. Mac and Windows come with their built-in image viewers that should recognize the ppm format. If you want to install <code class="language-plaintext highlighter-rouge">feh</code> locally on your linux installation, it is easy to do so using most linux package managers, but there are other open source image viewing programs.</p>
+
+<p>If you are using VS Code, you may view images directly in the editor. You may need to install an appropriate extension to allow this (try searching for “PPM” in the extension market-place.)</p>
+
+<h2 id="program-description">Program Description</h2>
+
+<p>This program will be an image processing program. It will have a command-line-based user interface (UI), so there will be no graphical interface, and the range of operations will be limited, but the algorithms you will use are similar to the ones used in programs like Photoshop or GIMP.</p>
+
+<p>At a basic level, your program will be able to read image files from disk (ie, the file system), perform one of a variety of image processing tasks, and then write the result back to disk as a new image file. Since your program will not have a GUI, you will use external programs to view the images (see the Viewing Images note above.)</p>
+
+<p>While there are many formats for storing image files, your program will <strong>only</strong> need to read and write one, the <strong>PPM</strong> format. This is essentially the simplest and easiest format to read and write, which is why it was chosen; its main drawback is that it does not use any kind of compression, so images stored in this format tend to be on the large side when compared to formats like JPEG, PNG, or GIF. An implementation to read PPM files is provided for you. However, you will need to write the corresponding function to write to a PPM file format. (See <code class="language-plaintext highlighter-rouge">ppm_io.h</code> and <code class="language-plaintext highlighter-rouge">ppm_io.c</code> in the starter code.)</p>
+
+<div class="admonition caution">
+<div class="title">Starter Files</div>
+<div class="content">
+<p>Make sure to do a `git pull` on the public repo before starting to work to get the starter files for this project. You must work with the starter files!</p>
+</div>
+</div>
+
+<h3 id="ppm-image-format">PPM image format</h3>
+
+<p>For this assignment, we will use a very simple image-file format called PPM. It’s an uncompressed format, meaning that the images will take up a lot of disk space (compared to JPG or PNG files), but it’s very easy to read and write from C code (which is why we’re using it). For the formal “official” description of the PPM format, see the <a href="http://netpbm.sourceforge.net/">netpbm site</a>. Because these PPM files can be very large, be careful not to fill up your ugrad storage quota with too many cat pictures…</p>
+
+<div class="admonition success">
+<div class="title">'convert' Command</div>
+<div class="content">
+<p>
+NOTE: you can use a unix program called `convert` to convert between image formats; e.g. to convert an existing file called "selfie.jpg" into a PPM, you would type:
+</p>
+<p>
+<code>$ convert selfie.jpg selfie.ppm</code>
+</p>
+<p>
+This works for most image format file extensions; it converts to/from most known image formats, including .jpg, .gif, .png, .ppm, .tiff, and .pdf, and is installed on the ugrad machines. If it's not installed on your local machine (or virtual machine), most linux package managers can install it (or can install ImageMagick, which is the suite of tools that `convert` is part of).
+</p>
+</div>
+</div>
+
+<p>The PPM format itself is pretty simple (compared to most other image formats). Basically, at the top of the file will be a special “tag” that marks the file as a PPM; this should be P6. Then, there are three numbers, separated by whitespace; these numbers represent the size of the image as columns, rows, and colors. Columns and rows specify the width and height of the image (in pixels) respectively. (BEWARE: columns come before rows in this format!) The colors value encodes how many different shades of each color a pixel can take on; for this assignment, this number must always be 255 (you must reject any image that uses a different value, but you’re unlikely to encounter one). Immediately after the 255, the binary data encoding all the image pixels will begin.</p>
+
+<p>Optionally, there may be lines starting with a #, which are comments and should be ignored; these may be intermixed with the above information. You don’t need to store these; if you read a file and then re-write it, it’s fine if the comments get lost. The files we test your code with, however, will have either 0 or 1 comment lines just after the P6 tag, but no comment lines between the other header values (see <code class="language-plaintext highlighter-rouge">trees.ppm</code> in the course public repo for an example).</p>
+
+<p>All of this will be ANSI text, so you can use the normal text I/O functions (e.g. fgetc(), fscanf(), fprintf() etc.) to read/write the header information.</p>
+
+<p>After the color size specification, there will be a single whitespace character (usually a newline, but that’s not guaranteed), after which the remainder of the file will be the actual pixel values. Basically, each “pixel” consists of three values; the first value is the “red” channel, the second value is the “green” channel, and the third value is the “blue” value. Taken together, these three values specify a single color, which is the RGB color value of that pixel. Since the max color value is 255, each of these values will be in the range 0-255, which fits exactly in one byte of memory. For more information about RGB color codes see <a href="https://en.wikipedia.org/wiki/RGB_color_model">Wikipedia’s article on the RGB color model</a>.</p>
+
+<p>The easiest way to read the pixel values is to create a struct that contains three unsigned char variables, one per color channel. Then, create an array of your pixel structs with rows * cols elements. At that point, you can just use fread() to read the entire array of pixels from the file in one go. Similarly, you can use fwrite() to write the whole pixel array with a single function call. We’ve started this off for you in the provided <code class="language-plaintext highlighter-rouge">ppm_io.h</code> and <code class="language-plaintext highlighter-rouge">ppm_io.c</code> files.</p>
+
+<p>Your first coding task for this project is to write a few of the functions in the <code class="language-plaintext highlighter-rouge">ppm_io.c</code> implememtation file:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">write_ppm</code> - function to write from an Image variable to an external file in the PPM format</li>
+  <li><code class="language-plaintext highlighter-rouge">make_image</code> - function to allocate memory for an Image of a specified size</li>
+  <li><code class="language-plaintext highlighter-rouge">free_image</code> - function to free the dynamically allocated memory for an Image</li>
+</ul>
+
+<p>We have provided the implememtation of <code class="language-plaintext highlighter-rouge">read_ppm</code> (function to read a PPM formatted file into an Image), along with the <code class="language-plaintext highlighter-rouge">struct</code> definitions this project must use.</p>
+
+<h2 id="operational-overview">Operational Overview</h2>
+
+<p>Your program will be a command line tool, always run with the name of the executable file project followed by (minimally) the name of an input PPM file, the name of a desired output PPM file, and the specific lower-case name of an image processing operation, as listed below. Some operations require additional arguments, which will also be supplied at the command line by the user, at the end of the line. There are no prompts and no input entered by the user interactively.</p>
+
+<div class="admonition info">
+<div class="title">Commandline Args</div>
+<div class="content">
+There is a README.txt file included in the results folder of the starter files provided for this project. In it, you will find the commands used to generate the result images included in this folder. Please refer to this to file for examples of how to invoke each operation.
+</div>
+</div>
+
+<p>The operations your program will be able to recognize and perform are all of the following, listed roughly in easiest to hardest implementation. The bolded words are the operation names to be entered at the command line by the user. More detail for each operation is provided below.</p>
+
+<ol>
+  <li><a href="#grayscale"><strong>grayscale</strong></a> - convert the input image to grayscale (i.e. a full-color image becames shades of gray)</li>
+  <li><a href="#blend"><strong>blend</strong></a> - blend two images into one using an <code class="language-plaintext highlighter-rouge">alpha</code> factor</li>
+  <li><a href="#crop"><strong>crop</strong></a> - crop the input image given corner pixel locations</li>
+  <li><a href="#rotate-ccw"><strong>rotate-ccw</strong></a> - rotate the input image 90 degrees counter-clockwise</li>
+  <li><a href="#pointilism"><strong>pointilism</strong></a> - apply a pointilist filter to the input</li>
+  <li><a href="#blur"><strong>blur</strong></a> - blur the image using a Gaussian filter with a prescribed standard deviation <code class="language-plaintext highlighter-rouge">sigma</code></li>
+</ol>
+
+<p>For example, at the command prompt, a user of your program might type:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./project building.ppm building_crop.ppm crop 50 50 500 500
+</code></pre></div></div>
+
+<p>to crop the input image <code class="language-plaintext highlighter-rouge">building.ppm</code> (in PPM format) and output the cropped image to <code class="language-plaintext highlighter-rouge">building_crop.ppm</code>, where <code class="language-plaintext highlighter-rouge">(50, 50)</code> and <code class="language-plaintext highlighter-rouge">(500, 500)</code> specify the top-left and bottom-right pixel locations of the cropped region.</p>
+
+<p>For another example, at the command prompt, a user of your program might type:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./project trees.ppm trees_blur.ppm blur 3
+</code></pre></div></div>
+
+<p>to blur the input image <code class="language-plaintext highlighter-rouge">trees.ppm</code> (in PPM format) and output the blurred image to <code class="language-plaintext highlighter-rouge">trees_blur.ppm</code>, where <code class="language-plaintext highlighter-rouge">3</code> specifies the standard deviation of the Gaussian filter.</p>
+
+<p>Once you implement the missing ppm_io.c functions, you can then checkout the provided demo program <code class="language-plaintext highlighter-rouge">checkerboard</code>. Compile the demo program by running <code class="language-plaintext highlighter-rouge">make checkerboard</code>; an executable <code class="language-plaintext highlighter-rouge">checkerboard</code> should be generated. The program demonstrates how to use <code class="language-plaintext highlighter-rouge">ppm_io</code> to read and write PPM formated files, and also shows how the <code class="language-plaintext highlighter-rouge">struct Pixel</code> and <code class="language-plaintext highlighter-rouge">struct Image</code> are used.</p>
+
+<div class="admonition success">
+<div class="title">Compare</div>
+<div class="content">
+<p>
+In the starter code, we also provide a helper executable `img_cmp`, which you could run on ugrad machine to compare if two PPM files are the same up to a tolerance. It's usage is:
+</p>
+
+<code>$ ./img_cmp PPM_file1 PPM_file2 [tolerance = 0]</code>
+
+<p>
+The program takes two PPM files with the same dimension and compares them pixel by pixel.
+It counts how many pairs of pixels are outside the given tolerance.
+A pair of pixels (with same row and col indices) of two images is said within the tolerance if each absolute difference of their three channel values is less than or equal to the tolerance.
+For example, if you run:
+</p>
+
+<p>
+<code>$ ./img_cmp checkerboard1.ppm checkerboard2.ppm 5</code>
+</p>
+
+it should tell you how many pair of pixels in `checkerboard1.ppm` and `checkerboard2.ppm` have an absolute difference of more than 5 (i.e. intensity difference).
+</div>
+</div>
+
+<p>After you have reviewed <code class="language-plaintext highlighter-rouge">checkerboard.c</code> and <code class="language-plaintext highlighter-rouge">ppm_io.h</code>, and completed the <code class="language-plaintext highlighter-rouge">ppm_io.c</code> file, as an initial test to be sure you’re on the right track, try to read in a PPM file and write it out unchanged.  Use the <code class="language-plaintext highlighter-rouge">img_cmp</code> program to verify the two files are exactly the same (tolerance 0). Once this works well, begin successively working through the operational commands as listed.</p>
+
+<p>When using this utility to check your results against those that we have provided in the results folder of the starter files, you may use a tolerance of 1. This is what the autograder will use for all operations except for pointilism. The latter will be evaluated by visual inspection rather than autograded.</p>
+
+<h3 id="scaffolding-folder">Scaffolding Folder</h3>
+<p>The scaffolding (i.e. starter code) folder for this project (available in the public repository) provides you with <code class="language-plaintext highlighter-rouge">ppm_io.c</code>, <code class="language-plaintext highlighter-rouge">ppm_io.h</code>, <code class="language-plaintext highlighter-rouge">checkerboard.c</code>, <code class="language-plaintext highlighter-rouge">project.c</code>, <code class="language-plaintext highlighter-rouge">img_cmp.c</code>, and a <code class="language-plaintext highlighter-rouge">Makefile</code> for the project. It also contains some testing PPM files in a folder named <code class="language-plaintext highlighter-rouge">data</code> and some expected results in a subfolder named <code class="language-plaintext highlighter-rouge">results</code>, which is in the PPM format. Lastly, we provide starter files <code class="language-plaintext highlighter-rouge">image_manip.h</code> and <code class="language-plaintext highlighter-rouge">image_manip.c</code> which is where your implementations of the various transformation operations should be added.</p>
+
+<div class="admonition info">
+<div class="title">Note</div>
+<div class="content">
+<p>Note that the results displaying on this page are png versions. You should use the provided PPM files in the results folder of the starter code for comparison.</p>
+</div>
+</div>
+
+<p>We encourage you to store the provided PPM images and all created images in a subfolder of your own repository named data, to keep your images separate from your source code files. You don’t need to submit any PPM files to us; keeping them in a separate folder will help you avoid accidentally including them.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>If you're using the `data` subfolder, we suggest you execute your code from within the `data` folder by typing <code>../project</code>, so you can refer to input filenames while the program is executing directly as `kitten.ppm`, rather than `data/kitten.ppm`, saving yourself the extra typing while testing.</p>
+</div>
+</div>
+
+<h2 id="implementation-details">Implementation Details</h2>
+
+<p>This section contains detailed descriptions of the image processing operations that you will implement for this assignment. We use the following sample images for all the all examples/operations illustrated below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten.png" alt="The original kitten image" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The original kitten image</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/trees.png" alt="The original trees image" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The original trees image</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="grayscale">Grayscale</h3>
+
+<p>This is a fairly simple operation, but it does require a little math. Basically, for each pixel, you will calculate a single
+ value based on the three color values (red, green and blue), and then assign that same value to all three color channels (if all three color channels have the same value, you know the pixel will show up as some shade of gray). For this program, we will use the NTSC standard conversion formula: <em>.299 x red .587 x green + .114 x blue</em>.
+(If you look around online, you will discover that there are actually several different formulas that can be used, which result in slightly different results; please use the NTSC version for this assignment.)</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+Once the value is calculated, you will need to cast it back to an unsigned char before you assign it to each channel.
+</div>
+</div>
+
+<p>If you apply the grayscale to transform the kitten.ppm image by running the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./project kitten.ppm kitten_grayscale.ppm grayscale
+</code></pre></div></div>
+
+<p>the result should look like:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten_grayscale.png" alt="The grayscale kitten image" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The grayscale kitten image</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="blend">Blend</h3>
+
+<p>Blending two images is straightforward. The idea is, for each pixel, multiply each of the color channel values of the first image by the given factor <code class="language-plaintext highlighter-rouge">alpha</code> and add it to the corresponding color channel value of the second image mutiplied by <code class="language-plaintext highlighter-rouge">1-alpha</code>.</p>
+
+<div class="admonition info">
+<div class="title">Important Notes</div>
+<div class="content">
+<ol>
+<li>The dimenstions of the resulting image is always MAX(img1-&gt;width, im2-&gt;width) and MAX(img1-&gt;height, im2-&gt;height). e.g., if the first image is <code>400x600</code> and the second image is <code>500x300</code>, the resulting image would be <code>500x600</code>.</li>
+
+<li>For pixels that fall outside the range of one of the input image dimensions, there is no need to apply the 'alpha' factor. E.g., if the first image is <code>400x600</code> and the second image is <code>500x300</code>, alpha factor will NOT be applied to the row pixels of &gt; 400 and column pixels of &gt; 300. For pixels that that fall outside the range of both input dimensions, you should set the color to black (channel values to zero.)</li>
+<li>The value of alpha should be between 0 and 1 (both inclusive).</li>
+</ol>
+</div>
+</div>
+
+<p>When running the blend command, you would provide the input image file names first, then the ‘blend’ command, then the output file name before the alpha value: e.g.,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./project kitten.ppm trees.ppm blend kitten_trees_blend_05.ppm 0.5
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten_trees_blend_05.png" alt="The kitten and trees images blended - alpha factor 0.5" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The kitten and trees images blended - alpha factor 0.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="crop">Crop</h3>
+<p>Cropping an image is pretty common. For this operation the user must specify the two corners of the section they want to crop (ie, keep) - one inclusive and one exclusive. That will mean 4 integer values: the column and then row of the upper-left corner (both inclusive values), and the column and then row of the lower-right corner (both exclusive values). By looking at the differences between those values, you can calculate the size of the new image; this will let you allocate the correct amount of space for the pixel array. Once you’ve done that, you can just use a loop to go through the pixels of the specified region in the original image, and copy each component of each pixel to the new image. You should check whether exactly 4 additional arguments are provided for the cropping operation, and check if the specified corners are senseless or not. You should report appropriate errors.</p>
+
+<p>If you crop the <code class="language-plaintext highlighter-rouge">kitten.ppm</code> image from (top col=200, top row=200) to (bottom col=300, bottom row=300), the result should have 100 rows and 100 columns and look like:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten-crop-200_200_300_300.png" alt="The kitten image cropped with 200 200 300 300" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The kitten image cropped with 200 200 300 300</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rotate-ccw">Rotate-CCW</h3>
+<p>Rotating an image counter-clockwise is relatively straightforward. First you should allocate a new image with reversed dimensions (width and height) of the input image. Then, you use a loop to assign each new pixel value using the corresponding cell in the original image. Draw a figure for yourself to figure out the correct relationship between the original and rotated pixels. If you rotate the <code class="language-plaintext highlighter-rouge">kitten.ppm</code> image, you should see the following result image:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten_ccw.png" alt="The rotated kitten image" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The rotated kitten image</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="pointilism">Pointilism</h3>
+
+<p>Pointilism is a painting technique that uses distinct colored dots. You can read about it on <a href="https://en.wikipedia.org/wiki/Pointillism">Wikipedia’s entry on Pointilism</a>. In this part, we would like to apply a pointilism-like effect to an input image. In order to accomplish this, we randomly select a small set (3%) of the pixels in the input image and apply the effect to them. To do so, imagine that each randomly selected pixel is at the center of a circle with a random radius between 1 and 5 (inclusive). Now, applying the pointilism effect comes down to coloring all the pixels that reside in that circle with the same color as the color of the randomly selected pixel which is at the center of the circle. This gives the input image a cool “painting-like” look by creating a set of small filled circles (i.e., dots) across the image, where each dot is uniformly colored with the color of the randomly selected pixel which is located at the center of that dot. Note that if a randomly selected pixel is near or at a boundary, then you do not need to apply the effect to the parts that may extend past the borders of the image.</p>
+
+<p>For example, if we do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./project trees.ppm trees_pointilism.ppm pointilism
+</code></pre></div></div>
+
+<p>the following will result:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/trees_pointilism.png" alt="Pointilism applied on trees image" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Pointilism applied on trees image</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="admonition note">
+<div class="title">Note 1</div>
+<div class="content">
+Make sure to apply the effect on only 3% of the total pixels of the input image. For instance, if the input image dimensions are 800x600, then you should apply the effect to only 14400 randomly selected pixels. Also, for each randomly selected pixel, use a radius chosen uniformly at random between 1 and 5 (i.e, 1 ≤ radius ≤ 5) when creating the filled colored dot.
+</div>
+</div>
+
+<div class="admonition note">
+<div class="title">Note 2</div>
+<div class="content">
+When implementing this operation, you will need to generate random numbers. Use the `srand` function to set the random seed according to the operation's `seed` parameter. To facilitate the testing and grading of your work, do not make any other calls to the `srand` function. When calling the pointilism function, always pass an argument value of 1 for the `seed` parameter. 
+</div>
+</div>
+
+<h3 id="blur">Blur</h3>
+
+<p>The blur operation is more complex than some of the previous operations, because you need to consider more than one pixel at a time. At the simplest level, a blur works by taking each pixel, and setting its value to some kind of average of all the pixels in a small neighborhood around it. The simplest blur possible would just set each pixel to the average of itself and the pixels adjacent to itself (computed for each color channel separately). However, this kind of blur isn’t as pretty as we might like. What we will do for this assignment is similar, but more clever.</p>
+
+<p>For the kind of blurring effect that a program like Photoshop would give you, you will need to weight the importance of neighboring pixels according to a Gaussian distribution. This is referred to as a “Gaussian blur” (see <a href="https://en.wikipedia.org/wiki/Gaussian_blur">Wikipedia’s entry on Gaussian Blur</a>), and this is what you will implement for this assignment.</p>
+
+<p>First, you need to create an <code class="language-plaintext highlighter-rouge">NxN</code> matrix that holds the values of a 2D (symmetric) Gaussian distribution with a given variance (we assume 0-mean). <code class="language-plaintext highlighter-rouge">N</code> should be big enough to be at least <em>10*sigma</em> positions wide (to span approximately <em>5*sigma</em> positions in each direction), and <code class="language-plaintext highlighter-rouge">N</code> should always be an odd number (so there’s an equal number of rows/columns on either side of the center. If <code class="language-plaintext highlighter-rouge">dx</code> and <code class="language-plaintext highlighter-rouge">dy</code> store the two coordinates as offsets from the center (i.e. delta-from-mean), then the Gaussian value can be calculated as (written as code):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span> <span class="o">*</span> <span class="n">PI</span> <span class="o">*</span> <span class="nf">sq</span><span class="p">(</span><span class="n">sigma</span><span class="p">)))</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="p">(</span><span class="n">sq</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">sq</span><span class="p">(</span><span class="n">dy</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sq</span><span class="p">(</span><span class="n">sigma</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<p>Note that you will need to include math.h and link with -lm to get the exp() function. We have provided sq() to square its argument as a #defined macro and PI as a #defined constant in <code class="language-plaintext highlighter-rouge">image_manip.h</code>.</p>
+
+<p>As an example, if sigma is <code class="language-plaintext highlighter-rouge">0.5</code>, then we would get a 5x5 Gaussian distribution matrix like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.000000  0.000029  0.000214  0.000029  0.000000
+0.000029  0.011660  0.086157  0.011660  0.000029
+0.000214  0.086157  0.636620  0.086157  0.000214
+0.000029  0.011660  0.086157  0.011660  0.000029
+0.000000  0.000029  0.000214  0.000029  0.000000
+</code></pre></div></div>
+
+<p>If sigma was <code class="language-plaintext highlighter-rouge">1.0</code>, we would get an 11x11 matrix:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.000000  0.000000  0.000000  0.000000  0.000000  0.000001  0.000000  0.000000  0.000000  0.000000  0.000000
+0.000000  0.000000  0.000001  0.000007  0.000032  0.000053  0.000032  0.000007  0.000001  0.000000  0.000000
+0.000000  0.000001  0.000020  0.000239  0.001072  0.001768  0.001072  0.000239  0.000020  0.000001  0.000000
+0.000000  0.000007  0.000239  0.002915  0.013064  0.021539  0.013064  0.002915  0.000239  0.000007  0.000000
+0.000000  0.000032  0.001072  0.013064  0.058550  0.096532  0.058550  0.013064  0.001072  0.000032  0.000000
+0.000001  0.000053  0.001768  0.021539  0.096532  0.159155  0.096532  0.021539  0.001768  0.000053  0.000001
+0.000000  0.000032  0.001072  0.013064  0.058550  0.096532  0.058550  0.013064  0.001072  0.000032  0.000000
+0.000000  0.000007  0.000239  0.002915  0.013064  0.021539  0.013064  0.002915  0.000239  0.000007  0.000000
+0.000000  0.000001  0.000020  0.000239  0.001072  0.001768  0.001072  0.000239  0.000020  0.000001  0.000000
+0.000000  0.000000  0.000001  0.000007  0.000032  0.000053  0.000032  0.000007  0.000001  0.000000  0.000000
+0.000000  0.000000  0.000000  0.000000  0.000000  0.000001  0.000000  0.000000  0.000000  0.000000  0.000000
+</code></pre></div></div>
+
+<p>Basically, the sigma parameter lets you control how large the blur effect is; the larger your sigma, the more blurry your image will become.</p>
+
+<p>Once you have this Gaussian “filter” matrix, you’ll need to “convolve” it with your image. That’s fancy math terminology that basically means you loop over the pixels of your input image, and for each pixel, you place your filter on your image centered at that pixel, and then for each element of the filter, multiply it by the pixel value underneath that element. Then, you set the value for the pixel of the output image to be the normalized sum of those values. Basically, this is a way of describing a weighted average; the values in the matrix are the weights that get applied to the corresponding pixels of the input image. To normalize, you just sum up the values in the filter matrix, and divide the sum of the weighted pixel values by it; that ensures that you’re not brightening or darkening the image when you blur it.</p>
+
+<p>You will also need to be careful near the edges of the image, since the parts of filter may extend past the border of the image. In your calculations, just skip the filter positions that hang off the edge. (This is why the normalization is important even if the values in your matrix sum to 1).</p>
+
+<p>You will blur all three color channels in this fashion.</p>
+
+<p>You will likely want to implement this by decomposing it across several functions. For instance, you may want a function that generates a Gaussian matrix of a given size and variance, a function to find the filter response for one pixel of the input image, and finally a function that calls the first function, then loops over the pixels of the input image and calls the second function for each pixel in order to generate the output image.</p>
+
+<p>If you apply the blur transform with different sigma values to the <code class="language-plaintext highlighter-rouge">kitten.ppm</code> image, the result should look like the images shown below. (Note that blur may be a bit slow, and the larger a radius you use, the slower it will be.)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./project kitten.ppm ../results/kitten_blur_5.ppm blur 5
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten_blur_0.5.png" alt="The blurred kitten image sigma 0.5" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The blurred kitten image sigma 0.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten_blur_1.png" alt="The blurred kitten image sigma 1" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The blurred kitten image sigma 1</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/img/midterm/kitten_blur_5.png" alt="The blurred kitten image sigma 5" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">The blurred kitten image sigma 5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="error-reporting">Error Reporting</h2>
+<p>The approach your program will take for error reporting is to have your <code class="language-plaintext highlighter-rouge">main()</code> method return a <code class="language-plaintext highlighter-rouge">0</code> value indicating success or a positive value indicating failure. Which positive value your program should return is indicated in the table below. If more than one error condition occurs, your program should return the error code listed earliest in the table.</p>
+
+<p>In addition to returning the specified value, your program should also output an informative error message to <code class="language-plaintext highlighter-rouge">stderr</code>. (The text of the error messages will not be specified; we’ll leave the exact wording up to you.)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Return value</th>
+      <th>Error condition it signifies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>No errors detected</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Wrong usage (i.e. mandatory arguments are not provided)</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Input file I/O error</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>The Input file cannot be read as a PPM file</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Unsupported image processing operations</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Incorrect number of arguments for the specified operation</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Invalid arguments for the specified operation</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Output file I/O error</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Other errors not specified above</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="development-plan">Development Plan</h2>
+<p>This project is (much!) bigger than any of the homeworks you’ve completed so far, and having a teammate to help means that you can both benefit from your teammate’s expertise, but also need to plan more carefully.  Thus, as part of this project, you are expected to create a <strong>development plan</strong> to keep track of tasks that need to be completed.  We suggest the following process:</p>
+
+<ul>
+  <li>
+    <p>Start by brainstorming the tasks that are required to complete the project successfully.  The sections above detail the image operations that your project is required to support, and below is a suggestion of how you could break these down into individual files.  These operations and files are a good starting point – but, they may need to be broken down into smaller tasks.  Make sure you consider testing as well!  You do <strong>not</strong> want to turn in a project that has not been tested!</p>
+  </li>
+  <li>
+    <p>Consider the relative difficulty of tasks.  Some of the image operations are expected to be considerably easier than others.  How much easier?  That’s up for you and your partner to discuss.  Header files are likely to be relatively small tasks, particularly in comparison to the actual implementation.  We are not expecting you to come up with exact estimates here (for instance, 35 minutes to implement <code class="language-plaintext highlighter-rouge">ppm_io.h</code>, or 130 minutes to implement a transformation operation).  Instead, try to identify (approximate) relative difficulties.  Do you think that one transformation is twice as difficult as another?  Four times as difficult?  Ultimately, the answer that you come up with is not so important as the <em>process</em> of discussing with your teammate <em>why</em> you think what you do (so long as the answer is within reason – if you consider one task to be 20 times as difficult as another, you should have a very good reason!)</p>
+  </li>
+  <li>
+    <p>Estimate <em>task dependencies</em>.  What tasks depend on each other?  For each task that you complete, what new tasks can now be completed?  For example, the <code class="language-plaintext highlighter-rouge">read_ppm</code> function is probably necesary to complete pretty much all of the other functions, since you’ll want to read an image before you can modify it.  Hence, we provide this function to you.  It’s also probably pretty important to be able to write an image back out, so that you can run <code class="language-plaintext highlighter-rouge">img_cmp</code> to compare the image your program produced with the image expected.  Do you think that any of the other functions you’re supposed to implement depend on each other?  If so, how?</p>
+  </li>
+  <li>
+    <p>Assign owners and deadlines.  Based on the tasks, difficulties, and dependencies you estimated above, figure out a reasonable plan for who is going to get what done, and when.  Try to make sure that each member on your team has approximately the same amount of work.  Prioritize tasks that many other tasks depend on, so that you don’t end up with a bottleneck later on where many tasks are all blocked waiting on one to be completed.  Having deadlines helps you and your partner hold yourselves accountable, and makes sure that you don’t end up with too much work pushed towards the latter end of the project.</p>
+  </li>
+</ul>
+
+<p>After completing these steps, record your development plan in the README file of your team’s repository.  For each task, list the task name, difficulty, dependencies, owner, due date, and status.  We suggest that you use a <a href="https://www.tablesgenerator.com/markdown_tables">Markdown Table</a> to keep all of the tasks nicely formatted. You might have a table that looks something like the following (this is just an example to show formatting, not all tasks):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>task name</th>
+      <th>difficulty</th>
+      <th>dependencies</th>
+      <th>owner</th>
+      <th>due date</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">make_image</code>, <code class="language-plaintext highlighter-rouge">free_image</code></td>
+      <td>1</td>
+      <td>none – these are small functions that I can write independently</td>
+      <td>kpresler</td>
+      <td>7 October</td>
+      <td>Completed!</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">write_ppm</code></td>
+      <td>2</td>
+      <td>none – this just needs <code class="language-plaintext highlighter-rouge">read_ppm</code> for testing, which is provided</td>
+      <td>darvish</td>
+      <td>7 October</td>
+      <td>Completed!</td>
+    </tr>
+    <tr>
+      <td>Write and test <code class="language-plaintext highlighter-rouge">blur</code></td>
+      <td>4</td>
+      <td><code class="language-plaintext highlighter-rouge">write_ppm</code> needs to be implemented, so that I can write the modified image to a file and compare it to the expected image</td>
+      <td>psimari</td>
+      <td>12 October</td>
+      <td>In Progress</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">main</code> command-line validation</td>
+      <td>3</td>
+      <td>I can’t implement all of <code class="language-plaintext highlighter-rouge">main</code> until the image manipulation functions are done, but I can start checking the command-line arguments easily</td>
+      <td>jselinski</td>
+      <td>14 October</td>
+      <td>In Progress</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We expect your development plan to contain <strong>at least 10</strong> tasks, but you are welcome to add more if it makes sense to you.  Make sure to keep the tasks updated throughout the project!  Please keep tasks ordered by due date, so it’s easier for everyone (and particularly you!) to make sure you’re staying on schedule.</p>
+
+<p>The content of the development plan is largely in your hands. You are required to submit a Makefile for this project, and the main executable it generates should be named <code class="language-plaintext highlighter-rouge">project</code>. You should also rigorously test your code, but you are not required to hand in specific tests with your submission. Beyond that, it is largely up to you how to structure your project, and in what order to implement features, but you <strong>must take a modular approach</strong>.</p>
+
+<p>We recommend that you break your code into several files, and have as little code as possible in main(). Here is a suggested (but not required) breakdown of features into files:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Makefile</code> -  you <strong>must</strong> include a <code class="language-plaintext highlighter-rouge">Makefile</code> that can build your program; it’s how the graders will compile your submission. You are required to build a target whose name is <code class="language-plaintext highlighter-rouge">project</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">project.c</code> - the main program. The <code class="language-plaintext highlighter-rouge">main()</code> function should be kept simple, delegating most tasks to other functions. A <code class="language-plaintext highlighter-rouge">project.c</code> with a mostly empty <code class="language-plaintext highlighter-rouge">main()</code> and a <code class="language-plaintext highlighter-rouge">print_usage</code> helper function is provided in the starter code.</li>
+  <li><code class="language-plaintext highlighter-rouge">ppm_io.c</code> - contains implementations of functions for reading, creating, etc. images (using the PPM format). In the starter code, reading PPM files is provided for you. You must implement the missing functions <code class="language-plaintext highlighter-rouge">write_ppm</code>, <code class="language-plaintext highlighter-rouge">make_image</code>, and <code class="language-plaintext highlighter-rouge">free_image</code>. You may add other general-purpose image processing functions to this file.</li>
+  <li><code class="language-plaintext highlighter-rouge">ppm_io.h</code> - the header file for PPM I/O stuff (struct and function declarations).</li>
+  <li><code class="language-plaintext highlighter-rouge">image_manip.c</code> - where you will implement all image processing operations.</li>
+  <li><code class="language-plaintext highlighter-rouge">image_manip.h</code> - the header file for the image processing stuff.</li>
+</ul>
+
+<div class="admonition info">
+<div class="title">Files</div>
+<div class="content">
+<p>The list above is not a list of ALL files that should be included in your submission.  It is only a minimal listing of source code files.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Good Practices</div>
+<div class="content">
+<p>Aim to write small, clean helper functions for better readability and easier testing, as well as greater reusability. Then, make a plan for what order you will implement the functions in. You will also want to test your functions; it's a good idea to use test-driven design, which means that you will design tests for your functions before you actually start trying to write the functions themselves.</p>
+</div>
+</div>
+
+<p>For each function, it’s important to think about precisely what it should do, and also how you can test it to be sure it’s doing what you want. There are lots of ways of testing your code; for this project, a lot of your tests will likely involve the visual inspection of output images to see if they look the way they’re supposed to. Still, having an idea of how you’ll test each piece before you start writing it (and then testing/fixing it before you move on to the next one) will make your life a lot easier.</p>
+
+<div class="admonition success">
+<div class="title">Comparing Images</div>
+<div class="content">
+<p>Some results images are provided in the starter code under `results` folder. You can use the `img_cmp` program to compare your results with them.</p>
+</div>
+</div>
+
+<h2 id="submission">Submission</h2>
+
+<h3 id="development-plan-1">Development Plan</h3>
+
+<p>Submit your development plan in a plain text file called README.md to Gradescope before the October 10th deadline. As noted above, you can use Markdown formatting to make this look nice. Remember to include all team member full names and JHED IDs in your submission.</p>
+
+<h3 id="midterm-project-partner-evaluation-form">Midterm Project Partner Evaluation Form</h3>
+
+<p>In addition to submitting your project files (see below), each team member is to complete the <a href="https://forms.gle/myVRuQJGiuRLAtUo8">Midterm Project Partner Evaluation Form</a> before <strong>Wed Oct 29, 11pm</strong>. This is an important part of the project and there will be a <strong>5-point penalty</strong> deducted from the project submission for <strong>each team member</strong> failing to submit their form(s). Other than this aspect, the contents of the form you submit will not affect your partner’s grade nor your own. Please also note that people assigned by an instructor to work in a group of three will need to submit two forms, one for each team member other than themselves.</p>
+
+<h3 id="project-submission">Project Submission</h3>
+
+<p>ONE team member should submit your project via Gradescope, adding their partner’s name in the submission process. Your submission should be a zip containing all source code and files necessary to compile your program (including a <code class="language-plaintext highlighter-rouge">Makefile</code>). It must also include an updated <code class="language-plaintext highlighter-rouge">README</code> file which includes both partner names, JHEDs and Hopkins IDs, your original development plan, and notes for the graders on which parts might be be complete. Finally include a <code class="language-plaintext highlighter-rouge">git log</code> file from your midterm project repo. The requirements for your <code class="language-plaintext highlighter-rouge">git log</code> are the same as in previous assignments, except note that we expect all members of your team to be contributing commits to your shared midterm project repo. Your submission <strong>should not</strong> contain any compiled binaries (executables or object files), or any testing-related files (in particular, please do not submit any image files).</p>
+
+<div class="admonition caution">
+<div class="title">Important!</div>
+<div class="content">
+<b>**Only one team member should submit the project on Gradescope, but you must add your partner's name in the Gradescope submission.** The same team member should submit all versions of the project in his/her account.</b> Also make sure that the README includes the names, JHEDs and Hopkins IDs of both team members, so that each student gets credit for this work.
+</div>
+</div>
+
+<h3 id="grading-breakdown">Grading Breakdown</h3>
+
+<p>The 150 project points will be divided as follows during grading:</p>
+
+<ul>
+  <li>[10] Development Plan (README file due Friday Oct 10th; separate Gradescope submission)</li>
+  <li>[10] Submission (includes gitlog, Makefile, updated README)</li>
+  <li>[10] write_ppm function (in <code class="language-plaintext highlighter-rouge">ppm_io.c</code>)</li>
+  <li>[15] grayscale function</li>
+  <li>[15] crop function</li>
+  <li>[15] blend function</li>
+  <li>[15] rotate function</li>
+  <li>[15] pointilism function</li>
+  <li>[15] blur function</li>
+  <li>[15] Error Handling</li>
+  <li>[10] Memory Handling</li>
+  <li>[5] Style</li>
+</ul>
+
+<div class="admonition danger">
+<div class="title">Grading Notes</div>
+<div class="content">
+Remember that programs which do not compile (with standard compiler flags on the ugrad machines) will not receive credit.  Additionally, points will be deducted for any compiler warnings. Points will also be deducted for any warnings, errors, or memory leaks reported by valgrind. All executables should be buildable using a `Makefile` with `project` as the main target, and should build and run cleanly. Late days are not allowed for this submission.
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

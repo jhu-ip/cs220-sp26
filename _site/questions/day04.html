@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Day 4 Recap Questions</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Day 4 Recap Questions</div>
+
+    <ol>
+  <li>Which one is the logical “and” operator in C, <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> or <code class="language-plaintext highlighter-rouge">&amp;</code> or both?</li>
+  <li>Which one is the logical “negation” operator in C, <code class="language-plaintext highlighter-rouge">~</code> or <code class="language-plaintext highlighter-rouge">!</code> or both?</li>
+  <li>What is the result of evaluating <code class="language-plaintext highlighter-rouge">(34 + 2) / 40 || 80 &gt; 'A' &amp;&amp; 15 % 4</code> ?</li>
+  <li>What does the keyword <strong>break</strong> do in a control structure?</li>
+  <li>What does the keyword <strong>continue</strong> do in loops?</li>
+  <li>What is the output of this code segment?
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">-=</span> <span class="mi">20</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>What is the value of <code class="language-plaintext highlighter-rouge">i</code> after the code segment above?</li>
+  <li>Rewrite the <code class="language-plaintext highlighter-rouge">for</code> loop from question 6 using a <code class="language-plaintext highlighter-rouge">while</code> loop and other statements as needed.</li>
+  <li>What is printed by the following code segment? What is the value of num after the segment executes?
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="sc">'c'</span> <span class="o">&gt;</span> <span class="sc">'D'</span> <span class="o">||</span> <span class="o">++</span><span class="n">num</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"first"</span><span class="p">);</span>
+<span class="k">else</span> <span class="nf">printf</span><span class="p">(</span><span class="s">"second"</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

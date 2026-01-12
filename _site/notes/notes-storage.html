@@ -1,0 +1,177 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Storage Classes & gdb</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Storage Classes & gdb</div>
+
+    <p>There are many different types of variable storage classes and memory usages in C and C++. Here is an overview, along with basic usage of gdb for debugging our programs.</p>
+
+<h3>Using gdb for debugging</h3>
+
+<p>See the posted tutorials and cheat sheet. Here are some basics:</p>
+<ol>
+  <li>Compile using <code>-g</code> to add debug info:
+<code>gcc -g -o program_name my_c_code.c</code>
+</li>  <li>Running: <code>gdb program_name</code>
+</li>  <li>You are now in GDB with prompt <code>(gdb)</code>; type <code>break main:1</code> to set a breakpoint at line 1 of <code>main()</code>
+</li>  <li>Type <code>run</code> to run the program
+</li>  <li>Now, typing <code>next</code> (or just <code>n</code>) will run
+  through a line of code if you set a breakpoint, skipping over
+  function calls
+</li><li>Similarly, typing <code>step</code> (or just <code>s</code>) will
+  execute statement by statement, including into function calls
+</li><li>Also, if you type just a return/enter key, gdb will repeat the
+  previous command, letting you step through statements quickly
+</li>  <li>Typing <code>print i+1</code> will print value of <code>int</code> variable <code>i</code>, plus one
+</li></ol>
+
+<h3>Storage classes/variable types </h3>
+
+<p>Recall that <em>lifetime</em> and <em>scope</em> of a variable are not always the same. Lifetime is how long the variable stays alive (persists in memory) at runtime. Scope is what parts of code can see the definition and access the variable.</p>
+
+<p>Different types of storage classes:</p>
+<ul>
+<li> Local variables: local to a block or function - scope and lifetime are only during execution of that block
+</li><li> Global (external) variables: at the top of the program, scope and lifetime are throughout the program file
+</li><li><code>static</code> variables essentially have local scope but global lifetime - more below
+</li></ul>
+
+<h4>Static variables</h4>
+<p>The <code>static</code> qualifier can be used with any type of variable declaration, e.g.
+            <code>static int  intarray[10];</code></p>
+<ul>            
+<li> It is a <em>storage class</em> -- how the data is stored
+</li><li> Its like a <code>private static</code> field in Java
+</li>      <li> <code>intarray</code> location exists for duration of
+            program<br />
+-- but, <code>intarray</code> can only be accessed where it is in scope:
+</li><li> Contents of variable persist in memory even when not in local use
+</li><li> Static variables are automatically initialized to 0 by compiler
+ (not reinitialized each time function w/var declared in it starts)
+</li></ul>
+
+<p>The program below provides examples of several storage types, and also what
+  happens when a local variable and a global variable have the same name.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="c1">// a global variable</span>
+<span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="c1">// void f();</span>
+<span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// f(3, 5); compiles if the forward declaration were f()</span>
+    <span class="n">f1</span><span class="p">();</span>
+
+    <span class="n">f2</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"global v hasn't changed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" val: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>          <span class="c1">// we can access the global here</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" loc: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>  <span class="c1">// where global v lives</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"size: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v</span><span class="p">));</span> <span class="c1">// v has a size (in bytes)</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"a: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+    <span class="n">f1</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>  <span class="c1">// only created &amp; initialized once, first time function is called</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"static i: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">++</span><span class="n">i</span><span class="p">);</span>    <span class="c1">// static variable has longer life</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"access global v</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" val: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>          <span class="c1">// we can access the global here</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" loc: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>  <span class="c1">// where global v lives</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"size: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v</span><span class="p">));</span> <span class="c1">// v has a size (in bytes)</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+ 
+    <span class="c1">// declare a variable in a different scope but with the same name</span>
+    <span class="kt">double</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">45</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"local v 'shadows' global v</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" val: %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>          <span class="c1">// local v "shadows" global v</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" loc: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>  <span class="c1">// local v has its own address</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"size: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v</span><span class="p">));</span> <span class="c1">// and size</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4><code>const</code></h4>
+<p>
+Indicates data is <code>const</code>ant, the value cannot change after initialization.
+<ul>
+  <li> Added to ANSI C (not originally part of C)
+</li>  <li> Important to use to mark immutable data
+</li>  <li> <code>const</code> type qualifier can be applied to any variable declaration, e.g. <code>const int i</code>
+</li>  <li> Question "Should this variable ever be modified" answers No?  <strong>add <code>const</code></strong> to its declaration
+</li>  <li> Generally must be initialized when declared (with <code>=</code>, or its a function parameter)
+</li></ul>
+
+<code>const</code> can be used at different points in more complex types, with different meanings
+<ul>
+  <li> To make a <code>const</code> (non-modifiable) pointer: "<code>int * const iptr = &amp;i"</code>
+ </li><li> Local array variable declarations act like <code>const</code> pointers; the memory addresses of the array storage cannot be changed
+</li>  <li> To make a (mutable) pointer <em>to</em> <code>const</code> (non-modifiable) data: "<code>const int * iptr"</code>
+</li>  <li> Lastly, <code>const</code> ptr to <code>const</code> data:<code> const int * const iptr</code>
+</li>  <li>Read declarations from right to left (inside out) to get it straight
+</li></ul>
+
+
+<h4>Memory segments</h4>
+
+During execution our program variables are stored in different sections of memory, depending on their declaration type.
+
+<ul>
+<li>The <em>stack</em> holds local function variables -- called <em>automatic</em> memory in C. These are freed upon function return - don't try to return an array declared in a function. <code>auto int x;</code> in a function is same as <code>int x;</code> - default is <code>auto</code>.
+	</li>
+<li>The <em>data segment</em> holds global variables (declared outside any function) and static variables. This consists of the <em>heap</em> and <em>registers</em>.
+</li>    <li> The <em>heap</em> holds variables that are dynamically allocated at runtimewith an unbounded lifetime. The programmer explicitly allocates and deallocates this memory - see <a href="notes-pointers">Notes: Pointers and Dynamic Memory Allocation</a>.
+</li>	<li> Registers are specific positions in memory. The programmer can declare <code>register int x;</code> to suggest <code>x</code> be stored in a register.
+</li></ul>
+</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

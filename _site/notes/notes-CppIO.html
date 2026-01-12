@@ -1,0 +1,213 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: C++ I/O</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">C++ I/O</div>
+
+    <h3>Input/Output in C++</h3>
+
+<p>C++ has a very simple system for I/O.</p>
+
+<ul>
+<li>The bit shift operators <code>&lt;&lt;</code> and <code>&gt;&gt;</code> are overloaded to perform output (stream insertion) and input (stream extraction), respectively
+</li><li>C++ overloads meanings of other operators as well, e.g. "<code>+</code>" can concatenate strings (more on this later)
+</li>
+  <li>Stream extraction operator <code>&gt;&gt;</code> will read into any primitive data type; type read is based on type of variable, not a format string
+</li><li> Uses all forms of whitespace to tokenize
+</li><li> Invalid input (wrong data type) puts stream in error condition
+</li><li> <code>&lt;&lt;</code> and <code>&gt;&gt;</code> are binary operators, result is modified stream, allows chaining
+</li><li> Using <code>cin</code> as loop control:  
+    value is <code>true</code> boolean if stream is in good state, <code>false</code> otherwise:<br />
+<code>while (cin &gt;&gt; n) process(n);<br />
+while (cin.get(ch)) process(ch);
+</code>
+</li><li> Output buffer automatically flushed with <code>\n</code>, <code>endl</code>, <code>read</code>, or buffer full
+</li><li><code>std::cerr</code> is a third stream used mainly for error or debugging output
+</li></ul>
+
+<p>Here are some examples:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">thing1</span> <span class="o">&gt;&gt;</span> <span class="n">thing2</span><span class="p">;</span>    <span class="c1">// read thing1 then thing2 from cin, standard input stream</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">thing1</span> <span class="o">&lt;&lt;</span> <span class="n">thing2</span><span class="p">;</span>   <span class="c1">// write thing1 then thing2 to cout, standard output stream (no spaces included)</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// output newline, newline and flush buffer</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>                <span class="c1">// read one character</span>
+
+<span class="c1">// equivalent form if appropriate using declarations were given:</span>
+
+<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">thing1</span> <span class="o">&gt;&gt;</span> <span class="n">thing2</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">thing1</span> <span class="o">&lt;&lt;</span> <span class="n">thing2</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3>Files in C++</h3>
+
+<h4>Stream Classes</h4>
+
+<p>Inheritance is used for different file access modalities, where ‘<em>f</em>’ streams are for files (<code>ifstream, ofstream, fstream</code>). C++ also enables using IO operations to read from or write to *<code>stringstream</code>s, using strings instead of files.</p>
+
+<pre>
+                              ios
+                            /     \
+                    istream         ostream
+            /----/     /     \    /     \     \----\
+istringstream     ifstream  iostream  ofstream    ostringstream
+                                /    \
+                          fstream    stringstream
+</pre>
+
+<h4>Using File Streams</h4>
+
+<p>Open mode flags for files are in the same sprit as C:</p>
+<ul>
+    <li><code>ios::app</code> is append to end, C's <code>"a"</code>
+</li>    <li><code>ios::in</code> is read, C's <code>"r"</code>
+</li>    <li><code>ios::out</code> is write, C's <code>"w"</code>
+</li>    <li><code>ios::binary</code> is binary mode, C's <code>"b"</code>
+</li>  </ul>
+
+<p>Flags can be combined (via logical or, <code>|</code>, not via the strings <code>"bw+"</code> of C). Example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="c1"> // file stream library</span><span class="cp">
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// open for read only</span>
+    <span class="c1">// ios::in optional here, class ifstream makes it implicit</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">ifile</span><span class="p">(</span><span class="s">"files.txt"</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+
+    <span class="c1">// open for write, append to end</span>
+    <span class="c1">// ios::out optional here, ofstream makes it implicit</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">ofile</span><span class="p">(</span><span class="s">"out.txt"</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">out</span> <span class="o">|</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">ifile</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+        <span class="n">ifile</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">;</span>        <span class="c1">// same I/O &lt;&lt; and &gt;&gt; syntax as for std::cin/cout/cerr</span>
+        <span class="n">ofile</span> <span class="o">&lt;&lt;</span> <span class="n">ch</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">ifile</span><span class="p">.</span><span class="n">eof</span><span class="p">());</span>
+    <span class="n">ifile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="n">ofile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Random access (block I/O) files are treated the same as in C. Member functions, manipulators &amp; operators for iostreams (see below) can be used
+with iofstreams for sequential files also, not random access files.</p>
+
+<h4><code>stringstream</code></h4>
+
+<p>This is a string buﬀer that contains a sequence of characters, similar to a file stream.</p>
+
+<ul>
+<li> str() function can be used to get the content of the buﬀer
+</li><li> str(string) sets the content of the buﬀer to the string
+argument
+</li><li> &lt;&lt; and &gt;&gt; operators can be used with stringstream to
+insert/extract content
+</li><li> use member function .str() to get the string out of the object
+</li><li>Versions specifically for input or output may also be used: <code>istringstream, ostringstream</code>
+</li></ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span> 
+  <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+  <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello"</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span> <span class="o">&lt;&lt;</span> <span class="mi">35</span> <span class="o">&lt;&lt;</span> <span class="s">" world"</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+  <span class="n">ss</span> <span class="o">&gt;&gt;</span> <span class="n">word1</span> <span class="o">&gt;&gt;</span> <span class="n">num</span> <span class="o">&gt;&gt;</span> <span class="n">word2</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">word1</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span> <span class="o">&lt;&lt;</span> <span class="n">word2</span> <span class="o">&lt;&lt;</span> <span class="sc">'!'</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3>Formatted output in C++</h3>
+
+<p>Several methods for adding formatting to I/O</p>
+
+<pre>
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;   // I/O manipulators library
+using std::cin; using std::cout;
+using std::setw; using std::endl;
+using std::setfill; using std::setprecision;
+using std::fixed; using std::showpoint;
+
+int main()
+{
+    // inline manipulators examples from iomanip library
+    
+    // setw(#) to set field width
+    cout &lt;&lt; setw(8) &lt;&lt; 100/29 &lt;&lt; endl; // right justify in 8 char field
+    cout &lt;&lt; setw(6) &lt;&lt; "jo" &lt;&lt; endl; // right justify in 6 field width
+
+    // setfill to change fill character
+    setfill('*');
+    cout &lt;&lt; setfill('*') &lt;&lt; setw(5) &lt;&lt; "jo" &lt;&lt; endl; // fill with * not ' '
+    //  setfill is persistent, remains until reset or changed
+    cout &lt;&lt; setfill(' ') ;           // sets fill back to space
+
+    // setprecision/fixed/showpoint to change numerical formatting
+    cout &lt;&lt; setprecision(3) &lt;&lt; 100/29 &lt;&lt; endl;    // &lt;=3 digits after decimal
+    cout &lt;&lt; fixed;        // forces fixed precision # of digits
+    cout &lt;&lt; showpoint;    // force decimal when precision=0
+    cout &lt;&lt; 10.2344 &lt;&lt; endl;
+    
+    // alternative to above: use I/O member function flags
+    // flags determine how output is displayed
+    // changes are persistent
+    cout.setf(std::ios::fixed); // set fixed flag
+    cout.setf(std::ios::showpoint);
+    cout.precision(3);    // 3 digits after decimal point
+    cout &lt;&lt; 12.3 &lt;&lt; endl;
+    cout.unsetf(std::ios::fixed);
+
+    // to save fill flag before changing and restore:
+    char oldfill = cout.fill('*');
+    cout &lt;&lt; setw(4) &lt;&lt; "jo" &lt;&lt; endl; // **jo
+    cout.fill(oldfill);
+    cout &lt;&lt; setw(4) &lt;&lt; "jo" &lt;&lt; endl; //   jo
+} </pre>
+
+<p>[See also operator overloading notes (to be added).]</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

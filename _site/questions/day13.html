@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Day 13 Recap Questions</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Day 13 Recap Questions</div>
+
+    <ol>
+  <li>What is <em>struct</em> in C?</li>
+  <li>How are the fields of a struct passed into a function - by value or by reference?</li>
+  <li>What is the size of a <em>struct</em>? What is structure padding in C?</li>
+  <li>What is the difference between lifetime and scope of a variable?</li>
+  <li>What is variable shadowing (i.e. hiding)?</li>
+  <li>
+    <p>What is the output of the below program?</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">foo</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="p">{</span>
+    <span class="k">extern</span> <span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d; "</span><span class="p">,</span> <span class="n">foo</span><span class="p">);</span>
+    <span class="n">foo</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"%d; "</span><span class="p">,</span> <span class="n">foo</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d; "</span><span class="p">,</span> <span class="n">foo</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">foo</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">bar</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d; "</span><span class="p">,</span> <span class="n">foo</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">baz</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Explain what <code class="language-plaintext highlighter-rouge">srand</code> and <code class="language-plaintext highlighter-rouge">rand</code> functions do exactly.</li>
+</ol>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

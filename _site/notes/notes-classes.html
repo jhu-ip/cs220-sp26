@@ -1,0 +1,342 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Classes in C++</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Classes in C++</div>
+
+    <h3>Class Definitions</h3>
+
+<h4>Object-Oriented C++ Basics</h4>
+
+<p>Classes vs. Structs</p>
+
+<ul>
+  <li>Classes are an extension to structs and the two are nearly identical
+</li>  <li>Only difference between C++'s structs and classes: 
+      <ul>
+	<li> class members are private by default
+</li>  <li> struct members are public by default
+</li></ul>
+</li><li>Standard coding convention: 
+    <ul>
+      <li>use stucts for "dumb data" with no methods
+</li>      <li>use classes for anything else
+</li>    </ul>
+</li></ul>
+
+<p>Organization of program</p>
+
+<ul>
+  <li> Header files contain class declarations (interface)
+</li>    <li> Program files contain class (function) definitions (implementation)
+</li>    <li> <code>main()</code> function still needed for execution starting point
+</li></ul>
+
+<p>Object oriented (OO) programming language features</p>
+
+<ul>
+  <li> Generally objects = fields + methods but C++ terminology is "objects = data members + member functions"
+</li>  <li> public interface, private implementation
+</li>  <li> Multiple polymorphism forms in OO
+      <ul>
+        <li>object polmorphism via subclassing
+</li>	<li>templates/generics
+</li>	<li> function &amp; operator overloading
+</li></ul>  
+</li>    <li> inheritance
+</li>    <li> abstract base classes
+</li></ul>
+
+<p>OO Abstraction &amp; modelling</p>
+
+<ul>  <li> data members (properties) - can be of different types or classes
+</li>    <li> function members (behaviors) 
+        <br />-- can be defined there or elsewhere
+        <br />-- assume full access to data members
+</li>
+</ul>
+
+<h4>Class Components</h4>
+
+<p>Information hiding of class members</p>
+<ul>
+  <li>public parts - anybody can access
+</li>  <li>private parts - access by same class members only
+</li>  <li>declared via <code>public:</code> and <code>private:</code>  in .h file
+</li></ul>
+
+<p>Member functions</p>
+<ul>
+  <li>Defined with <code>MyClass::myfunc(args) { ... code ... }</code>
+</li>  <li>Can be implemented independently of class declaration, interspersed with other non-class functions
+</li></ul>
+
+<p>Syntax for class interface (in *.h file)</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">class</span> <span class="n">classname</span> <span class="p">{</span>
+     <span class="c1">// complete member list</span>
+<span class="p">};</span>   <span class="c1">// semicolon is very important</span>
+</code></pre></div></div>
+
+<h4>Constructors and destructors</h4>
+
+<p>Constructors are used to initialize objects and each class can have many:</p>
+<ul>
+  <li> Default constructor - no parameters; primitive fields are not initialized, object fields are initialized with their default constructors
+</li>  <li> Conversion constructor - takes only one parameter, compiler then uses for type conversions from values of that parameter type to the class type
+</li>  <li> Copy constructor - has parameter of the class type; default version is shallow copy of data fields (similar to default assignment operator)
+</li><li>Alternate constructors - have any combination of parameters different from those above
+</li></ul>
+
+<p>C++ automatically provides a default constructor and a (shallow) copy constructor for every class if you don’t explicitly create any constructors. However, if you define any constructor, default ones are not created automatically for the class.</p>
+
+<p>Copy constructors are invoked</p>
+<ul>
+  <li> explicitly when initializing an object in declaration
+</li>  <li> implicitly when passing an object call by value
+</li>  <li> implicitly when returning an object by value
+</li></ul>
+
+<p>Initializer lists for data members</p>
+<ul>
+  <li>Special syntax for initializing fields
+</li>  <li> <code>Point :: Point () : x(0), y(0) { }</code> initializes x and y to 0
+</li><li> initialization happens in the order of declaration, not list order above (doesn't usually matter though)
+</li>    <li> All data members initialized even if not listed explicitly
+</li>    <li> Body of constructor can be used to change or do more
+    initializations
+</li><li>May need to do this for members of other class types, particularly
+  if they don't have default constructors
+</li></ul>
+
+<p>Constructors using default values</p>
+<ul>
+  <li> Can leave off certain arguments if they have a default value listed
+</li>  <li> Defaults only declared in the header, not in the definition!
+</li>  <li> Function implementation is as before
+</li><li> Must be defaulted from right to left when used, as in <code>Point (int xy=0, int yv=0)</code> - calling options are only to leave out right-most params
+</li></ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Point</span> <span class="nf">p1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// use both</span>
+<span class="n">Point</span> <span class="nf">p2</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>    <span class="c1">// use x; y defaults to 0</span>
+<span class="n">Point</span> <span class="n">p3</span><span class="p">;</span>       <span class="c1">// both default to 0</span>
+</code></pre></div></div>
+
+<p>Destructors</p>
+<ul>
+  <li>Named by prepending <code>~</code> to the class name - <code>MyClass::~MyClass() { ... }</code>
+  </li><li>Destructor code invoked when object lifetime ends
+</li>  <li>Destruction is <em>shallow</em> (no destruction of objects referenced) unless code <code>...</code> does more
+</li>  <li>Locally declared objects are destroyed at function return - their destructors are called right before their memory is freed
+</li><li>C++ provides a destructor for your class if you don't explicitly
+  write one.
+</li></ul>
+
+<h4>Other C++ class definition features</h4>
+
+<p>Inline function definitions</p>
+<ul>
+  <li>Code is not a function call, its inlined by compiler for speed
+</li>  <li>Since its like a macro its OK to put this code in <code>.h</code> file
+</li>  <li>Need semicolon: <code>int Myclass::getX() { return x ; } ;</code> 
+</li></ul>
+
+<p>Instance variables (data members)</p>
+<ul>
+<li> They are like struct fields
+</li><li> They are not automatically references, as in Java - use <code>&amp;var</code> to make a reference
+</li><li> The class constructor should set their initial value
+</li></ul>
+
+<p>The <code>this</code> pointer to current object</p>
+<ul>
+  <li> Can use <code>this-&gt;datamember</code> instead of just <code>datamember</code> for clarification
+</li>    <li>Can  use <code>*this</code> as name for current object
+</li>    <li>Like <code>this</code> in Java, you don't often need to use it
+</li></ul>
+
+<p>Constant member functions</p>
+<ul>
+  <li> Use <code>const</code> at end of function header to say that it can't modify
+		any data members of itself (the current object)
+</li>    <li> Must use <code>const</code> in both prototype and implementation header
+</li>    <li> Can be applied to <code>const</code> and non-<code>const</code> qualified objects
+</li>    <li> A non-<code>const</code> function cannot be applied to <code>const</code> qualified object - violates spirit of <code>const</code>
+</li></ul>
+
+<p><code>static</code> class members</p>
+<ul>
+    <li> Class-wide info, shared by all objects
+</li>    <li> Similar to <code>static</code> in Java classes
+</li>    <li> Declare data: <code>static int sharedint;</code>
+</li>    <li> Can be accessed through class object or globally via <code>classname::</code> (if public)
+</li>    <li> Declare functions: static int changeshared (int);
+</li>    <li> Function can only be static if it only accesses static data
+</li>    <li> No <code>this</code> for static members
+</li></ul>
+
+<p>Class composition - objects in classes</p>
+<ul>
+  <li> Class data members are constructed in order of declaration
+		and before the class constructor is executed
+</li><li>May need to initialize member objects with constructor initializer list
+  if they don't have default constructors
+</li></ul>
+
+<h4>Friend classes</h4>
+
+<ul>
+  <li>  Declare another class B to be a friend of the current class A
+</li>  <li> Friend class B can directly access all members (private and public)
+            of class A
+</li>  <li> Friendship is one-way (anti-symmetric) unless explicitly declared both ways
+</li>  <li> Friendship is not transitive
+</li>  <li> eg for Rectangles/Points:
+</li></ul>
+
+<pre>
+    // in Point.h
+            private x, y;            
+            friend class Rectangle;
+
+    // in Rectangle.cpp
+            Rectangle :: Rectangle (int x1, int y1, int x2, int y2)
+            {
+                  p1.x = x1;   p1.y = y1; // allowed due to friend declaration above
+                  p2.x = x2;   p2.y = y2;
+            }
+</pre>
+
+<p>Remember: Friends violate the principle of data encapsulation - use as little
+      as possible!!</p>
+
+<h4>Misc points about classes</h4>
+
+<p>Operators <code>=</code> and <code>==</code> on objects:</p>
+<ul>
+  <li>  <code>=</code> assignment operator  - memberwise assignment is
+  provided by default (not deep copy)
+</li><li>  <code>==</code> equality operator is not provided automatically for
+  your class objects, you have to define it explicitly (see <a href="notes-overloading.html">Overloading</a>)
+</li></ul>
+
+<p>Explicit constructor call creates constant temporary object:</p>
+<ul>
+  <li> Syntax: <code>Classname(params)</code>
+</li>  <li> eg: <code>Rational r2 = 3 + Rational(3,4);</code> - 3/4 never put in variable so temporary object
+</li></ul>
+
+<h4>More on storage, lifetimes, scope and references</h4>
+
+<p>If a function returns non-reference value, it is a temporary object. If a function returns reference value, it is a name for something else that must have a lifetime outside the function. This list shows what could and could not be returned through a reference return type, with an example below.</p>
+<ul>
+<li> global variables
+</li><li> static variables
+</li><li> class members w/suitable lifetime
+</li><li> reference function parameters
+</li><li> NOT a local [automatic] function variable
+</li><li> NOT a passed by value function parameter
+</li></ul>
+
+<p>Example:</p>
+
+<pre>
+#include &lt;iostream&gt;
+int globalint;
+
+int &amp; mult(int &amp; x, int y)
+{
+    int z;
+    static int s;
+    
+    z = x * y;
+    s = z;
+    x = z;
+    y = z;
+    globalint = z;
+    
+    // return z; // bad, would be a reference to (popped) stack element
+    //  return y;  // bad, same reason
+    // return x * y; // bad
+    
+    return x;  // ok, was a reference argument so not popped
+    return s;  // ok, static so not on stack
+    return globalint;  // ok, also not on stack
+}
+
+int main ()
+{
+    int m, x = 3, y = 5;
+    
+    m = mult(x, y);
+    globalint = 0;
+    std::cout &lt;&lt; "m=" &lt;&lt; m &lt;&lt; "  gi=" &lt;&lt; globalint &lt;&lt; std::endl;
+}
+</pre>
+
+<p>Could have function/method return something by reference but constant
+   so that it can’t be changed - particularly useful for classes:</p>
+
+<pre>class Point {
+public:
+    void display() const;
+        void setX(int);
+...
+};
+
+class Rectangle {
+public:
+    const Point &amp; getTL() { return topleft; };
+
+private:
+    Point topleft;
+};
+
+// in main
+
+Rectangle r1(1,1,4,4);
+Point   p1;
+
+r1.getTL().setX(3);  // not allowed
+p1 = r1.getTL();     // ok
+r1.getTl().display();  // ok because display is const
+</pre>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

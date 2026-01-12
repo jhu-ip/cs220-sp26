@@ -1,0 +1,202 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Homework 0</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Homework 0</div>
+
+    <!--
+import remarkMath from 'remark-math'
+-->
+
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<ul>
+<li>You are expected to work individually.</li>
+<li><strong>Due: Friday, September 5th by 11pm (Baltimore time).</strong></li>
+<li><em>This assignment is worth 20 points.</em></li>
+</ul>
+</div>
+</div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<ul>
+<li>editing a C source file,</li>
+<li>compiling and executing a C program.</li>
+</ul>
+<p>Tools/technologies:</p>
+<ul>
+<li><code>git</code></li>
+<li><code>zip</code> up multiple files</li>
+<li>transferring files from ugrad to a local machine using <code>scp</code>/<code>pscp</code></li>
+<li>submitting to Gradescope.</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<p>You should receive an invitation to the jhu-ip organization and your private repository by the end of the first week of classes. If you don't, post privately for all instructors on Piazza.</p>
+</div>
+</div>
+
+<p>In your private git repository (created for you on Github under jhu-ip organization), create a new folder named <strong>homework</strong>, then a subfolder named <strong>hw0</strong>. In that <em>hw0</em> subfolder, create three separate C source files with names given below that output <strong>exactly</strong> the messages shown below. In each case, the desired output message should be followed by a newline (“\n”) character.</p>
+
+<p>The name and behavior of each program is as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>file name</th>
+      <th>desired output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>gold.c</em></td>
+      <td>Lina Zhang sets a new world record in wheelchair fencing, taking home the Gold!</td>
+    </tr>
+    <tr>
+      <td><em>silver.c</em></td>
+      <td>The Silver medal in synchronized swimming goes to Jordan and Samir.</td>
+    </tr>
+    <tr>
+      <td><em>bronze.c</em></td>
+      <td>Team Kenya earns Bronze in the mixed 4 by 400m relay, celebrating unity through sport.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>At the top of each source file, add two comment lines that provide your anonymous Hopkins ID (the random 6 characters code) and the current date:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// J3V6G9</span>
+<span class="c1">// August 29, 2025</span>
+</code></pre></div></div>
+
+<p>Compile and execute each of the three programs and ensure that they give the output exactly as shown. Finally, add all three source files to your git repository, commit them with an appropriate message, and push.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>
+  The "hello, world" program that was the starting point for <a href="../exercise/ex03b.html">Exercise 3-B</a> could be a useful starting point for the source files for this homework.
+</p>
+</div>
+</div>
+
+<h3 id="part-2">Part 2</h3>
+<p>Create a text file named gitlog.txt which demonstrates your recent git activity by typing the command <code class="language-plaintext highlighter-rouge">git log &gt; gitlog.txt</code></p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>You can optionally view the contents of the newly created file by typing <code>less gitlog.txt</code></p>
+</div>
+</div>
+
+<h3 id="part-3">Part 3</h3>
+<p>Create a <em>.zip</em> file named <em>hw0.zip</em> which contains exactly the following four files: <strong>gold.c, silver.c, bronze.c, gitlog.txt</strong>. Copy the <em>hw0.zip</em> file to your local machine, and submit it via Gradescope.  Specifically:</p>
+
+<ul>
+  <li>Log into Canvas, access the EN.601.220 site.</li>
+  <li>Click on the Gradescope link in the sidebar menu to access our course site for assessments and grading feedback.</li>
+  <li>Click Homework 0.</li>
+  <li>Click Submit (or Resubmit if you have done this before).</li>
+  <li>Drag your zip file onto the Drag &amp; Drop box (or click the box and select the zip file).</li>
+  <li>Click Upload. You should see a confirmation that the submission uploaded successfully.</li>
+</ul>
+
+<p>When you submit, Gradescope conducts a series of automatic tests. These tests do basic things like check that you submitted the right files and that your <code class="language-plaintext highlighter-rouge">.c</code> files compile properly. If you see error messages here (look for red), address them and resubmit.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>You may re-submit any number of times prior to the deadline; only your latest submission will be graded.</p>
+</div>
+</div>
+
+<h3 id="style-guidelines">Style Guidelines</h3>
+
+<p>You should make sure that your code has good style. You can look
+at the <a href="https://jhucsf.github.io/fall2025/resources/style.html">coding style guidelines
+here</a> from a
+course you may take later (CSF) that also apply to this course. In brief,
+you should make sure that your submission is well formed, readable,
+consistently styled, and documented as follows:</p>
+
+<ul>
+  <li>it is not overcommented or undercommented (not relevant for this little assignment)</li>
+  <li>there are no ambiguous or meaningless variable names</li>
+  <li>it has proper/consistent bracket placements and indentation</li>
+  <li>there are no global variables</li>
+  <li>lines are at most 80 characters long</li>
+</ul>
+
+<h3 id="grading">Grading</h3>
+
+<p>Two notes regarding automatic checks on Gradescope for programming assignments:</p>
+
+<ul>
+  <li>
+    <p>Passing an automatic check is not itself worth points. (There might be a nominal, low point value like 0.01 associated with a check, but that will not count in the end.) The checks exist to help you and the graders find obvious errors. This will be true for most of the assignments; the actual grades are given manually by the graders, along with feedback comments.</p>
+  </li>
+  <li>
+    <p>The automatic checks cover some of the requirements set out in the assignment, but not all. For this assignment, you will notice that the <em>silver.c</em> program is checked, but not the other two. In general, <em>it is up to you to test your own work</em> and ensure your programs satisfy all stated requirements. Passing all the automatic checks does not necessarily mean you will earn all the points.</p>
+  </li>
+</ul>
+
+<p>The 20 points for this assignment will be distributed as follows when we grade:</p>
+
+<ul>
+  <li>[5] Style &amp; Submission (including correct filenames, zipping, gitlog, and no compiler warnings)</li>
+  <li>[5] Gold program</li>
+  <li>[5] Silver program</li>
+  <li>[5] Bronze program</li>
+</ul>
+
+<p>Always practice incremental coding and testing, and frequent submissions for best results!</p>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

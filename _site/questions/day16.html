@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Day 16 Recap Questions</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Day 16 Recap Questions</div>
+
+    <ol>
+  <li>Describe the linked list structure by a diagram.</li>
+  <li>Compare arrays and linked lists. Write down their pros and cons.</li>
+  <li>What is a linked list’s head? How is it different from a node? Explain.</li>
+  <li>How do you calculate <code class="language-plaintext highlighter-rouge">length</code> of a linked list?</li>
+  <li>How do you implement <code class="language-plaintext highlighter-rouge">add_after</code> on a singly linked list?</li>
+  <li>What is the result of running this code on the input values <code class="language-plaintext highlighter-rouge">1 3 5 7 9</code>? Draw a picture representing memory.</li>
+</ol>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">node_</span> <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+     <span class="k">struct</span> <span class="n">node_</span> <span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">IntNode</span><span class="p">;</span>
+
+<span class="n">IntNode</span> <span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">IntNode</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">IntNode</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">IntNode</span><span class="p">));</span>
+   <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+   <span class="n">n</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+   <span class="n">head</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

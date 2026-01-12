@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: C++ Strings</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">C++ Strings</div>
+
+    <h3><a href="http://www.cplusplus.com/reference/string/string/">The <code>string</code> class</a></h3>
+
+<p><code>#include &lt;string&gt;    // different than &lt;cstring&gt; which is C's string.h
+</code></p>
+<ul>
+  <li> <code>string</code> is the C++ class name for strings
+</li><li> C++ strings are much higher-level than C's, spares you the nitty gritty
+</li><li> (C strings are still around and you occasionally need them, e.g. for <code>argv</code>)
+</li><li>Still, they are not references: more like a <code>struct</code> than a pointer to a <code>struct</code>
+</li><li> Different constructors to make new <code>string</code> objects: invoke with function notation, no <code>new</code> keyword
+</li></ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="nf">s1</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>        <span class="c1">// s1 is "hello"</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="nf">s2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="sc">'x'</span><span class="p">);</span>         <span class="c1">// s2 is "xxx"</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s3</span> <span class="o">=</span> <span class="s">" world"</span><span class="p">;</span>      <span class="c1">// calls copy constructor to make fresh copy of "world"</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s4</span><span class="p">;</span>                 <span class="c1">// empty string "" (NOT a null variable!)</span>
+                                    <span class="c1">// implicitly calls default constructor</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="nf">s5</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>             <span class="c1">// calls copy constructor</span>
+</code></pre></div></div>
+
+<h4>String conversions</h4>
+
+<ul>
+  <li>no constructor for int or char conversions
+</li><li>can assign character to string: <code>s1 = 'h';</code>
+</li></ul>
+
+<h4>String representation &amp; operations</h4>
+
+<ul>
+  <li>    <code>string</code> object is <em>not</em> a pointer to a char array like in C
+</li>  <li>    <code>s[5]</code> still can be used to get individual characters from <code>s</code>, no range checking
+</li>  <li>    <code>s.at(5)</code> to get individual characters with range checking
+</li>    </ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">s</span> <span class="o">=</span> <span class="s">"wow"</span>           <span class="c1">//  for assignment of literals</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span>            <span class="c1">//  input from stream - stops at whitespace!</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span>           <span class="c1">//  output to stream</span>
+    <span class="n">getline</span><span class="p">(</span><span class="n">is</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>      <span class="c1">//  read to end of line from stream is, store in s</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">s2</span>             <span class="c1">//  deep copy assignment </span>
+                        <span class="c1">//  or s1.assign(s2) s1.assign(s2, start, howmany)</span>
+    <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>             <span class="c1">//  string concatenation</span>
+    <span class="n">s1</span> <span class="o">+=</span> <span class="n">s2</span>            <span class="c1">//  same as s1 = s1 + s2, also same as s1.append(s2)</span>
+    <span class="o">==</span> <span class="o">!=</span> <span class="o">&lt;</span> <span class="o">&gt;</span> <span class="o">&lt;=</span> <span class="o">&gt;=</span>     <span class="c1">//  relational operators overloaded, they just work (no strcmp needed)</span>
+
+    <span class="n">s1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">s1</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">==</span> <span class="n">number</span> <span class="n">of</span> <span class="n">characters</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span>           <span class="c1">// how many characters currently allocated (can increase, see reserve below)</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">max_size</span><span class="p">()</span>                 <span class="c1">// max for all strings</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span>                    <span class="c1">// returns a bool</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">//changes capacity</span>
+
+    <span class="n">s1</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="n">howmany</span><span class="p">);</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>  <span class="c1">// like C's strcmp; most of the time use overloaded &amp;lt; &amp;gt; etc instead</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>  <span class="c1">// get c-style string (null terminated character array)</span>
+
+</code></pre></div></div>
+
+<h4>Passing strings to functions</h4>
+
+<ul>
+<li>Parameter type often best as a reference type in function header <code>void slurpit(string &amp;s)</code>
+</li><li>Otherwise you are passing a <em>copy</em> of the string, can be slow
+</li></ul>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 8</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 8</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not finish today.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>Modularizing your code by writing separate functions</li>
+<li>Organizing functions into separate files (function declarations in header files)</li>
+<li>Using header guards</li>
+<li>Using separate commands for compilation (translation to object code) and linking</li>
+<li>Creating a Makefile and using make to build your program</li>
+<li>Working with C-strings (from week2)</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<ol>
+  <li>
+    <p>Log into an undergraduate cluster computer. Update the course public repo with a <code class="language-plaintext highlighter-rouge">git pull</code> command.</p>
+  </li>
+  <li>
+    <p>Confirm that you can see the template files for today’s exercise by typing <code class="language-plaintext highlighter-rouge">ls exercises/ex08</code> – you should see files named <strong>all_in_one.c</strong> and <strong>Makefile</strong> inside.</p>
+  </li>
+  <li>
+    <p>Navigate to your personal repo for the course. Make a directory for today’s exercise and copy the starter files into it. You will not need <strong>Makefile</strong> until you get to Part 4.</p>
+  </li>
+</ol>
+
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<p>Do not try to run make during this exercise until you are instructed to.</p>
+</div>
+</div>
+
+<h3 id="part-2">Part 2</h3>
+<ol>
+  <li>
+    <p>Compile your newly-copied <strong>all_in_one.c</strong> file by typing the usual compile command. You will notice that the function calls do not return anything sensible at the moment, so let’s fix that.</p>
+  </li>
+  <li>
+    <p>Edit <strong>all_in_one.c</strong> so that the function named <strong>concat</strong> performs string concatenation of its first two arguments, “returning” the concatenated string via its third argument and sending <code class="language-plaintext highlighter-rouge">0</code> back as the function’s return value. However, note that the function’s third argument has limited capacity, the value of which is indicated in the fourth argument. If concatenating the first two arguments would cause an overflow of the third argument, do not modify the third argument, and return the value <code class="language-plaintext highlighter-rouge">1</code> to indicate an error situation.</p>
+
+    <p>For example, if the first two arguments are “alpha” and “beta”, and the result string has capacity 10, then the value returned by the function will be <code class="language-plaintext highlighter-rouge">0</code> and, after the function call, the value inside the third argument should be “alphabeta”. However, if the first two arguments are “alpha” and “gamma”, with a fourth argument of 10, the value returned by the function will be <code class="language-plaintext highlighter-rouge">1</code>, and the value inside the third argument will not be changed.</p>
+    <div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<ul>
+<li>You may NOT use the <code>strcat</code> or <code>strcpy</code> library functions (from <code>string.h</code>) in your solution. But you MAY use <code>strlen</code>.</li>
+<li>You should NOT modify any code in the main function. Edit only the <code>concat</code> function, and get it to work with the existing function calls in main. At that point, if you would like to test your function further, you may add additional calls in main to do so.</li>
+</ul>
+</div>
+</div>
+  </li>
+  <li>
+    <p>Once you have made your changes, re-compile the file. Test your program by executing <code class="language-plaintext highlighter-rouge">./a.out</code> and reviewing the output. It is okay to add new calls in main if you wish.</p>
+  </li>
+</ol>
+
+<h3 id="part-3">Part 3</h3>
+<p>Next, we are going to split your working source code into multiple files as follows. Without changing <strong>all_in_one.c</strong>, copy the contents of your <strong>all_in_one.c</strong> program into the following files:</p>
+
+<ol>
+  <li>
+    <p><strong>run_concat.c</strong> - should contain the <code class="language-plaintext highlighter-rouge">main()</code> function, but no other functions.</p>
+  </li>
+  <li>
+    <p><strong>string_functions.c</strong> - should contain the definition for the string helper function <code class="language-plaintext highlighter-rouge">concat</code> (and in theory, could later include additional function definitions). It should not have a <em>main()</em> function.</p>
+  </li>
+  <li>
+    <p><strong>string_functions.h</strong> - should contain a prototype (i.e. declaration) for each function defined in <strong>string_functions.c</strong> (today, there is only one), and should be <code class="language-plaintext highlighter-rouge">#include</code>-d in both of the .c files. Make sure to include a header guard for this file to prevent being included multiple times.</p>
+  </li>
+</ol>
+
+<p>Compile and link the program manually, step by step.</p>
+
+<ol>
+  <li>
+    <p>Recall that to compile a source file only (and not link or generate an executable), you will use the regular <code class="language-plaintext highlighter-rouge">gcc</code> command with our usual flags and the <code class="language-plaintext highlighter-rouge">-c</code> flag with the <code class="language-plaintext highlighter-rouge">.c</code> source file as an argument.  This command will create an object file.</p>
+  </li>
+  <li>
+    <p>Once you have created your two object files, you can link them to create an executable named <strong>run_concat</strong> by using the <code class="language-plaintext highlighter-rouge">gcc</code> command with both <code class="language-plaintext highlighter-rouge">.o</code> files as arguments (but here, you do not need the usual flags we use for compiling).  To express in the command that you want the executable file named <strong>run_concat</strong>, you will need to use the <code class="language-plaintext highlighter-rouge">-o</code> flag with <strong>run_concat</strong> as an argument.</p>
+  </li>
+  <li>
+    <p>If your program does not compile or link properly, check that you have added the necessary <code class="language-plaintext highlighter-rouge">#include</code> statements in each <code class="language-plaintext highlighter-rouge">.c</code> file.</p>
+  </li>
+  <li>
+    <p>Do not move onto the next step until you can successfully build and run the <strong>run_concat</strong> executable file.</p>
+  </li>
+</ol>
+
+<h3 id="part-4">Part 4</h3>
+<p>Create a Makefile for this program so you can build it quickly and easily.</p>
+
+<ol>
+  <li>
+    <p>Now it is time to edit the sample <strong>Makefile</strong> file you copied over from the public repository back in Part 3.</p>
+  </li>
+  <li>
+    <p>Modify <strong>Makefile</strong> so that it builds the <em>run_concat</em> program and creates an executable called <strong>run_concat</strong> (rather than main).</p>
+  </li>
+  <li>
+    <p>Try out the following command-line commands and try to reason out what is happening at each step by reading the messages each prints: <code class="language-plaintext highlighter-rouge">make</code>, <code class="language-plaintext highlighter-rouge">make clean</code>, <code class="language-plaintext highlighter-rouge">make string_functions.o</code>, <code class="language-plaintext highlighter-rouge">make run_concat.o</code>.  Look around in the folder using <code class="language-plaintext highlighter-rouge">ls -l</code> after each command to see what changed.  Execute them in different orders (and after modifying some source file slightly) and see how the behavior changes.</p>
+  </li>
+  <li>
+    <p>Finally, check that your <strong>Makefile</strong> captures the required dependencies properly:</p>
+    <ul>
+      <li>Edit the <strong>string_functions.c</strong> file so that the <code class="language-plaintext highlighter-rouge">concat</code> function behaves noticeably differently, e.g., outputs a message on the screen. (It does not matter what it says.)  Save it, but do not re-compile it.</li>
+      <li>At the command line, type <code class="language-plaintext highlighter-rouge">make</code>. Then execute your program and confirm that the output you see is due to the new behavior of the function.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also zip your <code>Makefile</code> along with all your <code>*.c</code> and <code>*.h</code> files and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

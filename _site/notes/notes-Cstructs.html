@@ -1,0 +1,172 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: C-Structs</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">C-Structs</div>
+
+    <h3>Structs</h3>
+
+<p>We need some more powerful compounding data structures besides arrays</p>
+<ul>
+    <li><em>Structures</em> let us define custom data types with multiple named data elements.
+</li>    <li>Unlike arrays, the different elements can have different types
+</li>    <li>They are behaviorally similar to classes with only fields, no methods
+</li>  </ul>
+
+<h4>Declaring &amp; using struct variables</h4>
+
+<p>There are two steps needed for declaring them. First we define a new <code>struct</code> type:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">sname</span> <span class="p">{</span>
+  <span class="c1">// field declarations</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>For example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">person</span> <span class="p">{</span>
+ <span class="kt">char</span> <span class="o">*</span> <span class="n">first</span><span class="p">,</span> <span class="o">*</span> <span class="n">last</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Next, declare variables of the <code>struct</code> type</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">person</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span> <span class="c1">// notice how "struct" precedes name</span>
+</code></pre></div></div>
+
+<p>We can both define a struct and declare variables <code>p1</code> and <code>p2</code> at the same time. This is not used too often:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">person</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">first</span><span class="p">,</span> <span class="o">*</span><span class="n">last</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Once declared, the dot operator is used to access struct fields: <code>p1.age = p1.age + 1</code>.</p>
+
+<h4>Initializing structs</h4>
+
+<p>Can initialize struct variables during declaration:</p>
+<ul>
+    <li>Use <code>{ ... }</code> as with array initialization, and list of <code>.value</code>s for all components:	<code>struct person joe = { .first = "Joe", .last= "Schmoe", .age = 33 };</code>
+
+</li><li>Fields are initialized in order top to bottom if not specified.
+</li><li>If fewer values than parts, remainder are initialized to 0 or NULL<br />
+	<code>struct person joe = {"Joe", "Schmoe"}; <br />
+    // joe.first == "Joe", joe.last == "Schmoe", joe.age == 0 
+</code>
+</li>  </ul>
+
+<h4>Passing structs to functions</h4>
+
+<ul>
+    <li>Struct variables are passed by <em>value</em> to functions by default: all components are <em>copied</em>!<br />
+--means changes to struct in function body won't be seen by calling function
+</li>    <li>To avoid copying, pass a pointer but as const (<code>const person *p</code>) so function can't change struct contents
+</li>    <li>Can pass whole structure, or just an element of structure
+</li>  </ul>
+
+<h4>Pointers to structs</h4>
+
+<p>Pointers to structs are commonly used. A very common expression is <code>(*<em>sptr</em>).<em>part</em></code> as in this example.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">person</span> <span class="o">*</span><span class="n">ppp</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">person</span><span class="p">));</span>
+<span class="p">(</span><span class="o">*</span><span class="n">ppp</span><span class="p">).</span><span class="n">age</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>In fact its so common, it has a shortcut:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ppp</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="mi">33</span> <span class="p">;</span> <span class="c1">//same as (*ppp).age = 33;</span>
+</code></pre></div></div>
+
+<p>NOTE: operators <code>() [] . -&gt;</code> have the highest precedence (<a href="http://en.cppreference.com/w/c/language/operator_precedence">full C operator precedence reference</a>)<br />
+	– <code>*ppp.age = 33</code> is a compile error, need parens <code>(*ppp).age = 33;</code></p>
+
+<h4>Composing structs with other types</h4>
+
+<ul>
+    <li>Both within a struct and outside it, any type (operator) is possible
+</li>    <li>Structs can be used inside other type operators: Array of some struct, array of pointers to some struct
+</li>    <li>Any type can also be the type of a field <em>inside</em> a struct: <code>int</code>, arrays, pointer to an array of structs, etc.
+</li>  </ul>
+
+<h4>Type abbreviations via <code>typedef</code></h4>
+
+<p>We use <code>typedef</code> to declare type abbreviations for easier typing / reading:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">blackhole</span><span class="p">;</span> <span class="c1">// new &lt;em&gt;type&lt;/em&gt; blackhole defined</span>
+<span class="n">blackhole</span> <span class="n">myblackhole</span><span class="p">;</span> <span class="c1">// declares myblackhole as a blackhole, i.e. as a void *</span>
+</code></pre></div></div>
+
+<p>This is especially common with <code>struct</code> definitions:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>      <span class="c1">// note the struct itself is anonymous -- no name given here</span>
+  <span class="kt">int</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n3</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">SSN</span><span class="p">;</span>                <span class="c1">// SSN is the type abbreviation</span>
+<span class="n">SSN</span> <span class="n">myssn</span><span class="p">;</span>            <span class="c1">// no "struct" needed when declaring, "struct" is part of SSN</span>
+</code></pre></div></div>
+
+<h4>Sizes of structs</h4>
+
+<ul>
+  <li>Each struct at runtime is a contiguous block of memory
+</li>	  <li>e.g. each <code>struct person</code> above will be a 12- or 20-byte block of memory depending on whether pointers are 4- or 8-byte.
+</li>	  <li>Plus, for computer efficiency the size is often rounded up to the next biggest word.
+</li>	  <li>So, <code>sizeof(struct person) == 12</code> or <code>24</code>
+</li>	</ul>
+
+<h3>Enum types</h3>
+
+<p>We can also define a data type to represent a small set of discrete values. Suppose you had a game with playing cards, hearts/clubs/spades/diamonds. <em>Don’t</em> just use the strings <code>"Hearts"</code> etc or 1/2/3/4 in the code for these different suits. Instead you can <code>#define</code> them</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define HEARTS 1
+#define CLUBS 2
+#define SPADES 3
+#define DIAMONDS 4
+</span></code></pre></div></div>
+<p><code>Enum</code> version of this is more compact and also defines a data type called <code>suit</code> that can be used to declare variables, parameters, etc.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="n">suit</span> <span class="p">{</span><span class="n">HEARTS</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">CLUBS</span><span class="p">,</span><span class="n">SPADES</span><span class="p">,</span><span class="n">DIAMONDS</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>Same numerical abbreviation but makes a new type <code>suit</code> for the values (which is really an integer under the covers). The <code>=1</code> makes the encoded numbers start at <code>1</code> not <code>0</code>, which is the default. Each subsequent label gets the next integer value.</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

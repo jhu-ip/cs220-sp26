@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 2</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 2</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, but you need not hand it in. You are encouraged to work at home to complete what you do not get through today.</p>
+</div>
+</div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<p>This exercise should help you gain familiarity with</p>
+<ul>
+<li>The basic structure of a C program</li>
+<li>C integer variables</li>
+<li>Basic text input and output in C</li>
+<li>Arithmetic on integer values in C</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+
+<p>Start by going to the following website in a web browser: <a href="https://www.onlinegdb.com/online_c_compiler">https://www.onlinegdb.com/online_c_compiler</a></p>
+
+<p>This website is a simple online IDE for C programs.  You will see a “hello, world” program in the text editor, in a source file called <code class="language-plaintext highlighter-rouge">main.c</code>.</p>
+
+<p>Click the green “<span class="green_button">▶ Run</span>” button just above the text editor.  The program will be compiled, and then you will see the output <code class="language-plaintext highlighter-rouge">Hello World</code> in the console window below the text editor!</p>
+
+<p>We’re using this online programming environment for this exercise in order to make sure that everyone can start working on C programs right away, even if they don’t yet have an account on the CS ugrad machines.  All subsequent exercises (and assignments) will be done on the ugrad machines.</p>
+
+<h3 id="part-2">Part 2</h3>
+
+<p>To get started, change the program so that it looks like this:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"enter an integer: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"you entered: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Click the green “<span class="green_button">▶ Run</span>” button.  The program should compile, and then the program will start running.  You can use the console window (below the text editor) to interact with the program.  Enter the value “42”, and press “Enter”.  You should see the output <code class="language-plaintext highlighter-rouge">you entered: 42</code> in the console window.</p>
+
+<p>You have written a C program which reads user input, and executed it interactively. Congratulations!</p>
+
+<h3 id="part-3">Part 3</h3>
+
+<p>Your main task for this exercise is to write a program which</p>
+
+<ul>
+  <li>prompts the user to enter two integer values, and then</li>
+  <li>prints out the sum, difference, product, quotient (using integer division), and remainder, in the format specified below</li>
+</ul>
+
+<p>Here is an example run of the program, with <b>bold</b> text used to indicate the input entered by the user:</p>
+
+<div class="highlighter-rouge"><pre>
+Enter two integers: <b>11 3</b>
+11 + 3 = 14
+11 - 3 = 8
+11 * 3 = 33
+11 / 3 = 3
+11 % 3 = 2
+</pre></div>
+
+<p>Note that when asked to read two values, the <code class="language-plaintext highlighter-rouge">scanf</code> function doesn’t care whether you enter both values on the same line, or on different lines.  In the example session above, both values were entered on the same line.</p>
+
+<p>One slightly tricky issue in producing the correct output is printing a literal <code class="language-plaintext highlighter-rouge">%</code> character using <code class="language-plaintext highlighter-rouge">printf</code>.  In a <code class="language-plaintext highlighter-rouge">printf</code> format string, the <code class="language-plaintext highlighter-rouge">%</code> character usually is the start of a format specifier.  However, you can have <code class="language-plaintext highlighter-rouge">printf</code> generate a literal <code class="language-plaintext highlighter-rouge">%</code> character by specifying <em>two</em> <code class="language-plaintext highlighter-rouge">%</code> characters in the format string.  I.e., the code</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="s">"%%"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>will print a single <code class="language-plaintext highlighter-rouge">%</code> character to the standard output.</p>
+
+<h3 id="extra-challenge">Extra challenge</h3>
+
+<p>If there is time, try your solution to the above with different input types. What happens if you enter floating point values? characters? strings? What about using 0 as the second input value?</p>
+
+<p>Challenge: using prior knowledge of decision statements and looking up boolean operators in the course materials (try NOTES-Cbasics), update your program so that it doesn’t crash in the above situations. It is up to you how to handle the various errors types. (In homework, we will specify how to handle various input errors with different return values.)</p>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 3-B</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 3-B</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, but you need not hand it in. You are encouraged to work at home to complete what you do not get through today.</p>
+</div>
+</div>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<p>This exercise should help you gain familiarity with</p>
+<ul>
+<li>Unix/Linux command line interface</li>
+<li>a text editor and the gcc compiler</li>
+<li>the distributed version control tool called git.</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>To begin (if you have not already done so), log into the ugrad system using your ugrad account name and password.  You can do so by logging in to <code class="language-plaintext highlighter-rouge">ugradx.cs.jhu.edu</code>, or any machine <code class="language-plaintext highlighter-rouge">ugrad1.cs.jhu.edu</code>, <code class="language-plaintext highlighter-rouge">ugrad2.cs.jhu.edu</code>, … <code class="language-plaintext highlighter-rouge">ugrad24.cs.jhu.edu</code>. On a Mac or Unix/Linux machine, you will log in to ugrad from the command line using <code class="language-plaintext highlighter-rouge">ssh</code>.</p>
+
+<div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>Using Mac terminal or Windows Powershell, you can <code>ssh</code> to ugrad machines as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">ssh</span> USERNAME@ugrad5.cs.jhu.edu</a></code></pre></div>
+<p>where <em>USERNAME</em> is replaced by your actual cs user name. Also, you can replace 5 by <em>x</em> or any number between <em>1</em> and <em>24</em>.</p>
+</div>
+</div>
+<p>If your machine is running Windows, you will use <a href="https://www.putty.org/" target="_blank">PuTTy</a> or ssh using Windows Powershell to connect.</p>
+
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<p>You are advised to download and use PUTTY if you are a Windows user. Directly "sshing" into ugrad machines via Windows Powershell has caused an issue with keyboard layouts in the past!</p>
+</div>
+</div>
+
+<h3 id="part-2">Part 2</h3>
+<p>First, create a copy (clone) of the public repository for the class by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>In your ugrad account, type <code class="language-plaintext highlighter-rouge">cd ~</code> to make sure you are in your home directory.</p>
+  </li>
+  <li>If you have not already done so, use <strong>git</strong> to clone the class example repository by typing the following (replacing the <code class="language-plaintext highlighter-rouge">xxx</code> with the appropriate name for your current semester):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/jhu-ip/cs220-xxx-public.git
+</code></pre></div>    </div>
+  </li>
+  <li>Type (replacing the <code class="language-plaintext highlighter-rouge">xxx</code> with the appropriate name for your current semester):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cs220-xxx-public
+</code></pre></div>    </div>
+    <p>to enter the newly created directory (that is, folder), and then type <code class="language-plaintext highlighter-rouge">ls</code> to list the files present in that directory.  Review the filenames that it shows and confirm that the files <code class="language-plaintext highlighter-rouge">README</code> and the exercises folder are present. <strong>Note:</strong> From this point forward, we will use <code class="language-plaintext highlighter-rouge">xxx</code> in this folder name to mean the current semester designation.</p>
+  </li>
+</ol>
+
+<p>If you did not successfully complete the above steps, ask of a member of the course staff and/or post on Piazza.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Now that you have a local copy of the git repo in your ugrad account, we want to make a separate temporary directory structure in your account where you can do some work.</p>
+
+<ol>
+  <li>
+    <p>Change back to your home directory by typing either <code class="language-plaintext highlighter-rouge">cd ~</code>, or just <code class="language-plaintext highlighter-rouge">cd</code>. It’s important that you’re no longer in your local copy of the repo for the next step, so type <code class="language-plaintext highlighter-rouge">pwd</code> to check the name of your current directory; you should see that you’re in the folder named <em>/home/your_username_</em>, e.g. <em>/home/ips22004</em> or similar. If you need help getting there, raise your hand (via Zoom) so we can help, or post on Piazza.</p>
+  </li>
+  <li>
+    <p>Create a subdirectory named <code class="language-plaintext highlighter-rouge">temp</code> by typing the command <code class="language-plaintext highlighter-rouge">mkdir temp</code>.</p>
+  </li>
+</ol>
+
+<h3 id="part-4">Part 4</h3>
+<p>Now, copy a file from your local copy of the class repo into the directory you just created in part 3, then compile and test it.  Here is how:</p>
+
+<ol>
+  <li>Copy <code class="language-plaintext highlighter-rouge">helloworld.c</code> from your local copy of the class repository into your personal folder by navigating into <code class="language-plaintext highlighter-rouge">~/temp</code> (the folder you just created) using <code class="language-plaintext highlighter-rouge">cd temp</code> and then typing (Hint: using tab-completion will help here!):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> ~/cs220-xxx-public/exercises/ex03b/helloworld.c <span class="nb">.</span>
+</code></pre></div>    </div>
+    <p>The command above ends with a period (“dot”), and there must be a space before the dot. The dot in Unix stands for the current directory; in this command you’re expressing that the current directory is the destination for the copy you’re making.</p>
+  </li>
+  <li>
+    <p>Type <code class="language-plaintext highlighter-rouge">pwd</code> to confirm that you are still working in the folder named <code class="language-plaintext highlighter-rouge">~/temp</code>, and then type <code class="language-plaintext highlighter-rouge">ls</code> to see that it now contains a copy of <code class="language-plaintext highlighter-rouge">helloworld.c</code></p>
+  </li>
+  <li>Now, compile the source file named <code class="language-plaintext highlighter-rouge">helloworld.c</code> and create an executable file by typing:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-std</span><span class="o">=</span>c99 <span class="nt">-Wall</span> <span class="nt">-Wextra</span> <span class="nt">-pedantic</span> helloworld.c
+</code></pre></div>    </div>
+    <p>This command should create a new executable file named <code class="language-plaintext highlighter-rouge">a.out</code>.  (Type <code class="language-plaintext highlighter-rouge">ls</code> again now to confirm that the new file has been created.)</p>
+  </li>
+  <li>
+    <p>Execute the file you just created by typing <code class="language-plaintext highlighter-rouge">./a.out</code> and seeing what is printed. The <code class="language-plaintext highlighter-rouge">./</code> to start the command above indicates to Unix that this program resides in the current directory. Unix/Linux does not look in this directory for commands by default, so without this, the command will not be found.</p>
+  </li>
+  <li>Now, make a copy of the <code class="language-plaintext highlighter-rouge">helloworld.c</code> file in the same folder, and name it <code class="language-plaintext highlighter-rouge">hello_me.c</code>.  Here is how: Type:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>helloworld.c hello_me.c
+</code></pre></div>    </div>
+    <p>Note that the <code class="language-plaintext highlighter-rouge">cp</code> (that is, copy) command uses two arguments; the first is the source, the second is the destination. Type <code class="language-plaintext highlighter-rouge">ls</code> once more to confirm that you now have a new copy of the file in your folder.</p>
+  </li>
+  <li>
+    <p>Using the <em>emacs</em> text editor (or <em>vim</em> if you prefer), modify the new file so that rather than displaying “Hello, world!” when it is executed, it instead displays <em>“Hello, $your name$!”</em> (e.g., “Hello, Anna!” or “Hello, Xin!”).  To do this using emacs, first type <code class="language-plaintext highlighter-rouge">emacs hello_me.c</code> to open the file for editing.  Once you’ve made the appropriate modifications in <em>emacs</em>, you can save the file using <code class="language-plaintext highlighter-rouge">Ctrl-x Ctrl-s</code>, and exit <em>emacs</em> using <code class="language-plaintext highlighter-rouge">Ctrl-x Ctrl-c</code>.</p>
+  </li>
+  <li>Next, compile your new file by typing
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-std</span><span class="o">=</span>c99 <span class="nt">-Wall</span> <span class="nt">-Wextra</span> <span class="nt">-pedantic</span> hello_me.c
+</code></pre></div>    </div>
+    <p>Then execute it by typing <code class="language-plaintext highlighter-rouge">./a.out</code>. Confirm that it behaves as you planned.  If it does not, go back and re-edit the file, re-compile it, and re-run it until you get it to work.</p>
+  </li>
+</ol>
+
+<h3 id="part-5">Part 5</h3>
+<p>Wrap up the exercise by cleaning up your files, and logging out of the ugrad system, as follows:</p>
+
+<ol>
+  <li>
+    <p>While you do not want to remove or even modify the <code class="language-plaintext highlighter-rouge">cs220-xxx-public</code> folder (that is, your copy of our public class repo), you will no longer need to keep the temporary directory named <code class="language-plaintext highlighter-rouge">temp</code> that we created today, or any of the files you put inside it.  To remove the <code class="language-plaintext highlighter-rouge">temp</code> directory, first navigate to your home directory (that is, the top-level folder in your account) by typing <code class="language-plaintext highlighter-rouge">cd ~</code> or simply <code class="language-plaintext highlighter-rouge">cd</code>.</p>
+  </li>
+  <li>Once you are sure you are in the right folder, type <code class="language-plaintext highlighter-rouge">rm -r temp</code> to remove the <code class="language-plaintext highlighter-rouge">temp</code> folder and all of its contents. Note that <code class="language-plaintext highlighter-rouge">rm</code> is the remove command, and the extra <code class="language-plaintext highlighter-rouge">-r</code> flag indicates that you wish the remove command to be applied recursively, meaning to all subfolders within <code class="language-plaintext highlighter-rouge">temp</code>.  Be very careful when executing any <code class="language-plaintext highlighter-rouge">rm</code> command in Unix/Linux; there is no undo button if you make a mistake and delete important files! If you want to verify deletion before removing files, use the <code class="language-plaintext highlighter-rouge">-i</code> option with <code class="language-plaintext highlighter-rouge">rm</code>.
+    <div class="admonition danger">
+<div class="title">Danger</div>
+<div class="content">
+<p>Be careful around the <code>rm</code> command from here on. Once you remove a file/folder, there will not be a (straightforward) way to recover it!</p>
+</div>
+</div>
+  </li>
+  <li>Finally, log out of the ugrad system by typing <code class="language-plaintext highlighter-rouge">exit</code>.</li>
+</ol>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

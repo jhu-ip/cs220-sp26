@@ -1,0 +1,243 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 24</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 24</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today meeting:</p>
+<ul>
+<li>C++ basics: I/O using iostream library, how to compile/link/execute</li>
+<li>Using the C++ Standard Template Library (std::vector, std::map, std::sort) and iterators</li>
+</ul>
+</div>
+</div>
+
+<div class="admonition danger">
+<div class="title">Tasks</div>
+<div class="content">
+<ul>
+<li>Complete the implementation of code which counts the number of occurrences of particular words in a file, and then reports the results in different orderings by utilizing <code>std::map</code>.</li>
+<li>Compare your implementation number sorting from ex23 to the implementation provided by the Standard Template Library.</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Get started by running <code class="language-plaintext highlighter-rouge">git pull</code> to update your clone of the public repository, and then copying the <code class="language-plaintext highlighter-rouge">exercises/ex24</code> directory into your personal git repository. You’ll see that we have provided <code class="language-plaintext highlighter-rouge">map-simple.cpp</code>, <code class="language-plaintext highlighter-rouge">input.txt</code>, <code class="language-plaintext highlighter-rouge">main.cpp</code>, <code class="language-plaintext highlighter-rouge">sort.cpp</code>, and <code class="language-plaintext highlighter-rouge">monkeys.txt</code>.</p>
+
+<h3 id="part-2">Part 2</h3>
+<p>The supplied file <code class="language-plaintext highlighter-rouge">map-simple.cpp</code> is a completed program that takes in input pairs from standard input representing phone contacts made of a name string and a phone number string, and inserts each into a <code class="language-plaintext highlighter-rouge">std::map</code> structure.  The name is the key in the map, and the phone number for that person is the value associated with that key in the map.  This program will serve as a reference for you to follow as you work with <code class="language-plaintext highlighter-rouge">std::map</code> to complete the remainder of the exercise.</p>
+
+<p>First, compile and link <code class="language-plaintext highlighter-rouge">map-simple.cpp</code> by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-Wall</span> <span class="nt">-Wextra</span> <span class="nt">-pedantic</span> map-simple.cpp <span class="nt">-o</span> map-simple
+</code></pre></div></div>
+
+<p>Next, run the executable <code class="language-plaintext highlighter-rouge">map-simple</code> using the file <code class="language-plaintext highlighter-rouge">input.txt</code> in place of interactive input using the pipe command-line operation by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>input.txt | ./map-simple
+</code></pre></div></div>
+
+<p>Now, look inside <code class="language-plaintext highlighter-rouge">input.txt</code> and then the code in <code class="language-plaintext highlighter-rouge">map-simple.cpp</code> and try to to understand how it works.  Here are a few items we want to highlight:</p>
+
+<ul>
+  <li>Notice that four (name,phone) pairs are present in the input file, but only three remain in the map when it is output.  This illustrates an important point about maps: only one occurrence of a key value is allowed (that is, the original value for the key Sara is replaced by the second value supplied later in the input file).</li>
+  <li>We make use of a <code class="language-plaintext highlighter-rouge">const_iterator</code> named <code class="language-plaintext highlighter-rouge">it</code> to traverse the map entries so we can output them.  Each entry is a pair, and it runs over each of them in succession, so when we access <code class="language-plaintext highlighter-rouge">it-&gt;first</code>, we get the current entry’s <em>key</em> (i.e. name), and when we access <code class="language-plaintext highlighter-rouge">it-&gt;second</code>, we get the current entry’s value (i.e. phone number).</li>
+  <li>Note also that the values in the map are output in ascending order by key (i.e. name) value, even though they were not inserted in that order.  We did not need to explicitly sort them in our code, either.</li>
+</ul>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>A map will always organize its entries in ascending order by key.</p>
+</div>
+</div>
+
+<p>Before moving on to the next portion, make sure you follow what is happening in this code. Rushing to the next part without understanding this code will not help you finish this exercise any more quickly! Please ask questions if something does not make sense.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Now, you will work to edit <code class="language-plaintext highlighter-rouge">main.cpp</code> to work with maps in a more sophisticated way.</p>
+
+<p>In this part, you’ll add code to read in words from standard input until end of file occurs, and populate the <code class="language-plaintext highlighter-rouge">map&lt;string, int&gt;</code> named <code class="language-plaintext highlighter-rouge">counters</code> so that each entry has a key which is a word collected and the corresponding value is the number of times that word appears in the file. The code to output the counters map contents is already present in this file.</p>
+
+<p>Once you’ve modified it, you’ll compile <code class="language-plaintext highlighter-rouge">main.cpp</code> using:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-Wall</span> <span class="nt">-Wextra</span> <span class="nt">-pedantic</span> main.cpp <span class="nt">-o</span> main
+</code></pre></div></div>
+
+<p>Next, run the executable <code class="language-plaintext highlighter-rouge">main</code> using the file <code class="language-plaintext highlighter-rouge">monkeys.txt</code> in place of interactive input by typing:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat monkeys.txt | ./main
+</code></pre></div></div>
+
+<p>Note that the contents of <code class="language-plaintext highlighter-rouge">monkeys.txt</code> are as shown below:</p>
+
+<p><code class="language-plaintext highlighter-rouge">and Mama called the doctor and the doctor said no more monkeys</code></p>
+
+<p>So, if your code works correctly, you should see the following output:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>word Mama has 1 occurrences 
+word and has 2 occurrences 
+word called has 1 occurrences 
+word doctor has 2 occurrences 
+word monkeys has 1 occurrences 
+word more has 1 occurrences 
+word no has 1 occurrences 
+word said has 1 occurrences 
+word the has 2 occurrences
+</code></pre></div></div>
+
+<h3 id="part-4">Part 4</h3>
+<p>Once you have the counters map properly populated, and you confirmed that your output is correct, you can now work on rearranging that data you collected during Part 3.</p>
+
+<p>In this part, you need to write code that will go through the simple <code class="language-plaintext highlighter-rouge">counters</code> map you populated and copy over the data into a new map called <code class="language-plaintext highlighter-rouge">words_by_freq</code>, but rearrange your data so that each entry in the new map has an integer key, and has an entire vector of strings as its value. The vector will hold all strings with the frequency indicated by the key integer. Recall that the <code class="language-plaintext highlighter-rouge">push_back</code> method in <code class="language-plaintext highlighter-rouge">std::vector</code> allows you to add an item at the end of a vector.</p>
+
+<p>Once you have done this properly, if run with <code class="language-plaintext highlighter-rouge">monkeys.txt</code> as input, your <code class="language-plaintext highlighter-rouge">words_by_freq</code> map will contain entries like this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>key (an <em>int</em>)</th>
+      <th>value (a <em>vector</em> of strings)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mama, called, monkeys, more, no, said</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>and, doctor, the</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can think of the <code class="language-plaintext highlighter-rouge">words_by_freq</code> map as a notebook of information, where each entry is a page, and at the top of the page, you wrote an integer frequency, and on the rest of the page, you’ve written a list of all the words you encountered with that frequency.</p>
+
+<p>To confirm that your code is correct, move onto Part 5 where you will write the code to output its contents.</p>
+
+<h3 id="part-5">Part 5</h3>
+<p>Using <code class="language-plaintext highlighter-rouge">const_iterators</code> (not just one but two!), write code to output the contents of the <code class="language-plaintext highlighter-rouge">words_by_freq</code> map you populated.  This means that for each entry in the map, you will need to output the frequency key, and then iterate separately over the strings in the vector. (Happily, iterators can be used over vectors as well as maps!)</p>
+
+<p>So, if the input words are the contents of <code class="language-plaintext highlighter-rouge">monkeys.txt</code>, then the output would from this part should be:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Frequency: 1
+Mama
+called
+monkeys 
+more 
+no 
+said                                                                    
+Frequency: 2 
+and 
+doctor 
+the  
+</code></pre></div></div>
+
+<p>If some frequency does not exist in the table, then your code should not output it.  For example, if your input was the following words:</p>
+
+<p><code class="language-plaintext highlighter-rouge">the tall tall tall giraffe</code></p>
+
+<p>Then the output from this part would be:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Frequency: 1
+giraffe
+the
+Frequency: 3
+tall
+</code></pre></div></div>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>The words for each frequency shown in the sample output above are shown in alphabetical (dictionary) ordering. Recall that unlike <code>std::map</code> a <code>std::vector</code> is not automatically stored in order based on <code>&lt;</code>, so think about why this is.<br />
+<strong>Hint:</strong> we did not use <code>std:sort</code> or even go out of our way at all to make this happen!</p>
+</div>
+</div>
+
+<h3 id="part-6">Part 6</h3>
+<p>Copy your implementation of <code class="language-plaintext highlighter-rouge">sort</code> from ex23 into <code class="language-plaintext highlighter-rouge">sort.cpp</code>.</p>
+
+<h3 id="part-7">Part 7</h3>
+<p>Invoke STL’s sort implementation to sort the contents in the vector <code class="language-plaintext highlighter-rouge">vec2</code>.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>Be sure to include any necessary headers.</p>
+</div>
+</div>
+
+<h3 id="part-8">Part 8</h3>
+<p>Compare the performance of your <code class="language-plaintext highlighter-rouge">sort</code> implementation to the one provided by STL.</p>
+
+<p>To do this you will need to compile</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-Wall</span> <span class="nt">-Wextra</span> <span class="nt">-pedantic</span> sort.cpp <span class="nt">-o</span> <span class="nb">sort</span>
+</code></pre></div></div>
+<p>and then run</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./sort
+</code></pre></div></div>
+<p>your code.</p>
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>To get a reasonable sense of the relative performance, it makes sense to use a large random vector (e.g. with millions of entries).</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also scp and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

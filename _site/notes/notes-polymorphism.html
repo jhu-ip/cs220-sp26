@@ -1,0 +1,412 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Inheritance &amp Polymorphism</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Inheritance &amp Polymorphism</div>
+
+    <h3>Inheritance</h3>
+
+<h4>What is inheritance good for?</h4>
+
+<ul>
+    <li>Classes with strong "is-a" relations between them: 
+	<ul>
+	  <li><code>Circle</code>, <code>Square</code>, ... is-a <code>Shape</code>
+</li>	  <li><code>Couch</code>, <code>Chair</code>, <code>Bench</code>, ... is-a <code>Seat</code>; <code>Seat</code>, <code>Table</code>, ...  is-a <code>Furniture</code>
+</li>	  <li><code>Point3D</code> is-a <code>Point2D</code> if we project out <code>z</code>
+</li>	  <li><code>Checking</code>, <code>Savings</code> is-a <code>BankAccount</code>; <code>MoneyMarket</code> is-a <code>Savings</code>
+</li>	  <li>Recall the C++ <a href="notes-CppIO.html">I/O inheritance hierarchy</a>
+</li>	</ul>
+</li>    <li>Terminology: <em>subclass</em> is-a <em>superclass</em>
+</li>    <li>Means subclass behaviors extend behaviors of superclass, so there is some common code
+</li>    <li>Inheritance lets subclass get ("inherit") superclass code "for free".
+</li>  </ul>
+
+<h4>Class Relationships: Has-a vs. Is-a</h4>
+
+<ul>
+<li> Has-a is for composition: put it in a field
+     <ul>
+       <li><code>Bicycle</code> has-a <code>Wheel</code>
+</li>       <li><code>Window</code> has-a <code>Menu</code>
+</li>     </ul>
+</li>    <li> Is-a is for inheritance
+</li></ul>
+
+<h4>General syntax</h4>
+
+<p>To declare a derived (child) class use <code>class DerivedClass : <em>access</em> BaseClass</code></p>
+
+<ul>    <li> Default <code><em>access</em></code> is <code>private</code> if none specified, but standard inheritance like in Java is <code>public</code> form - use <code>public</code> unless you have a reason not to!
+</li>    <li> If access is <code>public</code>, it means code outside of classes is aware of relationship; for example, <code>superObj = subObj</code> assignment is legal
+</li>    <li> If access is <code>private</code>, outsiders can never see relationship
+	<ul>
+	  <li>Nonstatic members of <code>BaseClass</code> become
+        de facto private members in <code>DerivedClass</code>
+</li>	  <li><code>superObj = subObj</code> now illegal
+</li>  <li>  Restricts access to base class functions that have no 
+        meaning for derived class; can make has-a sense
+</li>    <li> Individual base class members can be granted public access
+        with an explicit <code>using</code> access declaration
+</li></ul>
+</li></ul>
+
+<p>Using <code>protected</code> access specifier on fields and methods</p>
+<ul>
+  <li>  Means "only my subclasses can see it"
+</li>    <li> Appears just like <code>private</code> if you are not a subclass (i.e. you can't see it)
+</li></ul>
+
+<h4>Access mode member/class combinations </h4>
+
+<ul>
+  <li>Its a bit confusing with access specifiers on both classes themselves and members.
+</li>  <li>Here is a table of what the different access specifier combinations do, taken from <a href="http://en.wikibooks.org/wiki/C++_Programming/Classes/Inheritance">Wikibooks</a>.
+</li>
+</ul>
+
+<table border="1px black" cellspacing="0" align="center" style="background-color:#ffe0ff;">
+<caption>Access specifiers on members of the base class</caption>
+<tr style="text-align:center;">
+<td></td>
+<td>private</td>
+<td>protected</td>
+<td>public</td>
+</tr>
+<tr>
+<td>private inheritance</td>
+<td style="background-color:#f3c1c6;">The member is inaccessible.</td>
+<td style="background-color:#eeefa7;">The member is private.</td>
+<td style="background-color:#eeefa7;">The member is private.</td>
+</tr>
+<tr>
+<td>protected inheritance</td>
+<td style="background-color:#f3c1c6;">The member is inaccessible.</td>
+<td style="background-color:#b9edc5;">The member is protected.</td>
+<td style="background-color:#b9edc5;">The member is protected.</td>
+</tr>
+<tr>
+<td>public inheritance</td>
+<td style="background-color:#f3c1c6;">The member is inaccessible.</td>
+<td style="background-color:#b9edc5;">The member is protected.</td>
+<td style="background-color:#a7dfef;">The member is public.</td>
+</tr>
+</table>
+<p>
+<ul>
+  <li>The column headers are the case of using <code>public/private/protected</code> on member functions/fields
+</li>  <li> The rows are for access specifiers on the class inheritance specification. 
+</li>  <li> Note that <code>public/protected</code>  members are still visible internally to a subclass in the case of <code>private</code> inheritance (the yellow boxes).
+</li></ul>
+
+
+<h4>Constructors destructors and inheritance</h4>
+
+<ul>
+  <li>Constructors are not inherited
+</li>  <li>You need to invoke superclass constructor in subclass initializer list
+</li>  <li>Will invoke default superclass constructor implicitly if no explicit constructor call
+</li></ul>
+
+<pre>
+class A {
+protected:
+    double d;
+public:
+    A(double num = 0): d(num) { };
+};
+
+class B : public A {
+private:
+    int b;
+public:
+    // implicitly invokes default A():
+    B(int val = 0): b(val) { };
+
+    // Put A(dval) in initializer list to call non-default constructor of A:
+    B(int bval, double dval): A(dval), b(bval) { };
+};
+</pre>
+
+
+Constructor and destructor execution order with inheritance
+<ul>
+  <li> Constructors for <code>BaseClass</code> are executed before constructors
+        for <code>DerivedClass</code> members 
+</li>    <li> Destructor execution order is opposite of constructors
+</li>    <li>Constructors, destructors and assignment are not inherited!
+    (remember: defaults are created unless you specify them)
+</li></ul>
+
+<h3>Virtual member functions</h3> 
+
+<h4>Virtual functions</h4>
+
+<ul>
+   <li>Virtual functions are <em>dynamically dispatched</em> - method invoked based on actual runtime object, not declared type
+</li>   <li>In all object languages besides C++, <code>virtual</code> is the default dispatch
+</li>   <li>Decision which member function version to use may be made at run-time
+</li>   <li><code>virtual</code> prefix declares a member function virtual
+</li>   <li><code>virtual</code> only matters for inherited methods that are overridden
+</li></ul>
+
+<ul>
+  <li> Any non-static member function except constructor can be virtual
+</li>    <li> Do not need prefix <code>virtual</code> in derived class declarations (its optional)
+</li>    <li> Should have <code>virtual</code> destructor (even if empty) in base class
+        with virtual functions - otherwise derived class destructors <em>may not be called</em> even if they exist
+</li></ul>
+    
+<h4>Overriding vs overloading vs hiding</h4>	
+
+<ul>
+    <li> <strong>Overriding</strong> is  when derived and base class functions have the
+        <em>same</em> function name, param types, return types, const-ness and the base function is <code>virtual</code>
+</li>    <li> <strong>Overloading</strong> is when a function has same name but different argument types
+        as another function
+</li>    <li> <strong>Hiding</strong> is when derived function has same name (regardless of 
+        arguments) as non-virtual base function - base function is hidden
+</li></ul>
+
+Other details
+  <ul>
+    <li> It is illegal for function in derived class to have same signature
+        as virtual function in base with different return type
+</li>    <li> If functions in base and derived classes have the same signature,
+        can use the scope resolution op (::) to get to function
+        in the base class (the derived class is default)
+</li></ul>
+
+<h4>Implicit conversions between base and derived classes</h4>
+
+Derived class objects can be passed as base class objects - will implicitly slice off any derived class fields:
+
+<pre>
+void poly(Point2D p)
+{ // .. p will just be a true 2D point
+}      
+int main()
+{
+     Point3D p3(30, 40, 50);
+     poly(p3); // 3D point will be copy converted to 2D point - z gone
+}
+</pre>
+
+Also derived class references can be passed as base class references - derived class fields implicitly there for virtual methods to "see"
+
+<pre>
+void poly(Point2D &amp;p)
+{ // .. p will still have the z field
+}      
+int main()
+{
+     Point3D p3(30, 40, 50);
+     poly(p3); // reference to 3D point passed
+}
+</pre>
+
+Similarly to references, base class pointer types can also point to derived class objects:
+
+<pre>
+void poly(Point2D *p)
+{ // .. *p will still have the z field
+}      
+int main()
+{
+     Point3D p3(30, 40, 50);
+     poly(&amp;p3); // address of 3D point passed
+}
+</pre>
+
+<ul>
+<li> Base from derived type conversions can be implicit (smaller from larger class)
+</li><li>Assignment <code>Point2D p2 = p3</code> also implicitly converts in a similar way - sliced off if not a reference or pointer, otherwise not sliced off
+</li></ul>
+
+
+<h4>Explicit type conversions</h4>
+
+<ul>
+  <li> Base to derived type conversions must be explicit - base may in fact be missing derived fields at run-time
+</li> <li> <code>dynamic_cast</code> converts type (but not data) and checks validity at run-time
+</li>    <li> Returns <code>NULL</code> if it cannot convert
+</li></ul>
+
+Syntax:<pre>
+Base * base;
+dynamic_cast&lt;Derived*&gt;(base);
+</pre>
+
+<ul>
+    <li><code>dynamic_cast</code> doesn't work on reference variables -- they can't be <code>NULL</code>
+</li>    <li>  <code>static_cast</code> converts data at run-time - calls conversion constructor; errors on nonsense conversions
+</li>  </ul>
+
+Other forms of more hazardous cast that should be used sparingly
+<ul>
+ <li> <code>reinterpret_cast</code> will body-slam one type into another, without discretion - it re-interprets the raw memory as the new type and may lead to seg faults
+ </li><li> <code>const_cast</code> will add or remove constness
+</li>
+</ul>
+
+<h3>Abstract base classes</h3>
+<ul>
+  <li> Abstract classes are designed so you should not ever make instances of the class
+</li>    <li> Very useful for enforcing common interface among related (derived) classes
+</li>  <li> Abstract base classes serve some of the purpose of Java's interfaces (C++ has no interfaces)
+</li>
+</ul>
+
+Defining abstract base classes with pure virtual functions
+
+<ul>
+    <li> A pure virtual function in a header should not be implemented:
+<code>virtual  void myfun() = 0;</code> - "= 0" means myfun is pure virtual
+</li>    <li> Trying to create object of abstract base class will give compile error
+</li>    <li> Each non-abstract derived class must have its own definition of every
+        pure virtual function in the base class
+</li>    <li> abstract base class needs <em>at least one</em> pure virtual function; can have data members
+</li></ul>
+
+Other lesser points about coding abstract classes
+
+<ul>
+      <li> If there is a pure virtual function without a definition in a derived class, that derived class is also an abstract class
+</li>    <li> Can mix non-virtual, virtual and pure virtual functions in one class
+</li>    <li> Base class data members likely need to be <code>protected</code> for the pure virtual functions in the derived classes to access them
+</li></ul>
+
+Declared variables of abstract classes
+<ul>
+    <li> Abstract class object instances cannot be created by any means
+</li>    <li> <em>But</em>, variables can be declared as references or pointers to abstract class type
+</li>    <li> At run-time, such pointers/references <em>must</em> point to derived object instances
+</li>    <li> references to abstract types may be function arguments
+</li>    <li> usefulness: array of pointers to base objects to form collection
+        of related but different class objects
+</li></ul>
+
+<h3>Multiple Inheritance</h3>
+
+<em>Multiple inheritance</em> means subclass class can be derived from multiple base classes.
+
+<ul>
+  <li>Java, Ruby, C#, etc have only single inheritance; C++, Python, etc have multiple inheritance
+</li>  <li>Multiple inheritance subsumes Java interfaces in power<br />
+-- to implement multiple interfaces a la Java, inherit from multiple abstract classes in C++
+</li></ul>
+
+A simple example of multiple inheritance for an interface:
+<pre>
+class Widget
+{
+public:
+    virtual void click();
+    virtual void update();
+};
+
+class Drawable
+{
+public:
+    virtual void draw() = 0; // Drawable is an abstract class with no code
+  
+};
+
+class Snowman : public Widget, public Drawable
+{
+    void draw(); // override pure virtual draw to draw Snowman
+};
+
+class Bunny : public Widget, public Drawable
+{
+    void draw(); // override pure virtual draw to draw a Bunny
+};
+
+void fun(Drawable &amp;d) // d can be either a Snowman or a Bunny - both "have the Drawable interface"
+{
+    d.draw();
+}
+</pre>
+
+<h4>The Diamond Problem</h4>
+
+A thorny issue for any language supporting multiple inheritance is the following scenario:
+<pre>
+     A
+  /     \
+ B       C
+  \     /
+     D
+</pre>
+
+<ul>
+    <li> You can have two versions of the same methods if there is a "diamond" in the inheritance graph - D will get two copies of any method in A: one from B and one from C.  Which copy to use?
+</li>    <li> ambiguity can be resolved by declaring <code>virtual</code> inheritance in B and C definitions.
+</li></ul>
+
+Example:
+
+<pre>
+class Person {
+public:
+    long getSSN() { return SSN; };
+private:
+    long SSN;
+};
+
+class Employee : public virtual Person {     };
+class Student : public virtual Person {     };
+class GradAsst: public Employee, public Student {     };
+
+int main()
+{
+    GradAsst  ga;
+    ga.getSSN();  // not ambiguous with virtual above; remove virtual and get error
+}
+</pre>
+
+<ul>
+  <li>With <code>virtual</code>  declared, it means C++ will make only one copy of super-superclass <code>Person</code> for the <code>GradAsst</code> - only one <code>SSN</code> and only one <code>getSSN()</code>
+</li>  <li>Sometimes "only one copy" is not the right meaning, be careful
+</li>  <li>Fortunately you don't run into the diamond problem very often
+</li></ul>
+</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

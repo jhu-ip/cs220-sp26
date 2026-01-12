@@ -1,0 +1,112 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Control Structures</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Control Structures</div>
+
+    <p>In general control structures in C are very similar to those in Java.
+The <code>for</code> loop is very different than in Python.  Remember
+when writing boolean expressions that all numbers are booleans in C:
+zero is false, all else is true!  Anywhere a statement appears in
+these generic forms, a block statement enclosed in curly braces ({})
+could be used instead.</p>
+
+<h4>Decision statements</h4>
+
+<p>Here are generic forms of the decision statements.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">if</span> <span class="p">(</span><span class="n">boolean</span> <span class="n">expr</span><span class="p">)</span> 
+    <span class="nb">true</span><span class="o">-</span><span class="n">statement</span><span class="p">;</span>  <span class="c1">// or { block }</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">boolean</span> <span class="n">expr</span><span class="p">)</span>
+    <span class="nb">true</span><span class="o">-</span><span class="n">statement</span><span class="p">;</span>  <span class="c1">// or { block }</span>
+  <span class="k">else</span>
+    <span class="nb">false</span><span class="o">-</span><span class="n">statement</span><span class="p">;</span> <span class="c1">// or { block }</span>
+
+  <span class="k">switch</span> <span class="p">(</span><span class="n">integer</span> <span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="n">c1</span><span class="p">:</span> <span class="n">stmt1</span><span class="p">;</span>  <span class="c1">// execution starting point for c1</span>
+  <span class="k">case</span> <span class="n">c2</span><span class="p">:</span> <span class="n">stmt2</span><span class="p">;</span>
+           <span class="k">break</span><span class="p">;</span>  <span class="c1">// exits switch block</span>
+  <span class="k">case</span> <span class="n">c3</span><span class="p">:</span> 
+  <span class="k">case</span> <span class="n">c4</span><span class="p">:</span> <span class="n">stmt3</span><span class="p">;</span> 
+           <span class="n">stmt4</span><span class="p">;</span>  <span class="c1">// executes stmt3, stmt4 and stmtlast for c3 or c4 matches</span>
+  <span class="nl">default:</span> <span class="n">stmtlast</span><span class="p">;</span>   <span class="c1">// if no case matches</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<h4>Loops</h4>
+
+<p>Here are generic forms of the three loop types in C.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">while</span> <span class="p">(</span><span class="n">boolean</span> <span class="n">expr</span><span class="p">)</span> 
+    <span class="nb">true</span><span class="o">-</span><span class="n">statement</span><span class="p">;</span>  <span class="c1">// or { block }, repeats to while</span>
+
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">statement</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">executes</span><span class="o">-</span><span class="n">at</span><span class="o">-</span><span class="n">least</span><span class="o">-</span><span class="n">once</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">boolean</span> <span class="n">expr</span><span class="p">);</span>  <span class="c1">// repeat while true</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">init</span><span class="p">;</span> <span class="n">boolean</span> <span class="n">expr</span><span class="p">;</span> <span class="n">update</span><span class="p">)</span> 
+    <span class="nb">true</span><span class="o">-</span><span class="n">statement</span><span class="p">;</span>  <span class="c1">// or { block }</span>
+</code></pre></div></div>
+<p>is equivalent to</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">init</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">boolean</span> <span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">true</span><span class="o">-</span><span class="n">statement</span><span class="p">;</span>
+    <span class="n">update</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<h4>Loop invariants</h4>
+
+<p>These are statements that should be true at the start of every
+  iteration.  We can use <code>assert</code> statements to check if
+  they are good (true):</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// need #include assert.h for assert function</span>
+  <span class="c1">// need #include math.h for pow function and compile with -lm option to link math library</span>
+
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">val</span> <span class="o">==</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">val</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span> 
+</code></pre></div></div>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

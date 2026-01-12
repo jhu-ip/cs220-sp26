@@ -1,0 +1,174 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: C Arrays</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">C Arrays</div>
+
+    <h3>Basic Usage</h3>
+<ul>
+      <li> Hold multiple values all of the same base type
+</li><li> Use indices to access individual elements; like most languages these days, indices start at <code>0</code>
+</li><li> Declare as <code>type var[CONST_SIZE]</code>, e.g. <code>int temps[3]</code>
+</li>	<li> Can also declare w/initialization list: <code>type var[] = {val1, val2, val3}</code>, e.g. <code>int temps[] = {75, 67, 83}</code> and array will be as long as the list
+</li> </ul>
+
+<h3>Multiple dimension arrays</h3>
+<ul>
+  <li>Two or more dimensions; the size of each must be specified
+</li><li> Declare as <code>myarray[size1][size2]</code>, access individual element with <code>myarray[i][j]</code>
+</li><li> Initialize by nesting lists: <code>int testr[2][3] = { {4, 3, 2}, {6, 8, 33} };</code>
+</li><li> Does initialization one row at a time
+</li><li><code>myarray[i]</code> refers to a one dimensional array of the base type (row i); <code>myarray[size1][size2]</code> can be used as an array of arrays
+</li>  </ul>
+
+<p>Example</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>  <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="sc">'w'</span><span class="p">,</span><span class="sc">'o'</span><span class="p">,</span><span class="sc">'w'</span><span class="p">,</span><span class="sc">'\0'</span><span class="p">},</span> <span class="p">{</span><span class="sc">'h'</span><span class="p">,</span><span class="sc">'i'</span><span class="p">,</span><span class="sc">'\0'</span><span class="p">,</span><span class="sc">'X'</span><span class="p">}</span> <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"a[%d][%d] is %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"row a[%d] is %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  <span class="c1">// a[i] is a char array (i.e. a string)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<h3>Arrays and Functions</h3>
+
+<p>Use <code>[]</code> to indicate an array variable in function definition and in function prototype, e.g.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kt">void</span> <span class="nf">doArray</span> <span class="p">(</span><span class="kt">int</span> <span class="p">[],</span> <span class="kt">int</span><span class="p">);</span> <span class="cm">/* prototype version */</span>
+      <span class="kt">void</span> <span class="n">doArray</span> <span class="p">(</span><span class="kt">int</span> <span class="n">myarray</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="cm">/* on function itself */</span>
+</code></pre></div></div>
+
+<ul>
+<li> Pass whole array to function with just name, no subscript: aray contents are passed by REFERENCE 
+</li><li>Element values may be changed permanently within the function
+</li><li> Doesn't create new storage location (ie, doesn't copy array)
+</li><li> Array name is really address of first element (more later on this)
+</li><li> Array names are passed by VALUE (copied, changes won't reach caller)
+</li>	<li> Individual array elements passed to functions are handled like any variable of that base type
+</li></ul>
+
+<p>If declaring a multi-dimensional array as function argument, need sizes of subcripts for all dimensions but 1st
+    &lt;ul&gt;
+      &lt;li&gt;eg: <code>void passarray(int a[][3][4])</code>  receives a 3 dimensional array
+     &lt;/li&gt; &lt;li&gt;Sizes needed because arrays are stored sequentially - need dimensions to locate items
+     &lt;/li&gt; &lt;li&gt;Another example of low-level nature of C data structures.
+&lt;/li&gt;&lt;/ul&gt;</p>
+
+<p>Can use <code>const</code> in parameter list to make array unmodifiable: <code>void doArray (const int ma[])</code> results in compile error if any attempt to assign or read new value into an array element</p>
+
+<h3>Command line options</h3>
+
+<p>To read what arguments if any were on a command line invocation, use the following <code>main</code> function declaration: <br />
+<code>main(int argc, char *argv[])</code></p>
+
+<ul>
+<li><code>argc</code> is count of how many arguments, including program name
+</li><li> <code>char *argv[]</code> is a "pointer to an array of characters". We will explain pointers in detail later. For now, you can use it like <code>char argv[][]</code> - a 2d array of chars
+</li>  <li> <code>argv[0]</code> is program name (string)
+</li><li><code>argv[i]</code> is <code>i</code>th argument as a string
+</li>
+</ul>
+
+<p>Example: given <code>./a.out one two</code><br />
+<code>argc</code> is 3,
+<code>argv[0]</code> is “./a.out”, <code>argv[1]</code> is “one”,
+and <code>argv[2]</code> is “two”</p>
+
+<h3>CAUTION: review the below sections after learning pointers</h3>
+
+<h4>Pointers and arrays</h4>
+
+<p>Welcome to C’s Wacky World</p>
+<ul>
+  <li>A declared array, say <code>int a[10]</code>, is "really" just an address that starts a block of memory.
+</li>  <li>So, writing <code>a</code> is generally the same as writing <code>&amp;a[0]</code>
+</li>  <li><code>a[3]</code> is a synonym for <code>*(a + 3)</code> (offset three from pointer to start of array)
+</li>  <li><code>&amp;a[3]</code> is a synonym for <code>a + 3</code>
+</li></ul>
+
+<p>
+<code>int *ptr</code> and <code>int a[10]</code> variables are
+often interchangeable but not 100%:
+<ul>
+  <li><code>a = ptr</code> will be a compile error since size
+  of <code>a</code> could get changed if this were
+  allowed; <code>sizeof(a)</code> is <em>always fixed</em>
+</li><li><code>ptr = a</code> is perfectly acceptable,
+  but <code>printf("%d", sizeof(ptr));</code> is only 4 or 8, the size
+  of a pointer
+</li>  <li>locally declared array types <em>(but not function parameters)</em> have allocated space the size of the whole array:<br />
+      <code>char s[100]; printf("%d",sizeof(s));</code> prints 100 (bytes)<br />
+      <code>char s[10]; printf("%d",sizeof(&amp;s[0]));</code> prints the size of a pointer, 4 or 8 bytes
+</li></ul>
+
+
+<h4>Arrays of pointers</h4>
+
+<ul> 
+<li>Note writing <code>main(int argc, char *argv[])</code> is same as <code>main(int argc, char **argv)</code> since more generally any function parameter <code>mytype myvar[]</code> is nearly identical to writing <code>mytype * myvar</code>.
+</li> <li> Common use is array of strings
+</li> <li> Each string is pointer to a string array, 
+  eg: <code>char *suitptr[4] = {"Hearts", "Diamonds", "Clubs", "Spades"}</code>
+</li> <li>Note that this is not the same as a 2d array which is laid out sequentially in memory
+</li>
+</ul>
+
+<!-- formatting not working
+```c
+int main(void) {
+  char *suitptr[4] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+  char suit[4][20] = {"hearts", "diamonds", "clubs", "spades"};
+  printf("%s %s\n", suit[1], suitptr[1]); // they more or less behave the same
+  printf("size of suit = %lu size of suitptr = %lu\n",sizeof(suit),sizeof(suitptr)); // sizes differ!
+  return 0;
+}
+```
+-->
+
+See also the <a href="notes-pointers.html">Pointers &amp; Dynamic Memory Allocation</a> notes resource.
+</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

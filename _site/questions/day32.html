@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Day 32 Recap Questions</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Day 32 Recap Questions</div>
+
+    <ol>
+  <li>What is polymorphism?</li>
+  <li>What two types of functions are not inherited by a derived class?</li>
+  <li>What does <code class="language-plaintext highlighter-rouge">protected</code> access imply for a class field or function?</li>
+  <li>How do we initialize the private fields that are inherited from a Base class in a constructor of a Derived class?</li>
+  <li>What is dynamic binding and how do we enable it?</li>
+  <li>
+    <p>What is the output of the below code? What if we remove “virtual” from compute() in the BaseClass?</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BaseClass</span> <span class="p">{</span>
+<span class="nl">public:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">compute</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"base "</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">ChildClass</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BaseClass</span> <span class="p">{</span>
+<span class="nl">public:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">compute</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"child "</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">BaseClass</span> <span class="n">b</span><span class="p">;</span>
+   <span class="n">b</span><span class="p">.</span><span class="n">compute</span><span class="p">();</span>
+   <span class="n">ChildClass</span> <span class="n">c</span><span class="p">;</span>
+   <span class="n">c</span><span class="p">.</span><span class="n">compute</span><span class="p">();</span>
+   <span class="n">BaseClass</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+   <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+   <span class="n">p</span><span class="o">-&gt;</span><span class="n">compute</span><span class="p">();</span>
+   <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>  <span class="c1">// allowed because each ChildClass object "IS-A" BaseClass object</span>
+   <span class="n">p</span><span class="o">-&gt;</span><span class="n">compute</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Can a child class have multiple parents?</li>
+</ol>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Templates in C++</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Templates in C++</div>
+
+    <h3>Template Definitions</h3>
+
+<p>We can define our own function and class templates to be instantiated
+and used with multiple different types, similar to the STL
+algorithms and classes.</p>
+
+<h4>Function Templates</h4>
+
+<ul>
+  <li> Can use to define generic function with abstract param types
+</li><li> Use <code>template&lt;class Tname&gt;</code> before prototype and function definition
+</li><li> Use <code>Tname</code> as type in function
+</li><li> Compiler generates the actual functions by substituting types of
+    arguments in the various function calls
+</li></ul>
+
+<p>Example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">&gt;</span>        <span class="c1">// generic class type name T</span>
+<span class="n">T</span> <span class="nf">cubeit</span><span class="p">(</span><span class="n">T</span> <span class="n">num</span><span class="p">)</span>           <span class="c1">// header using type T</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">;</span>   <span class="c1">// assumes * operation defined for type T</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cubeit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4>Class Templates</h4>
+
+<p>For a simple type templated class declare as follows:</p>
+
+<pre>
+template &lt;class T&gt;
+class MyTemplatedClass
+{
+	T mydata;
+public:
+	int myfun(int x);
+	// ...
+};
+</pre>
+
+<p>and declare member functions as follows:</p>
+
+<pre>
+template &lt;class T&gt;
+int MyTemplatedClass&lt;T&gt;::myfun(int x) { ... }
+</pre>
+
+<ul>
+	  <li> Use <code>template&lt;class T&gt;</code> at start of class prototype <em>and</em> before every function implementation for the class
+</li><li> Can use <code>T</code> as type in class member definitions
+</li><li> Use <code>MyTemplatedClass&lt;T&gt;</code> in function implementation as whole class name
+</li><li> Use <code>MyTemplatedClass&lt;type&gt;</code> with real <code>type</code> or class in order to create an object
+</li>	</ul>
+
+<p>In C++, the <b>class definition and the function implementations must
+  be in the same file</b>! You can do this in either a .h, .cpp, or
+  even .hpp file. That file must then be compiled with any other code
+  using the templated class. Another approach is to put the template
+  implementations in a separate file (*.inc) and then #include that at the end
+  of your .h template header file.</p>
+
+<p>Using multiple template parameters</p>
+<pre>
+  template &lt;class T1, class T2&gt;
+  class C2 {
+       public:
+             C2() { };
+             C2(T1 a, T2 b) { thing1=a; thing2=b; };
+       private:
+             T1  thing1;
+             T2  thing2;
+  };
+
+  //usage
+  C2&lt;int, float&gt;  a1;  // nothing is initialized
+  C2&lt;double, int&gt; a2(2.3, 4);
+</pre>
+
+<p>Templates <em>also</em> support data parameters too, not just types.</p>
+<pre>
+    template &lt;int Maxsize&gt;  // Maxsize is int template parameter
+    class Mstring {
+            public:
+                  Mstring() { str[0] = '\0'; }; 
+            private:
+                  char str[Maxsize];
+    };
+
+    // usage
+    Mstring&lt;20&gt; name;  // copy of Mstring with 20 replacing Maxsize
+    Mstring&lt;10&gt; city;  // copy of Mstring with 10 replacing Maxsize
+
+    int i=5;
+    //  Mstring&lt;i&gt; zip; // ILLEGAL - must use constant!!
+
+    const int max=5;
+    Mstring&lt;max&gt; zip; // LEGAL, max is const-declared
+</pre>
+
+<p>The example above is not a practical use of templates however. It wastes space because it makes a copy for each size. Also because they are different types technically, we can’t compare name and city variables to each other.</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

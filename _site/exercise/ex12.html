@@ -1,0 +1,205 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 12</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 12</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will
+contain a brief description but is intended to be supplemented by
+discussion during our meeting time. Complete the exercise to the best of
+your ability in the time given. Feel free to talk with other students as
+you work, and do not be afraid to ask questions if you get stuck. Aim to
+complete as much as possible during our meeting, and submit on Gradescope
+to check your solution. You are encouraged to work at home to complete
+what you do not get through today, and ask questions on Piazza or in
+office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>Use pointer arithmetic to access array elements</li>
+<li>Use pointer arithmetic to treat regions of a larger array as "sub-arrays"</li>
+<li>Use pointer differences to compute indices of array elements based
+    on their displacement from the base address</li>
+<li>Use pointers to access subsets of a 2D array as 1D arrays</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Log into an undergraduate cluster computer. Update the course public repo with a <code class="language-plaintext highlighter-rouge">git pull</code> command.</p>
+  </li>
+  <li>
+    <p>Confirm that you can access the template files for today’s exercise by typing 
+<code class="language-plaintext highlighter-rouge">ls exercises/ex12</code> – you should see files named <code class="language-plaintext highlighter-rouge">bsearch.c</code>
+and <code class="language-plaintext highlighter-rouge">sudoku.c</code>, as well as 3 plain text input puzzle files
+<code class="language-plaintext highlighter-rouge">puzzle*.txt</code>. There should also be files <code class="language-plaintext highlighter-rouge">sudokuHelpers.h</code>,
+<code class="language-plaintext highlighter-rouge">sudokuHelpers.c</code>, and a <code class="language-plaintext highlighter-rouge">Makefile</code> for easy compilation and
+updating of the sudoku code.</p>
+  </li>
+  <li>
+    <p>Navigate to your personal repo for the course and make a directory
+for today’s exercise. Then copy all the files from the public class
+repository (in the <code class="language-plaintext highlighter-rouge">*/exercises/ex12/*</code> directory) and put it in your
+personal repo’s directory for today’s exercise.</p>
+  </li>
+</ol>
+
+<h3 id="part-3">Part 3</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">bsearch.c</code> with a text editor. To compile the code, use this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-std</span><span class="o">=</span>c99 <span class="nt">-pedantic</span> <span class="nt">-Wall</span> <span class="nt">-Wextra</span> bsearch.c <span class="nt">-g</span> <span class="nt">-o</span> bsearch   
+</code></pre></div></div>
+
+<p>or use our alias:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gccc bsearch.c <span class="nt">-g</span> <span class="nt">-o</span> bsearch
+</code></pre></div></div>
+
+<p>You will need to modify <code class="language-plaintext highlighter-rouge">bsearch.c</code> as follows.</p>
+
+<p>First, add a declaration and definition for a function called <code class="language-plaintext highlighter-rouge">search</code>.
+The declaration should look like this:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="o">*</span><span class="nf">search</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">int</span> <span class="n">search_val</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">TODO</code> comments indicate where to add the declaration and definition.</p>
+
+<p>This function implements a binary search to find an integer value
+<code class="language-plaintext highlighter-rouge">search_val</code> in a region of a sorted array of <code class="language-plaintext highlighter-rouge">int</code> values. The <code class="language-plaintext highlighter-rouge">start</code> and
+<code class="language-plaintext highlighter-rouge">end</code> parameters specify a range of elements to search, where <code class="language-plaintext highlighter-rouge">start</code>
+is a pointer to the inclusive start element, and <code class="language-plaintext highlighter-rouge">end</code> is a pointer to
+the <em>exclusive</em> end element.  I.e., the pointers to the elements in the range
+to be searched are greater than or equal to <code class="language-plaintext highlighter-rouge">start</code>, and strictly less
+than <code class="language-plaintext highlighter-rouge">end</code>.</p>
+
+<p>If the search is successful, the <code class="language-plaintext highlighter-rouge">search</code> function should return a pointer
+to the element where <code class="language-plaintext highlighter-rouge">search_val</code> was located.  If the search is unsuccessful,
+the <code class="language-plaintext highlighter-rouge">search</code> function should return <code class="language-plaintext highlighter-rouge">NULL</code>.</p>
+
+<p>Recall that you implemented binary search in <a href="ex07">Exercise 7</a>.
+Note that in today’s exercise, you are not required to implement the binary
+search using recursion. Either recursion or iteration is fine. However,
+keep in mind that for Ex 7 both of the range indices <code class="language-plaintext highlighter-rouge">low</code> and <code class="language-plaintext highlighter-rouge">high</code>
+were <em>inclusive</em>.</p>
+
+<p>Next, after you have implemented the <code class="language-plaintext highlighter-rouge">search</code> function, you should complete
+the code in the <code class="language-plaintext highlighter-rouge">main</code> function.  You will see a block of code that looks
+like this:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// example of a successful search</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr1</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">809</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">pos</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">pos</span> <span class="o">==</span> <span class="mi">809</span><span class="p">);</span>
+<span class="n">index</span> <span class="o">=</span> <span class="c1">// TODO: compute the index of the matching element</span>
+<span class="n">assert</span><span class="p">(</span><span class="mi">7</span> <span class="o">==</span> <span class="n">index</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Fix the code at the point of the <code class="language-plaintext highlighter-rouge">TODO</code> comment so that it computes the
+index of the array element that <code class="language-plaintext highlighter-rouge">pos</code> points to, where <code class="language-plaintext highlighter-rouge">pos</code> is the result
+of a successful search.  Hint: this will involve a <em>pointer difference</em>
+computation.</p>
+
+<p>Once you’ve completed the <code class="language-plaintext highlighter-rouge">main</code> function, you should be able to run the
+program.  If the tests pass, you will see the output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>All tests pass!
+</code></pre></div></div>
+
+<p>To finish this part of the exercise, add additional test cases to test the
+<code class="language-plaintext highlighter-rouge">search</code> function.  You should add at least three test cases for successful
+searches and three test cases for unsuccessful searches.  Make sure that
+all of your tests pass.</p>
+
+<h3 id="part-4">Part 4</h3>
+
+<p>For the next part of this exercise, you’ll be finishing the implementation
+of a sudoku checker program. The purpose of the program is to read an
+input puzzle file, where 0s represent empty cells. It should then check
+every row, column and cube to see if the puzzle is completely solved
+already, or not. You will only need to modify the <code class="language-plaintext highlighter-rouge">sudokuHelper.c</code> file,
+but should take time first to read through the code in the other files
+and ask if you have any questions.</p>
+
+<p>There are several helper functions you need to complete, as indicated
+by <code class="language-plaintext highlighter-rouge">TODO</code> comments in the file. In both <code class="language-plaintext highlighter-rouge">makeCol</code> and <code class="language-plaintext highlighter-rouge">makeCube</code> you
+need to declare the unit array that will be populated and returned in
+each function. (Their declarations will be identical.) You should also
+carefully read through the provided code in each method to ask if you
+don’t understand how they work.</p>
+
+<p>Next you’ll need to call these functions from two other helpers, again
+where indicated by <code class="language-plaintext highlighter-rouge">TODO</code> comments in functions <code class="language-plaintext highlighter-rouge">checkRows</code>, <code class="language-plaintext highlighter-rouge">checkCols</code>
+and <code class="language-plaintext highlighter-rouge">checkCubes</code>. Once this is done correctly, you should be able to
+compile everything with the Makefile and run the main program with each
+puzzle file as input. The first two are not correct/complete solutions,
+but <code class="language-plaintext highlighter-rouge">puzzle3.txt</code> is a completely solved puzzle.</p>
+
+<h3 id="part-5">Part 5</h3>
+
+<p>Lastly, using the tools you learned in Ex 11 during the last class
+session, modify the <code class="language-plaintext highlighter-rouge">Makefile</code>, adding the <code class="language-plaintext highlighter-rouge">-g</code> option to your compilation
+command(s) so that you can run <code class="language-plaintext highlighter-rouge">gdb</code> and <code class="language-plaintext highlighter-rouge">valgrind</code> on this code. Find
+a fix the memory leaks in <code class="language-plaintext highlighter-rouge">sudokuHelpers.c</code> for this final task.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push
+to your remote repo when finished. Also scp and submit to Gradescope
+to check your solution. Use <code>exit</code> to logout from your ugrad
+account when finished. If you continue to work on the program after class,
+make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

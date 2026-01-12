@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Day 28 Recap Questions</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Day 28 Recap Questions</div>
+
+    <ol>
+  <li>
+    <p>What is a non-default (or “alternative”) constructor?</p>
+  </li>
+  <li>
+    <p>If we define a non-default constructor, will C++ generate an implicitly defined default constructor?</p>
+  </li>
+  <li>
+    <p>What is <code class="language-plaintext highlighter-rouge">this</code> and when do we use the <code class="language-plaintext highlighter-rouge">this</code> keyword?</p>
+  </li>
+  <li>
+    <p>Trace the output of the following code and explain which constructors are called at each step and why?</p>
+
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>	
+ <span class="k">class</span> <span class="nc">Student</span> <span class="p">{</span>
+ <span class="nl">public:</span>
+     <span class="n">Student</span><span class="p">()</span> <span class="p">{</span>
+         <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Default constructor called"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="n">Student</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Non-default constructor called for ID "</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+     <span class="p">}</span>
+ <span class="p">};</span>
+	
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="n">Student</span> <span class="n">s1</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+     <span class="n">Student</span><span class="o">*</span> <span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">;</span>
+     <span class="n">Student</span><span class="o">*</span> <span class="n">s3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+     <span class="k">delete</span> <span class="n">s2</span><span class="p">;</span>
+     <span class="k">delete</span> <span class="n">s3</span><span class="p">;</span>
+     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>What is a destructor?</p>
+  </li>
+  <li>
+    <p>A destructor will automatically release memories that are allocated in the constructor- true or false?</p>
+  </li>
+</ol>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

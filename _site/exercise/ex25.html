@@ -1,0 +1,309 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 25</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 25</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>Get started by running <code>git pull</code> to update your clone of the public repository, and then copying the <code>exercises/ex25</code> directory into your personal git repository.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces basic C++ concepts</p>
+<ul>
+<li>C++ basics: file I/O using <code>istream</code> and <code>ostream</code>, <code>string</code> manipulation</li>
+<li>Using <code>stringstream</code> to extract data from a string</li>
+</ul>
+</div>
+</div>
+
+<div class="admonition danger">
+<div class="title">Goal</div>
+<div class="content">
+<p>Implement programs to abbreviate words in a text document, analyze tokens in a text document, and analyze a text document to find the relative frequencies of letters.</p>
+</div>
+</div>
+
+<h2 id="processing-and-analyzing-text">Processing and analyzing text</h2>
+
+<p>In this exercise you will write programs and functions to manipulate
+and transform text using the <code class="language-plaintext highlighter-rouge">string</code> and <code class="language-plaintext highlighter-rouge">stringstream</code> classes, and
+read and write text files using <code class="language-plaintext highlighter-rouge">ifstream</code> and <code class="language-plaintext highlighter-rouge">ofstream</code>.</p>
+
+<p>The exercise has two “required” parts, <a href="#part-1">Part 1</a> and <a href="#part-2">Part 2</a>,
+and one “optional” part, <a href="#part-3">Part 3</a>.</p>
+
+<h3 id="part-1">Part 1</h3>
+
+<p>Words are often recognizable when one or more of the vowels (“a”, “e”, “i”, “o”,
+and “u”) are omitted.  For example:</p>
+
+<blockquote>
+  <p>W’rds ‘r’ ‘ft’n r’c’gn’z’bl’ wh’n ‘n’ ‘r m’r’ ‘f th’ v’w’ls ‘r’ ‘m’tt’d.</p>
+</blockquote>
+
+<p>In this transformed sentence, each vowel or consecutive group of vowels has
+been replaced with a single apostrophe (<code class="language-plaintext highlighter-rouge">'</code>) character.  It’s a bit difficult to
+read, but not impossible.  To test the theory that text abbreviated this way
+is still readable, you will write a program to automatically abbreviate text.</p>
+
+<p>Complete the program in <code class="language-plaintext highlighter-rouge">abbrev.cpp</code> as follows.  The program takes two
+command-line arguments. The first is the name of an input file, which will
+contain the input text. The second is the name of the output file to
+generate, containing the abbreviated form of the original text. Some helper functions have been provided to get you started, but you’ll have to finish writing <code class="language-plaintext highlighter-rouge">abbreviate</code> and <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>Compile the program using the command</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -g -std=c++11 -Wall -Wextra -pedantic abbrev.cpp -o abbrev
+</code></pre></div></div>
+
+<p>Example usage:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./abbrev example1.txt example1-abbrev.txt
+</code></pre></div></div>
+
+<p>As you work, the documentation for the <code class="language-plaintext highlighter-rouge">string</code> class will be useful:
+<a href="http://www.cplusplus.com/reference/string/string/">http://www.cplusplus.com/reference/string/string/</a></p>
+
+<p>Three example files are provided, <code class="language-plaintext highlighter-rouge">example1.txt</code>, <code class="language-plaintext highlighter-rouge">example2.txt</code>, and <code class="language-plaintext highlighter-rouge">example3.txt</code>.
+The expected results of abbreviating the text in each file are in the files
+<code class="language-plaintext highlighter-rouge">example1-expected.txt</code>, <code class="language-plaintext highlighter-rouge">example2-expected.txt</code>, and <code class="language-plaintext highlighter-rouge">example3-expected.txt</code>.
+You can check your program’s output using the <code class="language-plaintext highlighter-rouge">diff</code> command, e.g. (assuming that
+your transformed version of <code class="language-plaintext highlighter-rouge">example1.txt</code> is called <code class="language-plaintext highlighter-rouge">example1-abbrev.txt</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff -w example1-expected.txt expected1-abbrev.txt
+</code></pre></div></div>
+
+<p>If the <code class="language-plaintext highlighter-rouge">diff</code> command produces no output, then your output matches the expected
+output.</p>
+
+<p>Here are some hints and suggestions.</p>
+
+<p>You can read the input file line by line using the <code class="language-plaintext highlighter-rouge">getline</code> function,
+which reads a line of text from an <code class="language-plaintext highlighter-rouge">istream</code> (including an <code class="language-plaintext highlighter-rouge">ifstream</code>)
+into a <code class="language-plaintext highlighter-rouge">string</code> object.  Your main loop might look something like this
+(assuming that <code class="language-plaintext highlighter-rouge">in</code> is an <code class="language-plaintext highlighter-rouge">ifstream</code> reading from the input file):</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">in</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span> <span class="p">{</span>
+  <span class="c1">// do something with line</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To read words from a line, creating a <code class="language-plaintext highlighter-rouge">stringstream</code> from one line of text
+and then reading one word at a time can be accomplished as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stringstream</span> <span class="nf">ss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+<span class="n">string</span> <span class="n">word</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">ss</span> <span class="o">&gt;&gt;</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something with word</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Defining a function with the following prototype will probably be a good idea:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="nf">abbreviate</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">word</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>You should use an <code class="language-plaintext highlighter-rouge">ofstream</code> to write the output file.</p>
+
+<h3 id="part-2">Part 2</h3>
+
+<p>One useful technique enabled by the <code class="language-plaintext highlighter-rouge">stringstream</code> class is the capability
+to dynamically check a string to determine if it contains data in a particular
+form (integer value, floating point value, etc.)</p>
+
+<p>Complete the program in <code class="language-plaintext highlighter-rouge">classify.cpp</code> so that it reads textual input from <code class="language-plaintext highlighter-rouge">cin</code>
+one token at a time, and then prints the following summary information:</p>
+
+<ul>
+  <li>the sum of all floating point values found in the input</li>
+  <li>the sum of all integer values found in the input</li>
+  <li>the number of tokens (words) in the input that weren’t numeric</li>
+  <li>the total length of all tokens in the input that weren’t numeric</li>
+</ul>
+
+<p>A token should be considered a floating point value if a <code class="language-plaintext highlighter-rouge">double</code> value can be
+successfully extracted from it using a <code class="language-plaintext highlighter-rouge">stringstream</code>.</p>
+
+<p>A token should be considered an integer value if it is not a floating point value,
+but an <code class="language-plaintext highlighter-rouge">int</code> value can be successfully extracted from it using a <code class="language-plaintext highlighter-rouge">stringstream</code>,
+such that the entire string is matched.  For example, the string <code class="language-plaintext highlighter-rouge">"3.14159"</code> could
+be extracted into an <code class="language-plaintext highlighter-rouge">int</code> variable, but only the <code class="language-plaintext highlighter-rouge">3</code> character would be matched,
+leaving the remaining text (<code class="language-plaintext highlighter-rouge">".14159"</code>) unmatched.</p>
+
+<p>All tokens that aren’t floating point or integer should be considered non-numeric.</p>
+
+<p>Compile the program using the command</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -g -std=c++11 -Wall -Wextra -pedantic classify.cpp -o classify
+</code></pre></div></div>
+
+<p>You can test your program by running the command</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./classify &lt; data.txt
+</code></pre></div></div>
+
+<p>The output should be something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Floating point sum: 387.542
+Integer sum: 8
+Number of non-numeric tokens: 24
+Number of characters in non-numeric tokens: 114
+
+</code></pre></div></div>
+
+<p><strong>Hint:</strong> one way to determine if an extraction of an integer value from a <code class="language-plaintext highlighter-rouge">stringstream</code>
+consumed the entire string is, after the <code class="language-plaintext highlighter-rouge">int</code> value is extracted successfully,
+to attempt to extract a <code class="language-plaintext highlighter-rouge">string</code>.  If the extraction of the <code class="language-plaintext highlighter-rouge">string</code> value fails,
+then you know that the extraction of the <code class="language-plaintext highlighter-rouge">int</code> value consumed the entire original string.</p>
+
+<h3 id="part-3-bonus">Part 3 (Bonus)</h3>
+
+<p>Note that this part is optional!  It’s a good opportunity to practice working
+with input files, STL containers, and STL algorithms, but it’s not essential.</p>
+
+<p>Complete the program in <code class="language-plaintext highlighter-rouge">letter_freq.cpp</code> so that it counts the number of occurrences
+of each letter in the input text file specified as the command line argument.
+The program should ignore case, so (for example) “<code class="language-plaintext highlighter-rouge">A</code>” and “<code class="language-plaintext highlighter-rouge">a</code>” are considered the
+same letter.</p>
+
+<p>After analyzing the input file, the program should print a table with the
+number of ocurrences of each letter, in the order from most-frequently occurring
+to least-frequently occurring.  For example, the invocation</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./letter_freq example2.txt
+</code></pre></div></div>
+
+<p>should produce the output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>e: 107
+i: 80
+t: 76
+n: 62
+o: 62
+a: 57
+r: 56
+s: 53
+h: 51
+l: 45
+m: 30
+u: 26
+p: 25
+g: 24
+f: 22
+y: 22
+d: 21
+c: 18
+w: 17
+v: 13
+b: 9
+k: 4
+q: 2
+z: 2
+</code></pre></div></div>
+
+<p>As the data structure for recording the occurrence count of each letter, use a <code class="language-plaintext highlighter-rouge">vector</code>
+of <code class="language-plaintext highlighter-rouge">Bucket</code> elements, where <code class="language-plaintext highlighter-rouge">Bucket</code> is a struct defined something like the following:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">Bucket</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">letter</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The vector should have one <code class="language-plaintext highlighter-rouge">Bucket</code> per letter.</p>
+
+<p>The program’s main loop should read characters from the input file one at
+a time.  The <code class="language-plaintext highlighter-rouge">get</code> member function should be useful.  For example, if <code class="language-plaintext highlighter-rouge">in</code>
+is an <code class="language-plaintext highlighter-rouge">ifstream</code> reading from the input file, the main loop might look
+something like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+  <span class="c1">// do something with c</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">&lt;cctype&gt;</code> header is included, so that you can use the <code class="language-plaintext highlighter-rouge">isalpha</code>,
+<code class="language-plaintext highlighter-rouge">toupper</code> and/or <code class="language-plaintext highlighter-rouge">tolower</code> functions.  Your program will need to know
+which characters are letters, and then convert each letter to a consistent
+case (upper or lower), in order to know which bucket to update when
+a letter is encountered.</p>
+
+<p>Before printing the output, you can use the <code class="language-plaintext highlighter-rouge">std::sort</code> algorithm to
+sort the vector elements so that they are arranged from most-frequently
+occurring to least-frequently occurring.  To do this, implement a function
+with the following signature:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">compare_buckets</span><span class="p">(</span><span class="k">const</span> <span class="n">Bucket</span> <span class="o">&amp;</span><span class="n">left</span><span class="p">,</span> <span class="k">const</span> <span class="n">Bucket</span> <span class="o">&amp;</span><span class="n">right</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The function should return <code class="language-plaintext highlighter-rouge">true</code> if the <code class="language-plaintext highlighter-rouge">left</code> bucket should be before
+the <code class="language-plaintext highlighter-rouge">right</code> bucket.  If two buckets have the same count, then the one with
+the earlier letter should come first.</p>
+
+<p>To sort the vector:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sort</span><span class="p">(</span><span class="n">hist</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">hist</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">compare_buckets</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This code assumes that your <code class="language-plaintext highlighter-rouge">vector</code> of <code class="language-plaintext highlighter-rouge">Bucket</code> elements is  called <code class="language-plaintext highlighter-rouge">hist</code>.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also scp and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

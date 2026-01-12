@@ -1,0 +1,111 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 33</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 33</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>Inheritance</li>
+<li>Overriding</li>
+<li>Abstract class</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Log into ugrad, then navigate to the public repo and type <code class="language-plaintext highlighter-rouge">git pull</code> to synchronize your local working copy with the remote repo.</p>
+  </li>
+  <li>
+    <p>Copy the starter code for today from the public repo <code class="language-plaintext highlighter-rouge">exercises/ex33</code> into your personal repo where desired. Then navigate to your personal repo folder for this exercise. Confirm that you can see the starter files for today’s exercise by typing <code class="language-plaintext highlighter-rouge">ls exercises/ex33</code> – you should see files named <code class="language-plaintext highlighter-rouge">Aclass.h</code>, <code class="language-plaintext highlighter-rouge">Bclass.h</code>, <code class="language-plaintext highlighter-rouge">main.cpp</code>, and <code class="language-plaintext highlighter-rouge">README</code> inside.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<p>Add a <code class="language-plaintext highlighter-rouge">virtual</code> function to <code class="language-plaintext highlighter-rouge">Aclass.h</code> named <code class="language-plaintext highlighter-rouge">toString()</code>. The function should return a string representation of <code class="language-plaintext highlighter-rouge">class A</code> in the format</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Aclass: a = value of a, d = value of d, size = size of object]
+</code></pre></div></div>
+
+<p>and has to be <code class="language-plaintext highlighter-rouge">const</code> protected. For instance, if we have an object named <code class="language-plaintext highlighter-rouge">oA</code> of type <code class="language-plaintext highlighter-rouge">A</code> with <code class="language-plaintext highlighter-rouge">a</code> value of <code class="language-plaintext highlighter-rouge">10</code> and <code class="language-plaintext highlighter-rouge">d</code> value of <code class="language-plaintext highlighter-rouge">100</code>, <code class="language-plaintext highlighter-rouge">oA.toString()</code> may return the following string:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Aclass: a = 10, d = 100, size = 24]
+</code></pre></div></div>
+
+<p>Override the <code class="language-plaintext highlighter-rouge">toString()</code> function in <code class="language-plaintext highlighter-rouge">class B</code>  to return a string representation of <code class="language-plaintext highlighter-rouge">B</code> in the format</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Bclass: a = value of a, b = value of b, d = value of d, size = size of object]
+</code></pre></div></div>
+
+<p>Add <em>accessor</em> (i.e., <em>getter</em>) functions if required. Make sure you use the <code class="language-plaintext highlighter-rouge">override</code> keyword as necessary to force a check for proper overriding.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Make <code class="language-plaintext highlighter-rouge">class A</code> an abstract class by adding a <em>pure</em> <code class="language-plaintext highlighter-rouge">virtual</code> function named <code class="language-plaintext highlighter-rouge">int fun() const</code> in <code class="language-plaintext highlighter-rouge">class A</code>. Implement the function <code class="language-plaintext highlighter-rouge">fun</code> in <code class="language-plaintext highlighter-rouge">B</code> such that it returns the multiplication of <code class="language-plaintext highlighter-rouge">a * b * d</code>. Make use of the <code class="language-plaintext highlighter-rouge">override</code> keyword as applicable. Then, modify <code class="language-plaintext highlighter-rouge">main.cpp</code> accordingly by commenting out lines of code (if needed) to get it to compile and run. Check the results that get printed out.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>Make a <code class="language-plaintext highlighter-rouge">C class</code> in a file named <code class="language-plaintext highlighter-rouge">Cclass.h</code> (possibly along with <code class="language-plaintext highlighter-rouge">Cclass.cpp</code>) that is derived from <code class="language-plaintext highlighter-rouge">A class</code>. This class has a <code class="language-plaintext highlighter-rouge">private int</code> field named <code class="language-plaintext highlighter-rouge">e</code>. The class should have at least one constructor with an <code class="language-plaintext highlighter-rouge">int</code> parameter used to set the value of <code class="language-plaintext highlighter-rouge">e</code>; the values of <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">d</code> from the base class should be set to default values. The class should also have a function named <code class="language-plaintext highlighter-rouge">sete()</code> to be used for setting the value of <code class="language-plaintext highlighter-rouge">e</code>. Also, the class should provide its own implementation of the function named <code class="language-plaintext highlighter-rouge">int fun() const</code> that returns the multiplication of <code class="language-plaintext highlighter-rouge">e * a * d</code>, as well as the <code class="language-plaintext highlighter-rouge">toString()</code> function. The <code class="language-plaintext highlighter-rouge">toString()</code> function should return:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Cclass: a = value of a, d = value of d, e = value of e, size = size of object]
+</code></pre></div></div>
+
+<p>You may uncomment and run the corresponding code for part 4 (as well as the <code class="language-plaintext highlighter-rouge">#include "Cclass.h"</code> line on the top) in <code class="language-plaintext highlighter-rouge">main.cpp</code> to check the results.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

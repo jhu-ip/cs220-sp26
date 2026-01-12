@@ -1,0 +1,155 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: C++ Basics</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">C++ Basics</div>
+
+    <h3>C++ Language Overview</h3>
+
+<h4>Why C++?</h4>
+
+<ul>
+    <li>C++ is "C plus objects" (plus a whole lot more)
+</li><li>C is a more specialized language for lower-level networking, operarating system, device code
+</li>    <li>C++ is for bread-and-butter software that you want to run fast
+</li><li>All features of C are accessible from C++, usually identically but sometimes slightly differently
+</li><li>Primitive data types, representations, operators and control structures are identical in C and C++
+</li><li>C++ has a much better library collection, in particular the Standard Template Library; see Containers in <a href="http://www.cplusplus.com/reference">http://www.cplusplus.com/reference/</a> for reference
+</li><li>C++ still is low-level compared to Java/Python/etc: must manually <code>free</code> memory, array accesses and typecasts can be unsafe, need to be more concerned with memory layout, etc.
+</li>    </ul>
+
+<p><em>REFERENCE: We have a good book for learning C++, <a href="http://www.informit.com/store/accelerated-c-plus-plus-practical-programming-by-example-9780201703535">Accelerated C++</a>. Click on the link for information and to download <em>all</em> of the code for the examples in the book.
+</em></p>
+
+<h4>C++ compiling</h4>
+
+<ul>
+<li> name files <code>.cpp</code> (preferred) or <code>.cc</code>
+</li><li>Header files are similar to C's and are still named <code>.h</code>
+</li><li> use <code>g++ -std=c++11 -pedantic -Wall -Wextra</code> to compile
+</li><li> (<code>g++</code> is really just an option to <code>gcc</code> to let it know C++ code is coming)
+</li><li> All C tools work on C++ programs (<code>make</code>, <code>gdb</code>, <code>valgrind</code>, etc)
+</li></ul>
+
+<h4>Program Organization</h4>
+<ul><li> Functions <em>and</em> classes are used to organize code
+</li><li> Independent functions can exist just like in C (or Python), no need to put them in a class like in Java
+</li><li> Like C, executable programs must have a <code>main</code> function (not a <code>main</code> method in a class)
+</li></ul>
+
+<h4>Pre-Processing</h4>
+
+<ul>
+  <li>All C libraries have a different name when used in C++ programs: put a <code>c</code> on front, leave off the <code>.h</code>
+</li><li> built-in math functions for example was <code>math.h</code> in C, now: 
+        <code>#include &lt;cmath&gt;</code>
+</li><li> others: <code>&lt;cstring&gt; &lt;cctype&gt; &lt;cstdlib&gt;</code> etc 
+</li><li> C++ libraries have their own names: <code>&lt;string&gt;, &lt;iostream&gt;</code> etc
+</li><li> eg: <code>#include &lt;iostream&gt;    // C++ header file for i/o stuff</code>
+</li>
+</ul>
+
+<h4>Namespaces</h4>
+
+<ul>
+      <li>C had a flat (global, single) namespace; not good for large amounts of code since name overlap could be a big problem
+</li>      <li>C++ solution: explicit <em>namespaces</em>
+</li>      <li>    The libraries are defined in namespaces, and we need to clarify
+    where objects exist (name scope) even if we <code>#include</code> the relevant
+    library.  
+</li>      <li>The standard namespace, <code>std</code>, is where  <code>cout</code>, <code>string</code>,
+    and all other standard C++ library declarations live.  
+</li>      <li>There are three ways to access entities declared in namespaces:
+    <ol>
+      <li>
+     Qualify named entities with their namespace every time they are used:
+<code>std::cout &lt;&lt; "hi there" &lt;&lt; std::endl;
+</code> where <code>my_namespace::name</code> refers to unit <code>name</code> defined in namespace <code>my_namespace</code><br />
+(This is related to the <code>java.lang.*</code> package hierarchy of Java but two levels only in C++.)
+</li>      <li> Put individual <code>using</code> declarations at the start of your file:
+<code>using std::cout;    using std::cin;
+using std::endl;    using std::string;</code> then refer to each unit without the namespace scope operation: <code>cout &lt;&lt; "hi there" &lt;&lt; endl;      
+</code>
+</li>    <li> Claim you are using an entire namespace at the start of a file:
+<code>using namespace std;</code> and likewise refer to each unit without the namespace scope: <code>cout &lt;&lt; "hi there" &lt;&lt; endl;</code><br />
+WARNING: DON'T put <code>using</code> statements in your <code>.h</code> header files, users of the header would get those <code>using</code>s and they may not want them!
+</li>    </ol>
+</li>
+</ul>
+
+<h4>Pass by Reference</h4>
+<ul>
+  <li> Simple data types are passed by value in C++, as are object variables!
+</li><li> Pointers (like in C) can be used to pass by reference
+</li><li> <b>NEW in C++: can use &amp; to create a reference to a variable, another pass by reference option</b>
+</li><li> Think of <code>&amp;</code> in type as an 'alias' for a parameter
+</li><li> In method call just use variable name (not address of)
+</li><li> Compiler implements by actually passing the address, and in effect puts "*" around all uses in body - similar to C pointer passing in behavior
+</li><li>Can also use <code>&amp;</code> in local variable declarations, not just function parameters: <code>int &amp;d = c;</code> creates <code>d</code> as alternate name for variable <code>c</code>
+</li><li>Fails to work in cases where the address-of/pointer approach in C would not work.  <br />
+Example: <code>int &amp;d = 10;</code> fails for the same reason <code>int *d = &10;</code> fails - <code>10</code> has no address.
+</li></ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">pointer</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">alias</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>        <span class="c1">// no effect on calling argument</span>
+    <span class="o">*</span><span class="n">pointer</span> <span class="o">=</span> <span class="o">*</span><span class="n">pointer</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// changes calling argument</span>
+    <span class="n">alias</span> <span class="o">=</span> <span class="n">alias</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>       <span class="c1">// also changes calling argument</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>          <span class="c1">// 2nd and 3rd parameters having same effect</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// note explicit spaces</span>
+    <span class="c1">// prints 10 15 20</span>
+    <span class="kt">int</span> <span class="o">&amp;</span><span class="n">d</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>	         <span class="c1">// d is now an reference to (alias for) c</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>              <span class="c1">// changes c as well since they are aliases </span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// prints 30</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>See also C++ <a href="notes-CppIO.html">I/O</a> and <a href="notes-CppStrings.html">string</a> notes.</p>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

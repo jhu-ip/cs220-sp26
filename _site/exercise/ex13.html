@@ -1,0 +1,133 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 13</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 13</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will
+contain a brief description but is intended to be supplemented by
+discussion during our meeting time. Complete the exercise to the best of
+your ability in the time given. Feel free to talk with other students as
+you work, and do not be afraid to ask questions if you get stuck. Aim to
+complete as much as possible during our meeting, and submit on
+Gradescope to check your solution. You are encouraged to work at home to
+complete what you do not get through today.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<ul>
+<li>gain practice creating complex structs</li>
+<li>utilize structs with functions, structs, and arrays, and structs and
+pointers</li>
+<li>malloc and free</li>
+<li>review scanf/printf</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Log into an undergraduate cluster computer. Update the course public repo with a <code class="language-plaintext highlighter-rouge">git pull</code> command.</p>
+  </li>
+  <li>
+    <p>Confirm that you can see the template files for today’s exercise by typing 
+<code class="language-plaintext highlighter-rouge">ls exercises/ex13</code> – you should see files named <code class="language-plaintext highlighter-rouge">main.c</code>, <code class="language-plaintext highlighter-rouge">soccer.c</code>, <code class="language-plaintext highlighter-rouge">soccer.h</code>, and <code class="language-plaintext highlighter-rouge">Makefile</code> inside.</p>
+  </li>
+  <li>
+    <p>Copy <code class="language-plaintext highlighter-rouge">main.c</code>, <code class="language-plaintext highlighter-rouge">soccer.c</code>, <code class="language-plaintext highlighter-rouge">soccer.h</code>, and <code class="language-plaintext highlighter-rouge">Makefile</code> from the public class repository (in the <code class="language-plaintext highlighter-rouge">*/exercises/ex13/*</code> directory) to your personal repo’s directory for this exercise.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">soccer.h</code> with a text editor. In this file you will find headers for three functions. In this part you need to create struct types to contain information about a soccer “Player”; the “Date” shows the date the player was signed into a team and “Stat” stores basic statistics of a player in a game. Note function declarations are already there. You must define the following struct types (<code class="language-plaintext highlighter-rouge">Stat</code>, <code class="language-plaintext highlighter-rouge">Date</code> and <code class="language-plaintext highlighter-rouge">Player</code> are the struct types and bulleted items below each indicate their struct members) before the function headers:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Stat</code></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int</code> num_of_goals (scored)</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> num_of_assists</li>
+  <li><code class="language-plaintext highlighter-rouge">float</code> pass_accuracy</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> min_played</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> num_of_shots</li>
+  <li><code class="language-plaintext highlighter-rouge">float</code> shot_accuracy</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Date</code></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int</code> day</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> month</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> year</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Player</code></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int</code> age</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> jersey_number</li>
+  <li><code class="language-plaintext highlighter-rouge">bool</code> goalkeeper</li>
+  <li><code class="language-plaintext highlighter-rouge">Date *</code> date  (pointer to a Date struct defined on the heap)</li>
+  <li><code class="language-plaintext highlighter-rouge">Stat *</code> stat  (pointer to a Stat struct defined on the heap)</li>
+</ul>
+
+<h3 id="part-3">Part 3</h3>
+<p>Once you are finished defining the struct types in the header file, you may switch to <code class="language-plaintext highlighter-rouge">soccer.c</code>. There are a few functions in this file, namely <em>create_team</em>, <em>create_player</em>, and <em>print_team</em>. All of those are fully implemented. You should review the implementation of these functions to make sure you understand them.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>Now switch to <code class="language-plaintext highlighter-rouge">main.c</code>. There are a few things you need to do here. First, you should read information from the input using <em>scanf</em> to create a stat structure. Note that this stat struct is dynamically defined on the heap and <em>new_stat</em> points to it. Then, you need to find the player with the latest signed date in the array “team”. If there are multiple players with the same signed date, you would select the one with smallest index in the array. Finally, update the stat of the player at the index you found with <em>new_stat</em>. Once finished, you can produce an executable by running “make” and run the executable by typing <em>./main</em>. Check if your code works as expected (i.e., the player’s stats with most recent signed date gets updated properly).</p>
+
+<h3 id="part-5">Part 5</h3>
+<p>Note the use of <code class="language-plaintext highlighter-rouge">-g</code> in the make file, which enables debugging.  Now, run the program using valgrind:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>valgrind  <span class="nt">--leak-check</span><span class="o">=</span>full  <span class="nt">--show-leak-kinds</span><span class="o">=</span>all  ./main
+</code></pre></div></div>
+
+<p>As you can see, we have calls to <code class="language-plaintext highlighter-rouge">malloc</code> in main and <code class="language-plaintext highlighter-rouge">soccer.c</code>, but not enough calls to <code class="language-plaintext highlighter-rouge">free</code>; there is only one call to <code class="language-plaintext highlighter-rouge">free</code> as a helper for you in <code class="language-plaintext highlighter-rouge">main.c</code>. You need to free stat and date structs on the heap for all the players in the team. Read the valgrind output and make modifications to <code class="language-plaintext highlighter-rouge">main.c</code> to fix the errors/memory leaks.</p>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

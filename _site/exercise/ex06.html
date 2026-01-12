@@ -1,0 +1,140 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 6</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 6</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>File I/O (fopen, fclose, fprintf, fscanf, ferror)</li>
+<li>Math functions (pow &amp; exp)</li>
+<li>emacs, git, gcc</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<ol>
+  <li>
+    <p>Log into an undergraduate cluster computer (<code class="language-plaintext highlighter-rouge">ugradx.cs.jhu.edu</code>).</p>
+  </li>
+  <li>
+    <p>Confirm that your personal working git repository and the public course git repository are both cloned.  If this is not the case, ask for assistance.  You may need to redo steps from week 1 exercises.</p>
+  </li>
+  <li>
+    <p>Navigate into <strong>cs220-xxx-public</strong>, type <code class="language-plaintext highlighter-rouge">git status</code> and confirm you have not modified any files or accidentally committed to the public repo. Ask for help if you have added or committed files there and need to undo.</p>
+  </li>
+  <li>
+    <p>Type <code class="language-plaintext highlighter-rouge">git pull</code> to synchronize your local repo and working copy with the remote repo.</p>
+  </li>
+  <li>
+    <p>Confirm that you can see the template files for today’s exercise by typing <code class="language-plaintext highlighter-rouge">ls exercises/ex06</code> – you should see <strong>compound.c</strong> and <strong>input.txt</strong> inside, along with <strong>inputBad1.txt</strong>, <strong>inputBad2.txt</strong> and <strong>outputGood.txt</strong>.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<ol>
+  <li>
+    <p>Navigate into the exercises folder in your personal repo (<code class="language-plaintext highlighter-rouge">cd ~/my220repo/exercises</code>).</p>
+  </li>
+  <li>
+    <p>Make a new directory for today’s exercise by typing <code class="language-plaintext highlighter-rouge">mkdir ex06</code> and navigate into it.</p>
+  </li>
+  <li>
+    <p>Copy the template files to the current directory using: <code class="language-plaintext highlighter-rouge">cp ~/cs220-xxx-public/exercises/ex06/* .</code>.</p>
+  </li>
+</ol>
+
+<h3 id="part-3">Part 3</h3>
+<p>The primary files that you just copied to your <em>~/my220repo/ex06</em> directory are named <strong>compound.c</strong> and <strong>input.txt</strong>.  <strong>compound.c</strong> is an incomplete program that you must complete and test yourself.</p>
+
+<ol>
+  <li>
+    <p>Open the file for editing using <code class="language-plaintext highlighter-rouge">emacs compound.c</code> (or <code class="language-plaintext highlighter-rouge">vim compound.c</code>, if you use <code class="language-plaintext highlighter-rouge">vim</code>; <code class="language-plaintext highlighter-rouge">nano compound.c</code> if you want to use <code class="language-plaintext highlighter-rouge">nano</code>.)</p>
+  </li>
+  <li>
+    <p>Read the source code and the comments.  Your instructions are in the comments. You will find it handy to use <a href="https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php">this website</a> for looking up formulas to solve the problem.</p>
+  </li>
+  <li>
+    <p>Modify the source files and test by:</p>
+    <ul>
+      <li>Compiling with <code class="language-plaintext highlighter-rouge">gcc -Wall -Wextra -std=c99 -pedantic compound.c -o compound -lm</code> or if you prefer to take advantage of the alias: <code class="language-plaintext highlighter-rouge">gccc compound.c -o compound -lm</code>.  If you forgot to setup the <code class="language-plaintext highlighter-rouge">gccc</code> alias, you can find instructions in <a href="ex05.md">the previous exercise</a>.</li>
+      <li>Running with <code class="language-plaintext highlighter-rouge">./compound input.txt</code> (change up to test with <strong>inputBad1.txt</strong> and <strong>inputBad2.txt</strong> also.)</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>The <code>gcc</code> command we are using today includes the extra argument <code>-lm</code> which tells <code>gcc</code> to include the <code>m</code> (math) library when linking. Later this week, we will talk more about the relationship between header (<code>.h</code>) files, libraries, the compiler, and the linker.</p>
+<p>The interest rates in the <strong>input.txt</strong> file are expressed as fractions, not percents. So 0.3 means 30%, not 0.3%.</p>
+</div>
+</div>
+
+<p>When the “compound” program runs successfully, it places its output in a new file called <em>output.txt</em>. You will not see the output at the terminal. (You might see output at the terminal if your program fails, but you should not see any if it succeeds.)  To check the contents of the file <em>output.txt</em>, use a command like <code class="language-plaintext highlighter-rouge">cat output.txt</code> or <code class="language-plaintext highlighter-rouge">less output.txt</code>. In the instructors’ solution, the first two lines of <em>output.txt</em> are:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>107.00 107.23 107.25
+580.25 582.74 582.98
+</code></pre></div></div>
+
+<h3 id="unix-tip-of-the-day---diff">Unix Tip of the day - <code class="language-plaintext highlighter-rouge">diff</code></h3>
+<p>We gave you expected output file <em>outputGood.txt</em>, which is what your program should output when run with <em>input.txt</em> as input. Once you’ve run your code successfully, you can use the unix <code class="language-plaintext highlighter-rouge">diff</code> command to see if your results in <em>output.txt</em> match the expected results in <em>outputGood.txt</em> as follows: <code class="language-plaintext highlighter-rouge">diff  output.txt  outputGood.txt</code>.</p>
+
+<p>No output from running this command means they are exactly the same. Otherwise, you will see lines with &lt; or &gt; at the start, indicating which lines differ, and how they appear in one file or the other. Another way to compare them is to open both in <code class="language-plaintext highlighter-rouge">emacs</code> - either in side by side terminal windows, or within emacs using the <code class="language-plaintext highlighter-rouge">ctrl-x 4 f</code> command (type 2nd filename when prompted). Use <code class="language-plaintext highlighter-rouge">ctrl-x o</code> (other) to toggle between the file buffers. Use <code class="language-plaintext highlighter-rouge">ctrl-x 1</code> with the cursor in the window you want to keep when done looking at both.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also submit to Gradescope to check your program results and use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

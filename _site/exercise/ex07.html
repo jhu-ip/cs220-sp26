@@ -1,0 +1,159 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 7</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 7</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>Function declarations</li>
+<li>Using <code>sizeof</code></li>
+<li>Passing arrays to functions</li>
+<li>Recursion</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<ol>
+  <li>
+    <p>Log into an undergraduate cluster computer.</p>
+  </li>
+  <li>
+    <p>Confirm that your personal working git repository and the public course git repository are both cloned.  If this is not the case, ask for assistance.  You may need to redo steps from week 1 exercises.</p>
+  </li>
+  <li>
+    <p>Navigate into <code class="language-plaintext highlighter-rouge">cs220-xxx-public</code>, type <code class="language-plaintext highlighter-rouge">git status</code> and confirm you have not modified any files or accidentally committed to the public repo. Ask for help if you have added or committed files there and need to undo.</p>
+  </li>
+  <li>
+    <p>Type <code class="language-plaintext highlighter-rouge">git pull</code> to synchronize your local repo and working copy with the remote repo.</p>
+  </li>
+  <li>
+    <p>Confirm that you can see the template files for today’s exercise by typing <code class="language-plaintext highlighter-rouge">ls exercises/ex07</code> – you should see <strong>functions.c</strong> inside.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<ol>
+  <li>
+    <p>Navigate into the exercises folder in your personal repo (<code class="language-plaintext highlighter-rouge">cd ~/my220repo/exercises</code>).</p>
+  </li>
+  <li>
+    <p>Make a new directory for today’s exercise by typing <code class="language-plaintext highlighter-rouge">mkdir ex07</code> and navigate into it.</p>
+  </li>
+  <li>
+    <p>Copy the source file to the current directory using: <code class="language-plaintext highlighter-rouge">cp ~/cs220-xxx-public/exercises/ex07/* .</code>.</p>
+  </li>
+</ol>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>You should be familiar with this process of logging into ugrad, pulling to update the public repo, making a new directory in your private repo, and copying exercise files from the public repo into your private one by now. We won't necessarily include explicit instructions going forward.</p>
+</div>
+</div>
+
+<h3 id="part-3">Part 3</h3>
+<ol>
+  <li>
+    <p>Compile your newly-copied <strong>functions.c</strong> file by typing our usual compile command: <code class="language-plaintext highlighter-rouge">gcc -std=c99 -Wall -Wextra -pedantic functions.c</code> (or use <code class="language-plaintext highlighter-rouge">gccc functions.c</code> if you like). You will notice that the program cannot be compiled because the div function is called before it is defined.</p>
+  </li>
+  <li>
+    <p>Edit <strong>functions.c</strong> to include a declaration of the <code class="language-plaintext highlighter-rouge">div</code> function before <code class="language-plaintext highlighter-rouge">main</code>, similar to examples in the lecture slides.</p>
+  </li>
+  <li>
+    <p>Once you have made your changes, re-compile the file by re-typing the compile command: <code class="language-plaintext highlighter-rouge">gcc -std=c99 -Wall -Wextra -pedantic functions.c</code> (or use <code class="language-plaintext highlighter-rouge">gccc functions.c</code>.)</p>
+  </li>
+  <li>
+    <p>Test your program by executing <code class="language-plaintext highlighter-rouge">./a.out</code> and reviewing the output.</p>
+  </li>
+</ol>
+
+<h3 id="part-4">Part 4</h3>
+<ol>
+  <li>
+    <p>Now write your own function to declare and implement a <code class="language-plaintext highlighter-rouge">mult</code> function, which takes two floating point values and returns the result of their product. The function should have a prototype (signature) like <code class="language-plaintext highlighter-rouge">float mult(float a, float b)</code>.</p>
+  </li>
+  <li>
+    <p>In addition, implement a recursive <code class="language-plaintext highlighter-rouge">fac</code> function, which takes a non-negative integer and returns the <a href="https://en.wikipedia.org/wiki/Factorial">factorial</a> of it.  If the input is negative, return <code class="language-plaintext highlighter-rouge">0</code>. The function should have a prototype like <code class="language-plaintext highlighter-rouge">int fac(int a)</code> or maybe <code class="language-plaintext highlighter-rouge">long fac(int a)</code> since factorials get large very quickly.</p>
+  </li>
+  <li>
+    <p>Uncomment the test lines in <code class="language-plaintext highlighter-rouge">main</code> in <strong>functions.c</strong>, compile and run the program to test your implementations.</p>
+  </li>
+</ol>
+
+<h3 id="part-5">Part 5</h3>
+
+<ol>
+  <li>
+    <p>Write a function declaration and definition to do a (recursive) <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a> on an array of floats. The prototype of your function should be <code class="language-plaintext highlighter-rouge">int bsearch(float ra[], int low, int high, float target)</code> where <code class="language-plaintext highlighter-rouge">low</code> is the inclusive low index of the range to search, <code class="language-plaintext highlighter-rouge">high</code> is the inclusive high index of the range to search, <code class="language-plaintext highlighter-rouge">target</code> is the value to find, and the function returns the location of the target in array <code class="language-plaintext highlighter-rouge">ra</code>, or -1 if it is not found.</p>
+  </li>
+  <li>
+    <p>Uncomment the corresponding test lines in <code class="language-plaintext highlighter-rouge">main</code> in <strong>functions.c</strong>. Notice that we initialized the array to be searched with values in ascending order! Feel free to add more tests to be sure your function works properly in different cases.</p>
+  </li>
+  <li>
+    <p>Compile and run your updated program to see if it works properly. Fix any errors you encounter.</p>
+  </li>
+  <li>
+    <p>Add another function with this prototype <code class="language-plaintext highlighter-rouge">int bsearch2(float ra[], int low, int high, float target, float results[], int size)</code>. The extra parameter <code class="language-plaintext highlighter-rouge">results</code> is an array of floats that holds the values inspected during the search for the target, and <code class="language-plaintext highlighter-rouge">size</code>  is a variable that keeps track of how many values have been added to <code class="language-plaintext highlighter-rouge">results</code>.</p>
+  </li>
+  <li>
+    <p>Uncomment the corresponding test lines in <code class="language-plaintext highlighter-rouge">main</code> in <strong>functions.c</strong>, compile and run the program to test your implementations. Print the results array after the search. Why can you print the updated results array in main, but not get the updated number of values added to it? Discuss with classmates.</p>
+  </li>
+</ol>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also submit to Gradescope to check your program results and use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

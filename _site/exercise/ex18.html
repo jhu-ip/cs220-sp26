@@ -1,0 +1,122 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 18</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 18</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>Linked lists</li>
+<li>Dynamic memory allocation</li>
+<li>Pointers, pointers, and more pointers</li>
+<li>Implement the functionality necessary to support deletion from a (singly) linked list, and insertion into a sorted version of a linked list</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>In this exercise you’ll be adding to some starter code and the solution to the previous exercise to build functions for working with a singly linked list of character data. Get started by running <code class="language-plaintext highlighter-rouge">git pull</code> to update your clone of the public repository, and then copying the <code class="language-plaintext highlighter-rouge">exercises/ex18</code> directory into your personal git repository. You’ll see that we have provided a <code class="language-plaintext highlighter-rouge">Makefile</code> for convenience, a <code class="language-plaintext highlighter-rouge">list_test.c</code> main program, and both a header file and implementation file for the linked list functions.</p>
+
+<h3 id="part-2">Part 2</h3>
+<p>In file <code class="language-plaintext highlighter-rouge">list.c</code>, implement the <code class="language-plaintext highlighter-rouge">remove_after</code> and <code class="language-plaintext highlighter-rouge">remove_front</code> functions. The first removes <em>and frees</em> the node immediately after the parameter node. The second removes <em>and frees</em> the head of the list and updates the head pointer. Each one should return the character in the node being removed. (Hint: carefully review the provided <code class="language-plaintext highlighter-rouge">add_front</code> function first.)</p>
+
+<p>For example, if your list includes the values <em><code class="language-plaintext highlighter-rouge">a b c d e</code></em>, then <code class="language-plaintext highlighter-rouge">remove_after</code> called on a pointer to the node containing <em><code class="language-plaintext highlighter-rouge">c</code></em> would result in a list containing <em><code class="language-plaintext highlighter-rouge">a b c e</code></em>, and would return <em><code class="language-plaintext highlighter-rouge">d</code></em>.  And a call to <code class="language-plaintext highlighter-rouge">remove_front</code> on that revised list would result in a list containing <em><code class="language-plaintext highlighter-rouge">b c e</code></em>, and would return <em><code class="language-plaintext highlighter-rouge">a</code></em>.</p>
+
+<p>You can validate your implementation by <em>uncommenting</em> the supplied tests for <code class="language-plaintext highlighter-rouge">remove_after</code> and <code class="language-plaintext highlighter-rouge">remove_front</code> in <code class="language-plaintext highlighter-rouge">list_test.c</code> and then typing <code class="language-plaintext highlighter-rouge">make</code> and then running the executable <code class="language-plaintext highlighter-rouge">./test</code>. Note that many tests exist in <code class="language-plaintext highlighter-rouge">list_test.c</code>.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Validate that your implementation does not leak memory and does not access memory that does not belong to it by running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>valgrind <span class="nt">--leak-check</span><span class="o">=</span>full <span class="nt">--show-leak-kinds</span><span class="o">=</span>all ./test
+</code></pre></div></div>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">Makefile</code> compiles the object files with the <code class="language-plaintext highlighter-rouge">-g</code> flag.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>In file <code class="language-plaintext highlighter-rouge">list.c</code>, implement the <code class="language-plaintext highlighter-rouge">remove_all</code> function. This removes all nodes in the list whose value matches the argument. Hint: think recursion!</p>
+
+<p>You can validate your implementation of this function by uncommenting the supplied tests for <code class="language-plaintext highlighter-rouge">remove_all</code> in <code class="language-plaintext highlighter-rouge">list_test.c</code> and then typing <code class="language-plaintext highlighter-rouge">make</code> and then running the executable <code class="language-plaintext highlighter-rouge">./test</code>.</p>
+
+<h3 id="part-5">Part 5</h3>
+<p>Once again, validate that your implementation still does not leak memory and does not access memory that does not belong to it by running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>valgrind <span class="nt">--leak-check</span><span class="o">=</span>full <span class="nt">--show-leak-kinds</span><span class="o">=</span>all ./test
+</code></pre></div></div>
+
+<h3 id="part-6">Part 6</h3>
+<p>In file <code class="language-plaintext highlighter-rouge">list.c</code>, implement the <code class="language-plaintext highlighter-rouge">insert</code> function. This function takes a pointer to the head of the list (which may point to NULL), creates a node with the prescribed value, and inserts it into the list <em>in sorted order</em>. This function will set the new head pointer if the head of the linked list has been updated.</p>
+
+<ol>
+  <li>
+    <p>You can assume that when the function is called, the linked list comes in sorted.</p>
+  </li>
+  <li>
+    <p>For ordering, simply use the <code class="language-plaintext highlighter-rouge">&lt;</code> and <code class="language-plaintext highlighter-rouge">&gt;</code> operators. (e.g. the character ‘a’ should be larger than the character <code class="language-plaintext highlighter-rouge">'B'</code>.)</p>
+  </li>
+  <li>
+    <p>Feel free to make use of the <code class="language-plaintext highlighter-rouge">add_front</code> and <code class="language-plaintext highlighter-rouge">add_after</code> methods we have already written.</p>
+  </li>
+  <li>
+    <p>Think recursion!</p>
+  </li>
+</ol>
+
+<p>You can validate your implementation by uncommenting the supplied tests for <code class="language-plaintext highlighter-rouge">insert</code> in <code class="language-plaintext highlighter-rouge">list_test.c</code> and then typing <code class="language-plaintext highlighter-rouge">make</code> and then running the executable <code class="language-plaintext highlighter-rouge">./test</code>.</p>
+
+<p>There are many other functions in the header, implementation and test file that you can work on for extra practice. Keep in mind that linked lists will be on the midterm exam.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also scp and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

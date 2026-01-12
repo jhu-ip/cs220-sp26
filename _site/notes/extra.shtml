@@ -1,0 +1,254 @@
+<h2>C Extras</h2>
+
+<h3>Misc C features</h3>
+<p>
+<h4>Enum types</h4>
+<p>
+Suppose you had a game with playing cards, hearts/clubs/spades/diamonds.
+    <ul>
+      <li><em>Don't</em> just use the strings <code>"Hearts"</code> etc or 1/2/3/4 in the code for these different suits
+      <li>Old C way is
+	  <pre>
+	  #define HEARTS 1
+	  #define CLUBS 2
+	  #define SPADES 3
+	  #define DIAMONDS 4</pre>
+	  -- make macros for each of these number codes, use <code>HEARTS</code> in your code to mean suit <code>1</code>.
+      <li>Enum version of the same is similar:
+	  <pre>enum suit {HEARTS=1,CLUBS,SPADES,DIAMONDS}</pre>
+	  -- same numerical abbreviation but makes a new type <code>suit</code> for them (which is really an integer under the covers). <br>
+-- The <code>=1</code> lets the encoded numbers start at <code>1</code> not <code>0</code>; default if left off is start at <code>0</code>
+    </ul>
+
+<h4>Function pointers</h4>
+<p>
+    <ul>
+      <li>Functions themselves can be treated as data: put in variables, pass around, call
+      <li>Allows code to be "plugged in" to an algorithm
+      <li>Analogy: a function pointer is like an object with no fields, one method.
+      <li>Types of function pointer variables: take prototype <pre>return_type my_fun(args)</pre> and transform to <pre>return_type(*myfunptr)(args)</pre> to declare <code>myfunptr</code> as ptr to such a prototype
+</ul>
+
+<pre>#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+int addone(int i) { return ++i; }
+int subone(int i) { return --i; }
+
+void swap(int* a, int *b) { int tmp=*a; *a=*b; *b=tmp; }
+void dontswap(int* a, int *b) {  }
+
+
+int main()
+{
+    int(*iifunptr)(int); // declares as pointer to int-to-int function
+
+    if ( rand() % 2 ) iifunptr = addone; // equivalently, "&addone"
+    else iifunptr = &subone; // equivalently, "subone"
+    int val = iifunptr(5);   // note no need for * deferenence of function pointer
+    printf("5 plus or minus one is %d\n",val);
+    
+    void(*sivoidfunptr)(int*, int*);
+  
+    if ( rand() % 2 ) sivoidfunptr = swap;
+    else sivoidfunptr = dontswap;
+    int i = 4, j = 6;
+    sivoidfunptr(&amp;i,&amp;j); 
+    printf("i and j swapped or not? i=%d, j=%d\n",i,j);
+
+}</pre>
+
+<h4>Function pointers and the qsort() library function</h4>
+<p>
+
+<ul>
+  <li><code><a href="http://www.cplusplus.com/reference/cstdlib/qsort/">qsort()</a></code> needs the comparison operator (less, equal, greater)
+  <li>Solution: pass it a <em>function pointer</em> which is that comparison op
+</ul>
+<pre>#include &lt;stdlib.h>
+#include &lt;stdio.h>
+
+
+int compare(const void *a, const void *b)
+{   // must cast to actual type
+    return *(int *)a - *(int *)b;
+}
+
+int main()
+{
+    int a[10], i;
+    
+    // load array with random numbers
+    for (i = 0;i &lt; 10;i++) a[i] = rand() % 10;
+    
+    qsort(a,10,sizeof(int),compare); // equivalent to &compare here -- pointer to function
+    
+    for (i = 0;i &lt; 10;i++) printf ("%d\n",a[i]);
+}</pre>
+
+<ul>
+  <li><code>compare</code> is the function here, note it is the 4th parameter to <code>qsort()</code>
+  <li>The <code>&</code> on the name is optional, C knows it needs to pass the address.
+  <li>C has no generic types, so compare always needs to take two <code>void *</code> pointers in its prototype
+  <li>But you as user know the type you used, so use a typecast in your <code>compare</code>.
+  <li>The <code>a/b</code> types are pointer types since function parameters need to be of fixed size (subtle point).
+  <li><code>qsort</code>'s prototype shows a function pointer type declaration: <pre>void qsort (void* base, size_t num, size_t size,
+            int (*compar)(const void*,const void*));</pre>
+</ul>
+
+<blockquote>EXERCISE: Write a program to create an array of doubles between 0 and
+  1, then write two compare functions so you can sort them in
+  ascending and descending orders.  <a href="convert.c">[solution]</a></blockquote>
+
+<p>
+<h4>Union types</h4>
+<p>
+    <ul>
+      <li> Union data is "this OR that", not "this AND that" of structs
+      <li> Unions are generally used inside of structures to let some fields share space
+      <li> Space efficiency is important in low-level programming
+  </ul>
+
+ <p>
+ Example
+
+  <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;string.h>
+
+struct ssn_union_jhed {
+    int type; // a tag: 0 = JHED 1 = SSN
+    union {
+        long int ssn;
+        char jhed[8];  // put jhed OVER ssn in memory (shared)
+    } the_union;
+};
+
+// non-union alternative to above which uses more memory
+// struct ssn_or_jhed {
+//    int type;
+//    long int ssn;
+//    char jhed[8];
+//};
+
+int main()
+{
+    struct ssn_union_jhed suj;
+    long int myssn = 232982374;
+    char myjhed[8]= "ssmith26";
+    
+    suj.type = (rand() % 2); // flip coin: SSN or JHED?
+    
+    if (suj.type) suj.the_union.ssn = myssn;
+    else strcpy(suj.the_union.jhed,myjhed);
+
+// set a breakpoint here and print suj to see whats there
+// test run gave this:
+// (gdb) print suj
+// $1 = {type = 1, the_union = {ssn = 232982374, jhed = "f\a\343\r\000\000\000"}}
+}</pre>
+<p>
+
+<h4>Macros</h4>
+<p>
+We have seen some simple <code>#define</code> macros before: <pre>#define SIZE 30</pre>
+    <ul>
+      <li>Macros can also take arguments: <pre>#define MACRO_NAME(args) (macro expression)</pre>
+      <li> Example: <pre>#define CIRCUM(x, y) (2 * (x) + 2 * (y))</pre>
+      <li> Make sure to put args <code>x</code>, <code>y</code> in <code>()</code> in body <br>
+-- C is pretty much  doing string substitution here, precedence can change if not careful
+      <li> Macros just inline the code, a special pre-processor <code>cpp</code> runs over your code and expands them.
+      <li>So, <pre>CIRCUM(3+4,33)</pre> expands to <pre>(2 * (3+4) + 2 * (33))</pre>
+<li> <code>#undef CIRCUM</code> -- in lines after <code>undef</code> the <code>CIRCUM</code> macro will not work
+
+</ul>
+<p>
+
+<h4>Macros for Conditional compilation</h4>
+<p>
+Useful for portability (different platforms need different code) and for debugging
+
+<p>
+Debug flag is a common usage
+<pre>#include &lt;stdio.h>
+#define DEBUG 1 // keep line in when debugging, comment out when not
+main()
+{
+    int w = 10;
+    // ... lots of code ...
+    #if DEBUG     // or #ifdef DEBUG, has same meaning here
+    printf("Debugging w: w = %d\n",w); //  debug code only included when DEBUG defined
+    #endif
+    // ... more code ...
+}
+</pre>
+<ul>
+  <li>The <em>compiler</em> needs to be able to figure out the condition result <br>
+-- don't put program variables in <code>#if</code> condition
+</ul>
+
+<p>
+Example you have seen of this in a <code>.h</code> file:
+<pre>
+#ifndef HW3       // means "If HW3 is not a current macro definition"
+#define HW3       // it is now (and the macro body is empty, its only serving as a flag)
+
+// Put all of the intended hw3.h file headers here
+
+#endif
+</pre>
+<ul>
+  <li>If <code>HW3</code> is already a defined macro the header will not be included
+  <li>Means no header will be included twice (which would be bad, double definition error)
+</ul>
+<p>
+<!--
+LESSYMh4>Invoking shell commands within CLESSYM/h4>
+
+LESSYMul>
+  LESSYMli>LESSYMcode>system("ls");LESSYM/code>
+LESSYM/ul>
+
+
+LESSYMh4>BitfieldsLESSYM/h4>
+LESSYMp>
+bitfields conserve memory, declare as int or unsigned
+LESSYMpre>	struct example {
+		unsigned a: 13;
+		unsigned : 3; /* used as padding */
+		unsigned b : 4;
+	};
+LESSYM/pre>
+
+
+<h2>C++ Extras</h2>
+
+<h3>Linked lists</h3>
+
+<p>
+Options for access
+<ul>
+  <li> private data in independent Node class, needs set/get functions
+  <li> nest Node class inside List - only List has access to private Node parts
+  <li> private data in independent Node class, give friend access
+</ul>
+
+<p>
+Templated linked list processing example:
+<ul>
+  <li> <a href="Node.cpp">node class</a>
+  <li> friend <a href="Set.cpp">set class</a>
+  <li> friend <a href="SetIter.cpp">set iterator class</a>
+<li><a href="SetMain.cpp">driver</a> and <a href="SetMake">makefile</a>
+</ul>
+
+<p>The example above is somewhat complicated by the use of a Node
+  class and a separate list (Set) class.  If you allow the Node to
+  also be considered the head of a dynamic data structure and put all
+  operations to add, remove, clear, etc in that Node class, you can
+  simplify the processing greatly using recursion.  The downsize is
+  that keeping track of the size info is no longer feasible and would
+  have to be recursively computed as well.
+</p>
+

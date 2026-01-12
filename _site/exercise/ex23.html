@@ -1,0 +1,105 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 23</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 23</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today meeting:</p>
+<ul>
+<li>C++ basics: I/O using iostream library, how to compile/link/execute</li>
+<li>Using the C++ Standard Template Library (std::vector)</li>
+<li>Recursion</li>
+</ul>
+</div>
+</div>
+
+<div class="admonition danger">
+<div class="title">Task</div>
+<div class="content">
+<p>Complete the implementation of code which read a target count from the standard input, generates a <code>std::vector</code> with that many random values, sorts them, and then validates that the result is in fact sorted.</p>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Get started by running <code class="language-plaintext highlighter-rouge">git pull</code> to update your clone of the public repository, and then copying the <code class="language-plaintext highlighter-rouge">exercises/ex23</code> directory into your personal git repository. You’ll see that we have provided a file named <code class="language-plaintext highlighter-rouge">sort.cpp</code>.</p>
+
+<h3 id="part-2">Part 2</h3>
+<p>In the supplied file, <code class="language-plaintext highlighter-rouge">sort.cpp</code>, read an integer from the standard input into <code class="language-plaintext highlighter-rouge">count</code>.</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Modify the <code class="language-plaintext highlighter-rouge">vec</code> array so that it stores <code class="language-plaintext highlighter-rouge">count</code> random values.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>First, compile and link <code class="language-plaintext highlighter-rouge">sort.cpp</code> by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-Wall</span> <span class="nt">-Wextra</span> <span class="nt">-pedantic</span> sort.cpp <span class="nt">-o</span> <span class="nb">sort</span>
+</code></pre></div></div>
+<p>Next, run the executable <code class="language-plaintext highlighter-rouge">sort</code>, specify that the vector <code class="language-plaintext highlighter-rouge">vec</code> should have 50 values, and confirm that this causes an assertion failure (because the random numbers are not sorted), either by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span>50 | ./sort
+</code></pre></div></div>
+
+<p>or by calling the function:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./sort
+</code></pre></div></div>
+<p>and then entering the value <code class="language-plaintext highlighter-rouge">50</code> at the prompt.</p>
+
+<h3 id="part-5">Part 5</h3>
+<p>Define the <code class="language-plaintext highlighter-rouge">sort</code> function so that implements the <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> algorithm.</p>
+
+<div class="admonition tip">
+<div class="title">Tip</div>
+<div class="content">
+<p>The merge sort algorithm is a recursive algorithm for sorting a set of values. It splits a set of values into two, sorts each of the two subsets independently, and then merges the two sorted subsets into a single sorted set.</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 37</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 37</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting. You are encouraged to work at home to complete what you do not get through today, and ask questions over Piazza or in office hours.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Gain practice writing an <code>iterator</code> and <code>const_iterator</code> for a container class.</p>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Log into ugrad, then navigate to the public repo and type <code class="language-plaintext highlighter-rouge">git pull</code> to synchronize your local working copy with the remote repo.</p>
+  </li>
+  <li>
+    <p>Copy the above files from the public repository (in the <code class="language-plaintext highlighter-rouge">/exercises/ex37/</code> directory) into your personal repo where desired. Then navigate to your personal repo folder for this exercise. Confirm that you can see the template files for today’s exercise – files named <code class="language-plaintext highlighter-rouge">Makefile</code>, <code class="language-plaintext highlighter-rouge">MyNode.h</code>, <code class="language-plaintext highlighter-rouge">MyList.h</code>, <code class="language-plaintext highlighter-rouge">MyList.inc</code>, and <code class="language-plaintext highlighter-rouge">main1.cpp</code>, <code class="language-plaintext highlighter-rouge">main2.cpp</code>, <code class="language-plaintext highlighter-rouge">main3.cpp</code>, and <code class="language-plaintext highlighter-rouge">main4.cpp</code> inside.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">MyList.h</code>, <code class="language-plaintext highlighter-rouge">MyList.inc</code> and <code class="language-plaintext highlighter-rouge">MyNode.h</code> to see how they are implemented. Compile and run the code in <code class="language-plaintext highlighter-rouge">main1.cpp</code> using the commands <code class="language-plaintext highlighter-rouge">make main1</code> and <code class="language-plaintext highlighter-rouge">./main1</code>. Check the output of the program and confirm that it makes sense, given the source code. Do you understand why it is possible for <code class="language-plaintext highlighter-rouge">main()</code> to modify the list via the pointer returned by <code class="language-plaintext highlighter-rouge">mli.get_head()</code>?</p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Read through <code class="language-plaintext highlighter-rouge">main2.cpp</code>.  You can try to compile the code using the command <code class="language-plaintext highlighter-rouge">make main2</code> however you will receive a bunch of errors because the <code class="language-plaintext highlighter-rouge">MyList&lt;T&gt;::iterator</code> nested class is not fully defined in <code class="language-plaintext highlighter-rouge">MyList.h</code> (see TODO Part 3a).  Following the comments in <code class="language-plaintext highlighter-rouge">MyList.h</code>, fill in the missing portions of <code class="language-plaintext highlighter-rouge">MyList&lt;T&gt;::iterator</code> until <code class="language-plaintext highlighter-rouge">main2.cpp</code> compiles and prints the expected output.</p>
+
+<p>Once you have that working, see TODO Part 3b in <code class="language-plaintext highlighter-rouge">main2.cpp</code>.  When you uncomment the line just below, the code should still compile, and the output should show that the list elements were changed.</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>Read through <code class="language-plaintext highlighter-rouge">main3.cpp</code>.  You can try to compile the code using the command <code class="language-plaintext highlighter-rouge">make main3</code> however you will receive a bunch of errors because the <code class="language-plaintext highlighter-rouge">MyList&lt;T&gt;::const_iterator</code> nested class is not defined (see TODO Part 4a in <code class="language-plaintext highlighter-rouge">MyList.h</code>).  Fill in the missing portions of <code class="language-plaintext highlighter-rouge">MyList&lt;T&gt;::const_iterator</code> until <code class="language-plaintext highlighter-rouge">main3.cpp</code> compiles and prints the expected output.</p>
+
+<p>Once you have that working, see TODO Part 4b in <code class="language-plaintext highlighter-rouge">main3.cpp</code>.  When you uncomment the line just below, the code should <u>fail</u> to compile, since the <code class="language-plaintext highlighter-rouge">const_iterator</code> should not allow you to modify elements of the list.</p>
+
+<h3 id="part-5">Part 5</h3>
+<p>Read through <code class="language-plaintext highlighter-rouge">main4.cpp</code>.  You can try to compile the code using the command <code class="language-plaintext highlighter-rouge">make main4</code>, however you will receive a bunch of errors because the <code class="language-plaintext highlighter-rouge">MyList&lt;T&gt;</code> constructor that takes two iterators (see TODO Part 5 in <code class="language-plaintext highlighter-rouge">MyList.h</code>) is missing.  Fill in the missing portions of <code class="language-plaintext highlighter-rouge">template&lt;typename Itr&gt; MyList&lt;T&gt;::MyList&lt;T&gt;(Itr i_begin, Itr i_end)</code> until <code class="language-plaintext highlighter-rouge">main4.cpp</code> compiles and prints the expected output. Note that the <code class="language-plaintext highlighter-rouge">typename Itr</code> is just another placeholder like our usual <code class="language-plaintext highlighter-rouge">typename T</code>, but here <code class="language-plaintext highlighter-rouge">Itr</code> will stand for some iterator type.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished and submit to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

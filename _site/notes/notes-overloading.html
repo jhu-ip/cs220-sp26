@@ -1,0 +1,135 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Overloading in C++</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Overloading in C++</div>
+
+    <p>C++ allows overloading of function definitions, meaning two or more functions can have the same name as long as their parameter lists differ. [It is not enough for their return types to differ.]</p>
+
+<h3>Operator Overloading</h3>
+
+<p>Operator overloading is one of the key features of C++. Most common operators can be overloaded, and overloaded definitions are expected to be somewhat consistent with their usual functionality.</p>
+
+<ul>
+  <li> You can define <em>any</em> typical operator (<code>+-*/&lt;|&amp;=[]</code> etc) to have <em>any</em> meaning when operating on objects of your class
+</li>  <li>Allows very succinct code to be written, e.g. <code>mySet += otherSet</code> to add one set to another for objects of a <code>Set</code> class that you have defined
+</li>  <li>See <a href="http://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B">the Wikipedia operator overloading page</a> for a reference of all operators that can be overloaded, and also what the overloaded function prototypes are expected to be
+</li>  <li> Define by writing a class member function named <code>operator$</code> where <code>$</code> is the desired operator symbol(s) - 
+e.g. methods named <code>operator*</code>, <code>operator[]</code>, <code>operator&lt;&lt;</code>
+</li>  <li>For unary class member operators, the function prototype needs no parameters. The object to which the operator is applied is the implicit parameter (*this). 
+</li>  <li>For binary operators, prototype requires a parameter that is the right operand. Again, the left operand is expected to be a member of the class in which the operator is defined. 
+</li>  <li>The compiler "magically" wires use of the infix operator <code>$</code> on your class to your <code>operator$</code> method
+</li>  <li><code>operator$</code> etc are regular method names; <code>myob.operator$(otherob)</code> is legal (assuming the symbol chosen is allowed)
+</li></ul>
+
+<h4>Rule of Three</h4>
+
+<p>If you have a non-trivial destructor,
+you should also explicitly define a copy constructor and <code>operator=</code>. This is because a non-trivial destructor implies there is dynamic memory allocated for each object. The default copy constructor and operator= implementation will only do a shallow copy, but you likely need a deep copy instead.</p>
+
+<p>Note that <code>operator==</code> is not part of the rule of three because a default version is not provided for your class types - you must always define it explicitly. However, if you have a non-trivial destructor, then probably your equality operator definition needs to be deep, similar to the assignment operator and copy constructor.</p>
+
+<h4>Overloading assignment operator</h4>
+
+<p>Example prototype for overloading assignment, <code>=</code> on a class named <code>Bag</code> - <code>const Bag&amp; Bag::operator=(const Bag &amp; right)</code>. Note the lack of <code>const</code> at the end of the prototype - this operator is expected to change the value of the Bag that appears on the left of the operator in use.</p>
+
+<ul>
+  <li> Overloading <code>=</code> changes meaning of the default assignment operator - recall default <code>=</code> is same as for C <code>struct</code>s, shallow copy of all fields
+</li>  <li> <code>const</code> on return type above prevents <code>(s1 = s2) = s3</code>
+</li>  <li> Overloading <code>+</code> and <code>=</code> <em>doesn't</em> provide automatic overloading of <code>+=</code>, it must be done explicitly
+</li>  <li> Overloading can also be done in a friend function, see right column of <a href="http://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B">the Wikipedia page</a> - but overloading operators <code>() [] -&gt; =</code> must be with a class member function
+</li>  <li> Use reference return types to create l-values that can be assigned to
+<ul>  <li> eg:  <code>int &amp; Bag :: operator[] (int subscript)</code>
+</li>  <li> <code>&amp;</code> in above means  <code>Bag[1] = 23;</code> works; leave off the <code>&amp;</code> and it won't work
+</li>    </ul>
+</li><li> Overload again for constant Bag objects 
+    <pre>const int &amp; Bag :: operator [] (int subscript) const</pre>
+</li>    </ul>
+
+<h4>C++ <code>string</code> class operator overloading</h4>
+
+<ul>
+<li>The <code>string</code> library class includes lots of overloaded operator member functions
+</li><li> some overload operators include <code>== != &lt; &gt; &lt;= &gt;=</code>
+</li>
+</ul>
+
+<h4>Explicit type conversions with classes</h4>
+
+<ul>
+<li>Conversion constructor member functions convert from single parameter type <strong>to</strong> the class type
+</li>  <li> Cast conversion operator can convert <strong>from</strong> class type to that specified
+</li>      <li>If defined, will be invoked implicitly by compiler when conversion is needed
+<pre>
+Rational :: operator double() const;    // Rational to double precision floating point
+Fraction :: operator Rational() const;  // Fraction class to Rational class
+</pre>
+</li>      <li> Must be a non-static member function, not a  friend
+</li>      <li> Casting member functions have <em>no</em> return type specified, the value returned is the type being cast to, so no need to list it twice
+</li>      </ul>
+
+<h3>Friend Functions</h3>
+
+<p>Friend functions enable us to give a [helper, non-class] function access to private members of a particular class. Friends violate the principle of data encapsulation - use as little
+      as possible!!</p>
+
+<ul>
+  <li> Declared with <code>friend</code> keyword in class definition (header file)
+</li>  <li> Defined outside the class (no use of ClassType:: scope operator)
+</li>  <li> Has access to all members of class (private and public)
+</li>
+</ul>
+
+<h4>Overloading via friend functions</h4>
+
+<p>If the first argument (left operand) of a binary operator is not of a class type, you can’t overload with a member method. Instead, you can overload with a <em>friend function</em>.</p>
+
+<p>Example for overloading <code>&lt;&lt;</code> on a <code>Rational</code> class:</p>
+
+<ul>
+<li>Write a function with prototype <code>ostream &amp; operator&lt;&lt;(ostream &amp; os, const Rational &amp; r)</code>
+</li>	<li>This function will define an overloaded <code>&lt;&lt;</code> binary operator where lhs is a stream object and rhs is a <code>Rational</code> object
+</li>	<li>Need to declare <code>friend ostream&amp; operator&lt;&lt;(ostream &amp;, const Rational &amp;);</code> in class header - lets this (non-member) function <code>operator&lt;&lt;</code> have access to private fields
+</li><li>Note use of <code>ostream&amp;</code> return type; the updated stream should be returned allowing for chaining of other stream insertion operations
+&lt;/ul&gt;
+
+</li></ul>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

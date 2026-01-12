@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Dynamic Memory in C++</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Dynamic Memory in C++</div>
+
+    <p>See also <a href="notes-pointers.html">Pointers</a> and Pass by Reference in <a href="notes-CppBasics.html">C++ Basics</a>.</p>
+
+<h3>Dynamic Memory Management in C++</h3>
+
+<p>Declaring class objects on the stack works similarly to primitive types:</p>
+<ul>
+    <li>Declare as <code>MyClass c;</code>      
+</li>     <li> Implicitly calls the default constructor of <code>MyClass</code>
+</li>      <li> Object is allocated on the stack
+</li>      <li> Explicit freeing not required, object deallocated when block in which it is declared ends
+</li>	</ul>
+
+<p>Dynamic allocation and deallocation of variables on the heap requires the use of keywords <code>new</code> and <code>delete</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="o">*</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>            <span class="c1">// allocate memory for integer</span>
+<span class="n">MyClass</span> <span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">MyClass</span><span class="p">();</span>   <span class="c1">// allocate object and return pointer to address</span>
+<span class="k">delete</span> <span class="n">c</span><span class="p">;</span>                      <span class="c1">// free the heap memory for the object</span>
+<span class="k">delete</span> <span class="n">ip</span><span class="p">;</span>                     <span class="c1">// free the heap memory for the integer</span>
+</code></pre></div></div>
+
+<ul>
+  <li>C++ replaces low-level C functions <code>malloc/free</code> with built-in C++ syntax using keywords <code>new/delete</code>
+</li>	  <li> This example explicitly calls a default constructor (the <code>()</code> are optional) to create an object with <code>new</code>, but other constructors could be called instead if defined for the class type
+</li>	  <li> <code>delete</code> is C++'s analogue to C's <code>free</code> - it deallocates heap memory
+</li></ul>
+
+<h4>Dynamic arrays</h4>
+
+<p>We also use <code>new/delete</code> to manage heap memory for arrays in C++. Arrays of primitive type elements are fairly straightforward. Elements in a dynamically allocated array of primitive type are not initialized by default (similar to <code>malloc</code>).</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="o">*</span><span class="n">iray</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>         <span class="c1">// makes array of n ints on heap</span>
+  <span class="c1">// ...</span>
+  <span class="n">delete</span> <span class="p">[]</span> <span class="n">iray</span><span class="p">;</span>                 <span class="c1">// frees memory of array, note use of [ ] in statement!</span>
+</code></pre></div></div>
+
+<p>Arrays of objects are initialized automatically using (necessary) default constructors: <code>MyClass * array = new MyClass[6];</code></p>
+
+<ul>
+	<li> Makes 6 different MyClass objects, sequentially stored in array, calls default constructor to initialize each one
+</li>	<li> This will ONLY call the default constructor on each
+</li>	<li> If want to call alternate constructor, we need to do separately afterwards as in the below example
+</li>  <li> Alternate constructor call creates a temporary MyClass object and copies it into array through assignment operator
+</li>  <li> Note the lack of <code>new</code> here - <code>MyClass(7, 'd')</code> object is stack allocated (not a pointer to a MyClass object)
+</li></ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MyClass</span> <span class="o">*</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyClass</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="sc">'d'</span><span class="p">);</span> <span class="c1">// fresh object made, overwrites new objects above</span>
+
+<span class="k">delete</span> <span class="p">[]</span> <span class="n">array</span><span class="p">;</span>    <span class="c1">// remember to delete with [] for any array on the heap</span>
+</code></pre></div></div>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

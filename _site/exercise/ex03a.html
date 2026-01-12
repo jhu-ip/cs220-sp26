@@ -1,0 +1,222 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 3-A</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 3-A</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, but you need not hand it in. You are encouraged to work at home to complete what you do not get through today.</p>
+</div>
+</div>
+
+<div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>If you are new to the course and need a temporary cs account, make a private post on Piazza to instructors with subject "Request for a cs temp account". You should also do <a href="ex03b.html">Exercise 3-B</a> after you complete Parts 1-5 below.</p>
+</div>
+</div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<p>This exercise will help you gain additional familiarity with:</p>
+<ul>
+<li>Unix/Linux commands</li>
+<li><em>git</em></li>
+<li>text editor <em>emacs</em> (or <em>vim</em>)</li>
+</ul>
+<p>and introduces:</p>
+<ul>
+<li><em>zip</em> tool for bundling files in Unix/Linux</li>
+<li>file transfer tool <em>scp</em> to move files from ugrad to your local machine.</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Log into the ugrad system, stay in your home directory, and configure git within your ugrad account:</p>
+
+<p><strong>1.</strong>	Type the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+</code></pre></div></div>
+<p>Be sure to use your actual name inside the quotes.</p>
+
+<p><strong>2.</strong>	Type the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.email you@somewhere.com
+</code></pre></div></div>
+<p>Be sure to use your actual email address.</p>
+
+<p><strong>3.</strong> Type the command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> credential.helper store
+</code></pre></div></div>
+
+<p>This will make it so that you don’t have to keep retyping your password every time you do a git command.</p>
+
+<div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>Note: If you have a Mac you might want to do this in your Terminal later if you want to keep a local copy of your git repo there too.  If you're on Windows, you can do the same thing through Git Bash.</p>
+</div>
+</div>
+
+<h3 id="part-2">Part 2</h3>
+
+<p>Configure either a GitHub Authentication Token or setup a GitHub SSH key.  Instructions are available <a href="../resources/github-ssh">here</a></p>
+
+<h3 id="part-3">Part 3</h3>
+<p>Set up your own personal git repository:</p>
+
+<p><strong>1.</strong>	You should have received (and accepted) an invitation email to join the course Github organization. When you login to your Github, you should be able to see personal repo with the name <code class="language-plaintext highlighter-rouge">YEAR-TERM-student-JHED</code> where <code class="language-plaintext highlighter-rouge">YEAR</code> and <code class="language-plaintext highlighter-rouge">TERM</code> correspond to this semester and <code class="language-plaintext highlighter-rouge">JHED</code> is your actual JHED name. This will serve as your private space from here on
+that you will use for your exercises and homeworks. Only you and the course staff have access to your private repo.</p>
+
+<p>You probably need to change to the course organization (i.e. jhu-ip) on the left menu as follows:</p>
+
+<p><img alt="screenshot showing how to select the Github organization" class="keep_original_size" src="img/switch-github-organization.png" /></p>
+
+<p>where instead of <em>test</em>, you should see your own Github user name.</p>
+
+<p><strong>2.</strong>	Now, clone your new (empty) repository into your home directory on ugrad using the https: version of the command given when you click the <code class="language-plaintext highlighter-rouge">Code</code> button (a green button) in the menu on the right, and then select <code class="language-plaintext highlighter-rouge">Use HTTPS</code>. Copy the repository url into clipboard and type command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone URL
+</code></pre></div></div>
+
+<p>where URL is replaced by the repo url you copied into the clipboard.</p>
+
+<div class="admonition caution">
+<div class="title">Tip</div>
+<div class="content">
+<p>Unless you have <a href="../resources/github-ssh.html">configured an SSH key for your Github account</a>,
+you should use the <code>https</code> Github URL, not the <code>ssh</code> Github URL.</p>
+</div>
+</div>
+
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<p>If you get an "authentication failed" error, it means you need to generate a personal access token on Github and use that instead of your password. Follow the steps in Part 2 of this exercise to make it happen!</p>
+</div>
+</div>
+
+<h3 id="part-4">Part 4</h3>
+<p>Create a file on ugrad and add it to the repository:</p>
+
+<p><strong>1.</strong>	Use <code class="language-plaintext highlighter-rouge">cd</code> to move into your <code class="language-plaintext highlighter-rouge">YEAR-TERM-student-JHED</code> folder (your cloned copy of your repository).  Use <code class="language-plaintext highlighter-rouge">pwd</code> to check that you are in the right place.</p>
+
+<p><strong>2.</strong>	Use a text editor (<em>emacs</em> or <em>vim</em>) to create a new text file called <code class="language-plaintext highlighter-rouge">README</code> there. Put <em>your name, JHED, class year, and major(s)/minor(s)</em> in your <em>README</em>.</p>
+
+<p><strong>3.</strong>	Type the command <code class="language-plaintext highlighter-rouge">git status</code> to see what it reports.</p>
+
+<p><strong>4.</strong>	Add your <em>README</em> file to your repository using the command <code class="language-plaintext highlighter-rouge">git add README</code>.</p>
+
+<p><strong>5.</strong>	Type the command <code class="language-plaintext highlighter-rouge">git status</code> to see what it reports.</p>
+
+<p><strong>6.</strong>	Commit your README file to your repository using <code class="language-plaintext highlighter-rouge">git commit -m "created README"</code>.</p>
+
+<p><strong>7.</strong>	Type the command <code class="language-plaintext highlighter-rouge">git status</code> to see what it reports.</p>
+
+<p><strong>8.</strong>	Send these local changes up to the github repo using <code class="language-plaintext highlighter-rouge">git push</code>.</p>
+
+<p><strong>9.</strong>	Type the command <code class="language-plaintext highlighter-rouge">git status</code> to see what it reports.</p>
+
+<p><strong>10.</strong>	Type the command <code class="language-plaintext highlighter-rouge">git log</code> to see what it reports.</p>
+
+<p><strong>11.</strong>	Edit your <em>README</em> file, and within the file, add a line saying that this is your personal repository for Intermediate Programming at JHU along with your current semester and section number.</p>
+
+<p><strong>12.</strong>	Check the status again with <code class="language-plaintext highlighter-rouge">git status</code>, then commit your updated <em>README</em> using <code class="language-plaintext highlighter-rouge">git commit -am "updated README"</code>.</p>
+
+<div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>The <code>-a</code> flag commits all changes to previously added files.</p>
+</div>
+</div>
+
+<p>Now, push your changes using <code class="language-plaintext highlighter-rouge">git push</code>. Finally, check your git log again to see how it has changed.  (That is, type the command <code class="language-plaintext highlighter-rouge">git log</code> to see what it reports.)</p>
+
+<p><strong>13.</strong>	In your web browser, investigate what has changed in the remote repo on github.com.</p>
+
+<h3 id="part-5">Part 5</h3>
+<p>Prepare your files as if you were asked to submit them to Gradescope for a homework assignment (but you don’t need to submit them today) - consider this a trial run for turning in an assignment later on. Suppose that an assignment asks you to turn in your new <em>README</em> file, along with a copy of your git log, to show how you have been using git during the assignment.</p>
+
+<p><strong>1.</strong>	Save a copy of your git log to a text file by typing the command <code class="language-plaintext highlighter-rouge">git log &gt; gitlog.txt</code>.</p>
+
+<p><strong>2.</strong>	Use <code class="language-plaintext highlighter-rouge">zip</code> as indicated below to bundle/compress your repository into a <em>.zip</em> file named <em>ex03.zip</em>. The command should look something like: <code class="language-plaintext highlighter-rouge">zip ex03.zip  README  gitlog.txt</code>. Note that the first argument after <code class="language-plaintext highlighter-rouge">zip</code> is the name of the <em>.zip</em> file to create; the remaining arguments are the files or folders to bundle together.</p>
+
+<p><strong>3.</strong>	Use <code class="language-plaintext highlighter-rouge">cd ~</code> or just <code class="language-plaintext highlighter-rouge">cd</code> to move into your home directory.</p>
+
+<p><strong>4.</strong>	Now move (the command <code class="language-plaintext highlighter-rouge">mv</code> means move, rather than copy) your <em>.zip</em> file to your current location using the following command: <code class="language-plaintext highlighter-rouge">mv YEAR-TERM-student-JHED/ex03.zip .</code> (again, replacing <code class="language-plaintext highlighter-rouge">YEAR</code>, <code class="language-plaintext highlighter-rouge">TERM</code>, and <code class="language-plaintext highlighter-rouge">JHED</code> with the proper values.) Note that the <code class="language-plaintext highlighter-rouge">.</code> in the command above indicates that the desired destination is your current working directory.</p>
+
+<p><strong>5.</strong>	Check to make sure your <em>.zip</em> file contains the right files with <code class="language-plaintext highlighter-rouge">unzip -l</code> (this says to list the files that would come out if you were to unzip the bundle) as indicated below: <code class="language-plaintext highlighter-rouge">unzip -l ex03.zip</code>. This will cause a list of the files and directories in your zip file to be displayed on the screen.  It is your chance to double-check that you have included everything.  If you wanted to actually unzip your bundled files (though you do not need to do so now), you could use the unzip command as above, but without the <code class="language-plaintext highlighter-rouge">-l</code> flag.  You will often want to unzip your file in a folder which is different than the one where you created it, to avoid overwriting your original <em>README</em> and <em>gitlog.txt</em> files.</p>
+
+<p><strong>6.</strong>	Now that all required files are bundled together as one <em>.zip</em> file, you will need to copy the bundle from ugrad to your local machine. Our tools for accomplishing this will be <code class="language-plaintext highlighter-rouge">scp</code> (Mac, Linux, or Windows Powershell), or either <code class="language-plaintext highlighter-rouge">pscp</code> or <code class="language-plaintext highlighter-rouge">WinSCP</code> if installed on Windows.</p>
+
+<div class="admonition info">
+<div class="title">Mac or Linux Users</div>
+<div class="content">
+<p>In a terminal on your local computer, copy your <em>.zip</em> file from ugrad to your local computer using <code>scp &lt;source&gt; &lt;destination&gt;</code>. For example, if you are a user named <em>ips21004</em> connected to ugradx using a Mac, open a new Terminal window on your Mac (not the one in which you are connected to ugradx!), navigate to the folder into which you want the file to be copied and type: <code>scp css22004@ugradx.cs.jhu.edu:ex03.zip .</code>. The source argument above first indicates in what account and on what machine you want to look, then, after the colon, it indicates a relative path from your home directory. The destination argument, however, is simply a dot, because you are typing this command on your Mac and want the file to be transferred to the folder on your Mac that you are currently working in. So, there is no need to specify the destination machine; it is the local one by default.</p>
+</div>
+</div>
+
+<div class="admonition caution">
+<div class="title">Tip</div>
+<div class="content">
+<p>Do not try to type a <em>./</em> after the colon to start the relative path name, or a <em>~/</em> to indicate an absolute path name; <code>scp</code> will not understand that notation.</p>
+</div>
+</div>
+
+<div class="admonition info">
+<div class="title">Windows Users</div>
+<div class="content">
+<p>You will need <code>pscp</code> here which should have been installed already automatically when you installed Putty. Copy your <em>.zip</em> file from ugrad to your local computer using <code>pscp &lt;source&gt; &lt;destination&gt;</code>. For example, you could open a Command Prompt window or Powershell and type <code>pscp css22006@ugradx.cs.jhu.edu:ex03.zip .</code>.  If you're using <strong>Git Bash</strong> instead, you can run <code>scp</code> instead of <code>pscp</code>.  For Windows where WinSCP has been installed: connect to ugradx using the WinSCP interface and drag the <em>ex03.zip</em> file from the ugradx side to your local computer's side.</p>
+</div>
+</div>
+
+<p><strong>7.</strong>	If you wanted to submit this on Gradescope (which we are not actually doing today), you now have a copy of your <em>.zip</em> file on your local computer, and could launch a web browser that will allow you to select the file you wish to upload to Gradescope.</p>
+
+<h3 id="part-6-if-time-permits">Part 6 (if time permits)</h3>
+<p>Work through at least one <em>emacs</em> (or <em>vim</em>) tutorial on the course <a href="../resources.html">Resources page</a>. NOTE: whether or not you get to work on it during today’s exercise, you are expected to complete a tutorial for one of the two editors before you come to our next meeting. In fact, we recommend completing several; the more times you practice the commands, the quicker you will learn them.</p>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

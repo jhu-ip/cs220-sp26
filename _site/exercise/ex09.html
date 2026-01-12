@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Exercise 9</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Exercise 9</div>
+
+    <div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>This is an in-class exercise. An exercise page like this one will contain a brief description but is intended to be supplemented by discussion during our meeting time. Complete the exercise to the best of your ability in the time given. Feel free to talk with other students as you work, and do not be afraid to ask questions if you get stuck. Aim to complete as much as possible during our meeting, and submit on Gradescope to check your solution. You are encouraged to work at home to complete what you do not get through today.</p>
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Learning Objectives</div>
+<div class="content">
+<p>Reinforces concepts learned in today's meeting:</p>
+<ul>
+<li>Use gdb for debugging code.</li>
+<li>Use gdb to analyze the code and correct the code so that it performs correctly.</li>
+<li>Use 2-dimensional arrays.</li>
+</ul>
+</div>
+</div>
+
+<h3 id="part-1">Part 1</h3>
+<p>Pull the starter code for this exercise from the public repo by taking the following steps:</p>
+
+<ol>
+  <li>
+    <p>Log into an undergraduate cluster computer. Update the course public repo with a <code class="language-plaintext highlighter-rouge">git pull</code> command.</p>
+  </li>
+  <li>
+    <p>Confirm that you can see the template files for today’s exercise by typing 
+<code class="language-plaintext highlighter-rouge">ls exercises/ex09</code> – you should see a file named <code class="language-plaintext highlighter-rouge">transpose.c</code>.</p>
+  </li>
+  <li>
+    <p>Navigate to your personal repo for the course and make a directory for today’s exercise. Copy <code class="language-plaintext highlighter-rouge">transpose.c</code> from the public class repository (in the <em>/exercises/ex09/</em> directory) into your personal repo’s directory for this exercise.</p>
+  </li>
+</ol>
+
+<h3 id="part-2">Part 2</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">transpose.c</code> with a text editor. The purpose of this program is to transpose a small array, meaning that values in each row of the original become the values in the corresponding column in the transposed version.</p>
+
+<p>To compile the code, use this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-std</span><span class="o">=</span>c99 <span class="nt">-pedantic</span> <span class="nt">-Wall</span> <span class="nt">-Wextra</span> transpose.c <span class="nt">-g</span> <span class="nt">-o</span> transpose   
+</code></pre></div></div>
+
+<p>or use our alias:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gccc transpose.c <span class="nt">-g</span> <span class="nt">-o</span> transpose
+</code></pre></div></div>
+
+<p>Note the use of <code class="language-plaintext highlighter-rouge">-g</code>, which enables debugging. To run the program using gdb:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb  ./transpose
+</code></pre></div></div>
+
+<p>Use <em>gdb</em> to step through the code (placing breakpoints as necessary), and print out the variable values, to determine why the code is not printing all of the 2nd table, or transposing correctly. Given what you discovered using <em>gdb</em>, fix the code so that it behaves correctly.</p>
+
+<div class="admonition tip">
+<div class="title">Reminder</div>
+<div class="content">
+<p>Remember to add and commit to your local repo copy as your work. Push to your remote repo when finished. Also scp and submit <code>transpose.c</code> to Gradescope to check your solution. Use <code>exit</code> to logout from your ugrad account when finished. If you continue to work on the program after class, make sure to keep your repo updated as well!</p>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>
