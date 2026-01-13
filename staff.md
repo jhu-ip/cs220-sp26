@@ -9,7 +9,7 @@ show_in_nav: false
 
 ## Instructors
 
- 
+<div class="card_container">
 <div class="card">
     <img alt="Patricio photo" src="{{site.baseurl}}/img/staffpix/simari.jpg">
     <div class="details">
@@ -29,6 +29,10 @@ show_in_nav: false
         Office hours: Mon & Wed 3:30 - 4:45, Malone 337<br>
     </div>
 </div>
+
+</div>
+
+
 
 ## Head Course Assistants
 
