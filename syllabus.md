@@ -4,11 +4,10 @@ title: "Syllabus"
 category: "syllabus"
 ---
 
-
 **Syllabus**\
 **Computer Science EN.601.220**\
 **Intermediate Programming**\
-**Fall 2025 (4 credits, E, in person)**
+**Spring 2026 (4 credits, E, in person)**
 
 *(The instructors reserve the right to make adjustments to this
 syllabus as deemed necessary with notice.)*
@@ -39,30 +38,24 @@ syllabus as deemed necessary with notice.)*
 
 **Instructors**
 
-Joanne Selinski, Teaching Professor\
-<mailto:joanne@cs.jhu.edu>,\
-<a class="external" target="_blank" href="https://www.cs.jhu.edu/~joanne">https://www.cs.jhu.edu/~joanne</a>,\
-Office hours: Mon 4-5p Malone 225, Thu 4-5p on zoom \
-Zoom: <a class="external" target="_blank" href="https://wse.zoom.us/my/jselinski">https://wse.zoom.us/my/jselinski</a>
-
-Ali Darvish, Senior Lecturer\
-<mailto:darvish@jhu.edu>,\
-<a class="external" target="_blank" href="https://www.cs.jhu.edu/~darvish/">https://www.cs.jhu.edu/~darvish/</a>,\
-Office hours: TBD \
-Zoom: <a class="external" target="_blank" href="https://wse.zoom.us/my/kpresler">https://wse.zoom.us/my/darvish</a>
+Kai Presler-Marshall, Lecturer\
+<kai@cs.jhu.edu>,\
+<a class="external" target="_blank" href="https://www.cs.jhu.edu/faculty/kai-presler-marshall/">https://www.cs.jhu.edu/faculty/kai-presler-marshall/</a>,\
+Office hours: TBA \
+Zoom: <a class="external" target="_blank" href="https://wse.zoom.us/my/kpresler">https://wse.zoom.us/my/kpresler</a>
 
 Patricio Simari, Senior Lecturer\
 <mailto:psimari@cs.jhu.edu>,\
 <a class="external" target="_blank" href="https://www.cs.jhu.edu/">https://www.cs.jhu.edu/</a>,\
-Office hours: Mon & Wed 12-12:50, Malone 240b \
+Office hours: TBA \
 Zoom: <a class="external" target="_blank" href="https://wse.zoom.us/my/pdsimari">https://wse.zoom.us/my/pdsimari</a>
 
 
 **Meetings - all in Maryland 310**
 
-Sec 01 (Selinski): MWF 10:00 am – 11:15 am
+Sec 01 (Presler-Marshall): MWF 10:00 am – 11:15 am
 
-Sec 02 (Darvish): MWF 12:00 pm – 1:15 pm
+Sec 02 (Presler-Marshall): MWF 12:00 pm – 1:15 pm
 
 Sec 03 (Simari): MWF 1:30 pm – 2:45 pm
 
