@@ -344,27 +344,11 @@ them. If you are having trouble completing an exercise, seek help in
 office hours, or on Piazza. We will have an option for you to submit
 your solutions on gradescope to get autograder feedback on them.
 
-**Code Reviews (Optional)**
-
-Students can benefit from close review of their code in discussion
-with a course instructor. You have the option to schedule one or more
-reviews of your individual coding assignments with a course
-instructor. These will typically take 30-45 minutes each, and
-successful completion of code reviews for 2 different assignments will
-result in a 100% "fudge" grade. "Successful completion" is based on
-your ability to explain your code to the instructor and answer what-if
-questions about it. Each code review must take place within the three
-weeks immediately following that homework's due date.
-
 **Fudge Grade**
 
 Students typically do better in some aspects of the course than
 others. The "fudge grade" is a percentage of your final grade that
-duplicates your best performance from the individual grade categories listed below 
-or the optional code reviews, but not group projects. For example, if you
-successfully complete 2 code reviews, then your fudge grade will
-contribute a full 2 points to your final grade. If you don't have 2
-successful code reviews, but your highest individual grade category is
+duplicates your best performance from the individual grade categories listed below, but not group projects. For example, if your highest individual grade category is
 90% in written homework, then your fudge grade will contribute 1.8
 points towards your final grade.
 
