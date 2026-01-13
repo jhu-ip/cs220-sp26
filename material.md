@@ -57,8 +57,10 @@ the materials for that week.
     <tr>
       <td>Additional<br>Resources</td>
       <td>NA</td>
-      <td><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unix.html'>Unix/Linux Tutorial</a><br><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unixRC.pdf'>Unix/Linux Reference Card</a></td>
-      <td><a class='external' target='_blank' href='https://www.onlinegdb.com/online_c_compiler'>Online C compiler</a></td>
+      <td><a href='notes/notes-unix.html'>NOTES: Unix</a><br><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unix.html'>Unix/Linux Tutorial</a><br><a class='external' target='_blank' href='https://cs.jhu.edu/~joanne/unixRC.pdf'>Unix/Linux Reference Card</a><br><a class='external' target='_blank' href='https://jslinux.org/'>JSLinux</a></td>
+      <td><a href='notes/notes-Cbasics.html'>NOTES: C Basics</a><br />
+      <a href='notes/notes-C-IO.html'>NOTES: I/O in C</a><br />
+      <a class='external' target='_blank' href='https://www.onlinegdb.com/online_c_compiler'>Online C compiler</a></td>
     </tr>
   </tbody>
 </table>
