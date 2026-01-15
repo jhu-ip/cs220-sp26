@@ -356,13 +356,13 @@ points towards your final grade.
 -   14% - individual coding homework (5 total; point values and due dates vary; will be
     listed on Canvas)
 
--   30% - midterm exam (in class, Oct. 13)
+-   30% - midterm exam (in class, Mar. 9)
 
--   7% - midterm coding project (in teams of two, due approx. Oct. 22)
+-   7% - midterm coding project (in teams of two, due approx. Mar. 23)
 
--   7% - final coding project (in teams, due approx. Dec. 5)
+-   7% - final coding project (in teams, due approx. Apr. 27)
 
--   30% - final exam (9am, Dec. 18)
+-   30% - final exam (2pm, May 6)
 
 All scores and grader commentary on your homework and project
 submissions, as well as exams, will be available via Gradescope. Please
