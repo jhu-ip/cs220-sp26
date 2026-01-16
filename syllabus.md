@@ -41,13 +41,11 @@ syllabus as deemed necessary with notice.)*
 Kai Presler-Marshall, Lecturer\
 <kai@cs.jhu.edu>,\
 <a class="external" target="_blank" href="https://www.cs.jhu.edu/faculty/kai-presler-marshall/">https://www.cs.jhu.edu/faculty/kai-presler-marshall/</a>,\
-Office hours: TBA \
 Zoom: <a class="external" target="_blank" href="https://wse.zoom.us/my/kpresler">https://wse.zoom.us/my/kpresler</a>
 
 Patricio Simari, Senior Lecturer\
 <mailto:psimari@cs.jhu.edu>,\
 <a class="external" target="_blank" href="https://www.cs.jhu.edu/faculty/patricio-simari/">https://www.cs.jhu.edu/faculty/patricio-simari/</a>,\
-Office hours: TBA \
 Zoom: <a class="external" target="_blank" href="https://wse.zoom.us/my/pdsimari">https://wse.zoom.us/my/pdsimari</a>
 
 
