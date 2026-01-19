@@ -71,12 +71,12 @@ This will make it so that you don't have to keep retyping your password every ti
 
 ### Part 2
 
-Configure either a GitHub Authentication Token or setup a GitHub SSH key.  Instructions are available [here](../resources/github-ssh)
+Configure either a GitHub Authentication Token (recommended) or setup a GitHub SSH key.  Instructions are available [here](../resources/github-ssh)
 
 ### Part 3
 Set up your own personal git repository:
 
-**1.**	You should have received (and accepted) an invitation email to join the course Github organization. When you login to your Github, you should be able to see personal repo with the name `YEAR-TERM-student-JHED` where `YEAR` and `TERM` correspond to this semester and `JHED` is your actual JHED name. This will serve as your private space from here on
+**1.**	After completing the form from Exercise 1, you should have received (and accepted) an invitation email to join the course Github organization. When you login to your Github, you should be able to see personal repo with the name `YEAR-TERM-student-JHED` where `YEAR` and `TERM` correspond to this semester and `JHED` is your actual JHED name. This will serve as your private space from here on
 that you will use for your exercises and homeworks. Only you and the course staff have access to your private repo.
 
 You probably need to change to the course organization (i.e. jhu-ip) on the left menu as follows:

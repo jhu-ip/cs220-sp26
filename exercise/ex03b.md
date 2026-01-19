@@ -34,12 +34,12 @@ To begin (if you have not already done so), log into the ugrad system using your
 <p>where <em>USERNAME</em> is replaced by your actual cs user name. Also, you can replace 5 by <em>x</em> or any number between <em>1</em> and <em>24</em>.</p>
 </div>
 </div>
- If your machine is running Windows, you will use <a href="https://www.putty.org/" target="_blank">PuTTy</a> or ssh using Windows Powershell to connect.
+If your machine is running Windows, you will use <a href="https://www.putty.org/" target="_blank">PuTTy</a> or ssh using Windows Powershell to connect.
 
 <div class='admonition caution'>
 <div class='title'>Caution</div>
 <div class='content'>
-<p>You are advised to download and use PUTTY if you are a Windows user. Directly "sshing" into ugrad machines via Windows Powershell has caused an issue with keyboard layouts in the past!</p>
+<p>You are advised to download and use PUTTY if you are a Windows user. Directly "sshing" into ugrad machines via Windows Powershell has caused issues with keyboard layouts.</p>
 </div>
 </div>
 
@@ -48,11 +48,11 @@ First, create a copy (clone) of the public repository for the class by taking th
 
 1.	In your ugrad account, type `cd ~` to make sure you are in your home directory.
 
-2.	If you have not already done so, use **git** to clone the class example repository by typing the following (replacing the `xxx` with the appropriate name for your current semester): 
+2.	If you have not already done so, use **git** to clone the class example repository by typing the following, replacing the `xxx` with the appropriate name for your current semester (e.g., in the Fall 2025 term `xxx` would be replaced with `f25`, in the Spring 2026 term it would be replaced with `sp26`, etc.): 
 ```bash
 git clone https://github.com/jhu-ip/cs220-xxx-public.git
 ```
-3.	Type (replacing the `xxx` with the appropriate name for your current semester):
+3.	Type (replacing the `xxx` with the appropriate name for your current semester as described above):
 ``` bash
 cd cs220-xxx-public
 ```

@@ -16,7 +16,7 @@ show_in_nav: false
         <span class="name_and_role">Patricio Simari</span><br>
         Department of Computer Science<br>
         Email: <a href="mailto:psimari@cs.jhu.edu">psimari@cs.jhu.edu</a><br>
-        Office hours: TBD, Malone 240b<br>
+        Office hours: Mon & Wed 9:00 - 9:50, Malone 240b<br>
     </div>
 </div>
 
