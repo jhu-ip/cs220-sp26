@@ -26,7 +26,7 @@ show_in_nav: false
         <span class="name_and_role">Kai Presler-Marshall</span><br>
         Department of Computer Science<br>
         Email: <a href="mailto:kai@cs.jhu.edu">kai@cs.jhu.edu</a><br>
-        Office hours: Mon & Wed 3:30 - 4:45, Malone 337<br>
+        Office hours: Mon & Wed 3:30 - 5:00, Malone 337<br>
     </div>
 </div>
 
