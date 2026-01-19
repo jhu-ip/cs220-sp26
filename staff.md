@@ -59,8 +59,8 @@ show_in_nav: false
 ## Course Assistants
 
 * Sec 01 Presler-Marshall (10-11:15a): Bob, Kyle, Lijia
-* Sec 02 Presler-Marshall (12-1:15p): Mayling, Joanne, Matthew
-* Sec 03 Simari (1:30-2:45p): James, Ellen, Akshaya
+* Sec 02 Presler-Marshall (12-1:15p): Mayling, Ellen, Matthew
+* Sec 03 Simari (1:30-2:45p): James, Joanne, Akshaya
 * Sec 04 Simari (3:00-4:15p): Crystal, Mark, Travis
 
 Office Hours Schedule for all TAs/CAs (starting Monday 1/26): 
