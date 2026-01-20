@@ -161,9 +161,7 @@ Besides, in the long run, the knowledge and skills you acquire are far
 more important than the grade is.
 
 That said, be aware that the main difficulty many students have with
-this course is **time management**. It will be a lot of work, and if you
-don't budget your time well, you may find yourself with a grade that
-does not reflect how well you understand the material. Additionally,
+this course is **time management**. It will be a lot of work and require that you budget your time well. Additionally,
 while there are lots of resources provided to help you succeed, we
 cannot force you to use them; it is important to avail yourself of these
 resources, particularly office hours.
@@ -201,9 +199,7 @@ homework as individually as possible to learn the material. The
 midterm exam will cover the topics of the first half of the class (C
 material) and the final exam will focus on the second half (C++
 material). The exams are designed to assess your knowledge of
-programming in C and C++ as well as your problem solving ability, but
-not your knowledge of specific tools or technologies discussed in
-class.
+programming in C and C++ as well as your problem solving ability.
 
 Students will be expected to complete a variety of computer
 programming assignments, as well as written homework assignments. Two projects
@@ -298,12 +294,15 @@ accommodate late submissions in several specific ways:
     late days; deductions will be automatically taken since your final
     homework submission will be the one graded.
 
--   If you submit an assignment late and are out of late days (have used
+-   If you upload your assignment late to a submission portal that allows 
+    late submissions and you are out of late days (have used
     all 6 previously), you will be deducted 1% of the possible
-    assignment points per hour (or fraction) that it is submitted
+    assignment points per hour (or fraction of an hour) that it is submitted
     late. For example, if you have no late days and submit an
-    assignment 75 minutes late, you will lose 2% of the possible
-    assignment points off the top.
+    assignment 75 minutes late, you will be penalized 2% of the possible
+    assignment points.
+    
+-   **Submission portals that allow late submissions will close 48 hours after the original deadline.** At that time, submissions are no longer accepted.
 
 Given these policies, please plan to get your homework done and turned
 in early so that if you encounter any last-minute delays, it will not
