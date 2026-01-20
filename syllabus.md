@@ -84,20 +84,16 @@ Will be listed on the main course website Staff page.
 
 The following sites will be used heavily during the course:
 
--   The course website is
-    [jhu-ip.github.io/cs220-f25/](https://jhu-ip.github.io/cs220-f25/).
+-   This course website (linked from the front page of the course Canvas.)
 
--   Piazza
-    (<a class="external" target="_blank" href="https://piazza.com/jhu/fall2025/601220fa25">https://piazza.com/jhu/fall2025/601220fa25</a>)
-    will serve as our primary communication channel. Access through Canvas, and you can then link any prior accounts to your JHU account.
+-   Piazza will serve as our primary communication channel. Access through Canvas, and you can then link any prior accounts to your JHU account.
 
--   Gradescope (<a class="external" target="_blank" href="https://www.gradescope.com/">https://www.gradescope.com/</a>) will be used
-    for assignment submission, grades and feedback; access is through Canvas.
+-   Gradescope will be used for assignment submission, grades and feedback; access is through Canvas.
 
 -   Panopto will be used for video distribution (required viewing before class sessions).
 
--   (<a class="external" target="_blank" href="https://en.cppreference.com/w/">en.cppreference.com</a>) and
-    (<a class="external" target="_blank" href="https://www.cplusplus.com/reference/">www.cplusplus.com</a>) provide
+-   <a class="external" target="_blank" href="https://en.cppreference.com/w/">en.cppreference.com</a> and
+    <a class="external" target="_blank" href="https://www.cplusplus.com/reference/">www.cplusplus.com</a> provide
     excellent on-line language reference material.
 
 **Course Objectives**
