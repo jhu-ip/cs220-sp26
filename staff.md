@@ -64,5 +64,5 @@ show_in_nav: false
 * Sec 04 Simari (3:00-4:15p): Crystal, Mark, Travis
 
 Office Hours Schedule for all TAs/CAs (starting Monday 1/26): 
-# [CA Office Hours Schedule](https://docs.google.com/spreadsheets/d/1-jwRZWyezU4seGnq6Xpn6xO5Zevq4hdjmaO9GQAtyJU/edit?usp=sharing)
+# [CA Office Hours Schedule](https://docs.google.com/spreadsheets/d/19aTeELk9u-LINTi9bzoVvKJXjkSN0f1X5FtZ8nOKSJg/edit?usp=sharing)
 
