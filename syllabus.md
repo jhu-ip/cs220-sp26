@@ -280,7 +280,7 @@ double-check that all submitted code fully compiles with no errors or
 warnings in the standard course compilation environment. We will
 accommodate late submissions in several specific ways:
 
-- Each student will be permitted to use up to 6 "late days" total
+-   Each student will be permitted to use up to 6 "late days" total
     during the semester on the individual assignments only. However,
     at most 2 late days may be used on any one assignment.
 
@@ -344,7 +344,7 @@ points towards your final grade.
 
 -   4% - particpation (physical attendance and active participation)
     - <emph>You must attend 85% of the classes to receive full attendance credit (i.e., your attendance/participation percentage will be divided by 0.85 and then capped at 100%.) </emph>
--   6% - written homework (3 total; due dates vary; will be posted on Canvas)
+-   6% - individual written homework (3 total; due dates vary; will be posted on Canvas)
 
 -   14% - individual coding homework (5 total; point values and due dates vary; will be
     listed on Canvas)
