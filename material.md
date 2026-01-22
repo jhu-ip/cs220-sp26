@@ -66,17 +66,15 @@ the materials for that week.
 </table>
 </div>
 
-<!--
-
-<button type="button" id="week_2_toggle" class="week_control_button">Week 2 (27-Jan to 31-Jan)</button>
+<button type="button" id="week_2_toggle" class="week_control_button">Week 2 (26-Jan to 30-Jan)</button>
 <div id="week_2" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 3 (27-Jan)</th>
-      <th>Day 4 (29-Jan)</th>
-      <th>Day 5 (31-Jan)</th>
+      <th>Day 3 (26-Jan)</th>
+      <th>Day 4 (28-Jan)</th>
+      <th>Day 5 (30-Jan)</th>
     </tr>
   </thead>
   <tbody>
@@ -108,12 +106,16 @@ the materials for that week.
       <td>Additional<br>Resources</td>
       <td><a class='external' target='_blank' href='https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf'>Emacs reference card</a><br><a class='external' target='_blank' href='https://www.openvim.com/'>Interactive Vim tutorial</a><br><a class='external' target='_blank' href='https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf'>Git cheatsheet</a><br><a class='external' target='_blank' href='https://jh.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9efa206a-6849-4bab-b630-ae3200303731'>Setting Up VS Code</a>
 <br><a href='resources/github-ssh.html'>GitHub Token & SSH key setup</a></td>
-      <td></td>
-      <td></td>
+      <td><a href='notes/notes-Cbasics.html'>NOTES: C Basics</a><br />
+<a href='notes/notes-control.html'>NOTES: Control Structures</a> </td>
+      <td><a href='notes/notes-Carrays.html'>NOTES: C Arrays</a><br />
+      <a href='notes/notes-Cstrings.html'>NOTES: C Strings</a></td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<!--
 
 <button type="button" id="week_3_toggle" class="week_control_button">Week 3 (3-Feb to 7-Feb)</button>
 <div id="week_3" class="collapsible">
