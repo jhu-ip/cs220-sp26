@@ -55,7 +55,7 @@ file name | desired output
 *silver.c* | The Silver medal in synchronized swimming goes to Jordan and Samir.
 *bronze.c* | Team Kenya earns Bronze in the mixed 4 by 400m relay, celebrating unity through sport.
 
-At the top of each source file, add two comment lines that provide your anonymous Hopkins ID (the random 6 characters code) and the current date:
+At the top of each source file, add two comment lines that provide your anonymous Hopkins ID (six alphanumeric characters) and the current date; for example:
 
 ```c
 // J3V6G9
