@@ -1,4 +1,4 @@
-# 601.220 Intermediate Programming, Fall 2024, at JHU
+# 601.220 Intermediate Programming at JHU
 
 This is the public website Github repository for 601.220 Intermediate Programming,
 Fall 2025, at [Johns Hopkins University](https://www.jhu.edu).

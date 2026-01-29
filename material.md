@@ -115,8 +115,6 @@ the materials for that week.
 </table>
 </div>
 
-<!--
-
 <button type="button" id="week_3_toggle" class="week_control_button">Week 3 (3-Feb to 7-Feb)</button>
 <div id="week_3" class="collapsible">
 <table>
@@ -156,10 +154,11 @@ the materials for that week.
     <tr>
       <td>Additional<br>Resources</td>
       <td>
-	  <a href="https://cplusplus.com/reference/cmath/">C Math Library Reference</a>
-	  <a href="https://stackoverflow.com/a/8114031">Discussion on `assert`</a>
-	  </td>
-      <td></td>
+	     <a href="https://cplusplus.com/reference/cmath/">C Math Library Reference</a>
+	     <a href="https://stackoverflow.com/a/8114031">Discussion on `assert`</a>
+	   </td>
+      <td><a href='notes/notes-Cfunctions.html'>NOTES: C Functions (including make)</a>
+      </td>
       <td>
         <a href="https://makefiletutorial.com/">Makefile Reference/Tutorial</a>
       </td>
@@ -167,6 +166,9 @@ the materials for that week.
   </tbody>
 </table>
 </div>
+
+<!--
+
 <button type="button" id="week_4_toggle" class="week_control_button">Week 4 (10-Feb to 14-Feb)</button>
 <div id="week_4" class="collapsible">
 <table>
