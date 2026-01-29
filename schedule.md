@@ -13,10 +13,10 @@ on the due date. See the syllabus for our late days policy and also the collabor
 
 Assignment/Exam | Posted | Due Date
 --------------- | ------ | ----------
-[Homework 0](assign/hw0.html) | Fri Jan 23 | Fri Jan 30, 11pm
+[Homework 0](assign/hw0.html) | Fri Jan 23 | Fri Jan 30
+[Homework 1](assign/hw1.html) | Fri Jan 30 | Fri Feb 6
 
 <!--
-[Homework 1](assign/hw1.html) | 9/5 | Friday Sep 12, 11pm
 [Homework 2](https://www.gradescope.com/courses/1070771/assignments/6675631/) | 9/12 | Friday Sep 19, 11pm
 [Homework 3](assign/hw3.html) | 9/19 | Friday Sep 26, 11pm
 [Homework 4](https://www.gradescope.com/courses/1070771/assignments/6785567/) | 9/26 | Friday Oct 3, 11pm
