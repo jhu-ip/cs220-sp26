@@ -46,7 +46,7 @@ There are five options the user may choose from:
 
 * **Option 2: Remove a location:** This option allows the user to remove a location from the set of stored locations. When selected, the user will be prompted to enter a label which must match one of the stored ones. After removal the remaining locations should be in the same relative order they were previously.
 
-* **Option 3: List locations:** This option allows the user to display the entire set of stored locations, including their labels, latitudes, and longitudes. The labels and their corresponding locations should be displayed one per line using the following format. For example, if the label 'B' is stored representing Baltimore with latitude 39.290400 and longitude -76.612200, the line should be displayed as `B: (39.290400, -76.612200)`.
+* **Option 3: List locations:** This option allows the user to display the entire set of stored locations, including their labels, latitudes, and longitudes. The labels and their corresponding locations should be displayed one per line using the following format. For example, if the label 'B' is stored representing Baltimore with latitude 39.290400 and longitude -76.612200, the line should be displayed as `B: (39.290400, -76.612200)`. If this option is chosen when there are no stored locations, the program should display "No locations stored." and then re-display the options menu.
 
 * **Option 4: Compute distance:** This option allows the user to compute the geodesic distance between two stored locations. When selected, the user will be prompted to enter a first and second label, each separately prompted for and validated. The program will then compute the distance between the two locations using the following formula:
 
