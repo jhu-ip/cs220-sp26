@@ -210,7 +210,10 @@ the materials for that week.
       <td><a class='external' target='_blank' href='https://www.youtube.com/watch?v=5VnDaHBi8dM'>Binky the Pointer (Video)</a><br /> 
       <a href='notes/notes-pointers.html'>NOTES: Pointers & Dynamic Memory Allocation</a> (including valgrind)
       </td>
-      <td><code>valgrind --leak-check=full --show-leak-kinds=all</code></td>
+      <td>
+      		<a class='external' target='_blank' href='https://drive.google.com/file/d/1kRgt0744qHAPzvZmWM_LnEwUPmN8R7In/view?usp=drive_link'>Prof. Martin: Writing Robust C Code</a><br />
+      		<a class='external' target='_blank' href='https://drive.google.com/file/d/1gJ3TigAf4DW4uBXS0lSBmqal9ASCX-eE/view?usp=drive_link'>Prof. Martin: Debugging Like a Scientist</a><br />
+      </td>
     </tr>
   </tbody>
 </table>
