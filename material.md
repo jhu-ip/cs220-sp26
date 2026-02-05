@@ -121,9 +121,9 @@ the materials for that week.
   <thead>
     <tr>
       <th></th>
-      <th>Day 6 (3-Feb)</th>
-      <th>Day 7 (5-Feb)</th>
-      <th>Day 8 (7-Feb)</th>
+      <th>Day 6 (2-Feb)</th>
+      <th>Day 7 (4-Feb)</th>
+      <th>Day 8 (6-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -167,17 +167,15 @@ the materials for that week.
 </table>
 </div>
 
-<!--
-
 <button type="button" id="week_4_toggle" class="week_control_button">Week 4 (10-Feb to 14-Feb)</button>
 <div id="week_4" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 9 (10-Feb)</th>
-      <th>Day 10 (12-Feb)</th>
-      <th>Day 11 (14-Feb)</th>
+      <th>Day 9 (9-Feb)</th>
+      <th>Day 10 (11-Feb)</th>
+      <th>Day 11 (13-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -207,13 +205,18 @@ the materials for that week.
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td><a class='external' target='_blank' href='https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf'>GDB Cheat Sheet</a></td>
-      <td><a class='external' target='_blank' href='https://www.youtube.com/watch?v=5VnDaHBi8dM'>Binky the Pointer (Video)</a></td>
+      <td><a class='external' target='_blank' href='https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf'>GDB Cheat Sheet</a><br /> 
+      <a href='notes/notes-storage.html'>NOTES: Storage classes</a> (including gdb)</td>
+      <td><a class='external' target='_blank' href='https://www.youtube.com/watch?v=5VnDaHBi8dM'>Binky the Pointer (Video)</a><br /> 
+      <a href='notes/notes-pointers.html'>NOTES: Pointers & Dynamic Memory Allocation</a> (including valgrind)
+      </td>
       <td><code>valgrind --leak-check=full --show-leak-kinds=all</code></td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<!--
 
 <button type="button" id="week_5_toggle" class="week_control_button">Week 5 (17-Feb to 21-Feb)</button>
 <div id="week_5" class="collapsible">
