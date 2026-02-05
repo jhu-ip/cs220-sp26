@@ -49,9 +49,9 @@ well. You must join the Gradescope course page through Canvas.
 * **October 3** — [Midterm project](assign/midterm.html) is posted.
 * **September 26** — [Homework 4](https://www.gradescope.com/courses/1070771/assignments/6785567/) is posted.
 * **September 19** — [Homework 3](assign/hw3.html) is posted.
-* **September 12** — [Homework 2](https://www.gradescope.com/courses/1070771/assignments/6675631/) is posted.
 -->
 
+* **February 6** — [Homework 2](https://www.gradescope.com/courses/1222412/assignments/7610571/) is posted.
 * **January 30** — [Homework 1](assign/hw1.html) is posted.
 * **January 23** — [Homework 0](assign/hw0.html) is posted.
 * **January 20** — Welcome to Intermediate Programming! Check out Week 1 material under the "Course Material" tab.
