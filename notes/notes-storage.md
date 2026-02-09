@@ -132,7 +132,7 @@ During execution our program variables are stored in different sections of memor
 <ul>
 <li>The <em>stack</em> holds local function variables -- called <em>automatic</em> memory in C. These are freed upon function return - don't try to return an array declared in a function. <code>auto int x;</code> in a function is same as <code>int x;</code> - default is <code>auto</code>.
 	</li>
-<li>The <em>data segment</em> holds global variables (declared outside any function) and static variables. This consists of the <em>heap</em> and <em>registers</em>.
+<li>The <em>data segment</em> holds global variables (declared outside any function) and static variables.
 </li>    <li> The <em>heap</em> holds variables that are dynamically allocated at runtimewith an unbounded lifetime. The programmer explicitly allocates and deallocates this memory - see <a href='notes-pointers'>Notes: Pointers and Dynamic Memory Allocation</a>.
 </li>	<li> Registers are specific positions in memory. The programmer can declare <code>register int x;</code> to suggest <code>x</code> be stored in a register.
 </li></ul>
