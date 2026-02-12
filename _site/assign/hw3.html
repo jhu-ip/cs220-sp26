@@ -1,0 +1,374 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Homework 3</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Homework 3</div>
+
+    <div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<ul>
+<li>You are expected to work individually.</li>
+<li><strong>Due: Fri Feb 20, 11pm (Baltimore time).</strong></li>
+<li><em>This assignment is worth 60 points.</em></li>
+</ul>
+</div>
+</div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<p>To practice with:</p>
+<ul>
+<li>2D arrays</li>
+<li>strings</li>
+<li>file I/O</li>
+<li>command-line arguments</li>
+<li>Makefiles</li>
+<li>program organization</li>
+<li>testing with <code>assert</code></li>
+</ul>
+</div>
+</div>
+
+<div class="admonition danger">
+<div class="title">Individual Assignment</div>
+<div class="content"> <br />
+This is an individual
+assignment. This means you must not show your working code to another
+student, but may discuss with each other the assignment
+requirements and expectations. We strongly recommend utilizing office
+hours for help! You may collaborate with others and/or AI systems on
+*small* snippets of code, not your entire assignment. Remember to
+document these mini-collaborations with comments in your code as
+specified in the syllabus.
+</div>
+</div>
+
+<h3 id="project-scaffolding-starter-code">Project Scaffolding (“Starter Code”)</h3>
+
+<p>In the class public git repository, the folder <code class="language-plaintext highlighter-rouge">/homework/hw3/</code> contains several files you must use as a starting point for this assignment. From within the public repo, type <code class="language-plaintext highlighter-rouge">git status</code> to confirm your local copy is in good shape, then type <code class="language-plaintext highlighter-rouge">git pull</code> to copy this folder. Then copy these files to your personal cs220 repository to begin your work. If you compile the files as posted, you’ll see a number of <code class="language-plaintext highlighter-rouge">unused parameter</code> errors reported, because the files contain incomplete function definitions. As you work on filling in the function definitions, you’ll eventually eliminate these warnings. By the time you submit your code for grading, none of these warnings (or any others) should be reported.</p>
+
+<h3 id="the-problem-best-word-search">The Problem: Best Word Search</h3>
+
+<p>This program will find the valid word (based on a provided word list) in a 2D grid of characters that has the highest total point value, based on Scrabble letter points (https://en.wikipedia.org/wiki/Scrabble_letter_distributions). In order to do this, your program will accept two command-line arguments: the name of a text file containing the character grid and the name of a text file containing words that will be considered valid.</p>
+
+<p>The program only needs to search for words that are contained in one row, in the forward only direction. In this respect the problem is much simpler than a traditional word search in which words may appear in multiple directions and dimensions. However, you have the additional twist of needing to find the highest point word in the grid, without knowing in advance what words the grid contains. Instead your program will need to efficiently search for each possible substring of each row to see if it appears in the word list. If it does, compute the total point value and save this as the best so far if it is higher than any previous words. Ties: in the case of multiple words with the same highest value, the first one found should be the result, where the searching begins from the top row, left-most character.</p>
+
+<p>We have specific requirements detailed below regarding the structure of your solution code (see Implementation Requirements), test code that must be submitted (see Testing) and use of a makefile (see Makefile). Please read through the entire homework description (including Hints) before you begin.</p>
+
+<h3 id="required-program-functionality">Required Program Functionality</h3>
+
+<p>Unless otherwise noted, your program should exit with return value 0.</p>
+
+<p>The program expects two filenames as command-line arguments.
+If either or both are missing, the program should print “Error: program usage requires two files names - grid and word list” to <code class="language-plaintext highlighter-rouge">stdout</code>, advance to the next line, and exit with return value <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<p>If either or both cannot be opened for reading, the program should print “Error: could not open input file” to <code class="language-plaintext highlighter-rouge">stdout</code>, advance to the next line, and exit with return value <code class="language-plaintext highlighter-rouge">2</code>.</p>
+
+<p>A proper grid file contains an initial line with two integers indicating the number of rows (N) and columns (M) in the grid. This is followed by N lines of M lower case alphabet letters each. Note that N and M can be different values but are always less than or equal to 20 (MAX_GRID). You can assume there are no spaces between the letters in a row. Anything below the character grid in the input file can be ignored.</p>
+
+<p>There are only 2 types of invalid grids that your program must detect and report. [Note that many other error conditions may exist, but you are not required to handle them.] In either of the following cases, your program should print “Error: malformed grid file” to <code class="language-plaintext highlighter-rouge">stdout</code>, advance to the next line, and exit with return value <code class="language-plaintext highlighter-rouge">3</code>:</p>
+
+<ul>
+  <li>if the number of rows and columns cannot be read from the first line</li>
+  <li>if any expected letters are missing</li>
+</ul>
+
+<p>Valid words should be read only once from the second text file and stored in your program. Words must be all lower case with at most 15 letters and no spaces. Each line of the file contains a unique word in alphabetical order. You can assume there are at most 500000 words in the file. The program should continue reading words until it reaches the end of the file. Although many different types of errors may occur when collecting this input, your program only needs to detect whether any word is longer than 15 characters. In this case, your program should print “Error: malformed words file” to <code class="language-plaintext highlighter-rouge">stdout</code>, advance to the next line, and exit with return value <code class="language-plaintext highlighter-rouge">4</code>. [Hint: read into a very large string and then copy to your list if valid.]</p>
+
+<div class="admonition info">
+<div class="title">Note</div>
+<div class="content">
+You may assume the contents of the input grid file and the input word list are in lower case!
+</div>
+</div>
+
+<p>For each appearance of a valid word found in the grid, your program should print to <code class="language-plaintext highlighter-rouge">stdout</code> a line of text containing the matched word, the row number of the end of the word, the column number of the end of the word, and the total point value of the word using the format of this example:</p>
+
+<p><code class="language-plaintext highlighter-rouge">--- found word: par with 5 pts ending at 3,2</code></p>
+
+<p>Number the rows and columns shown in the output starting with 0.</p>
+
+<p>If multiple copies of a valid word are present in the grid, the program must report each of them. Also note that some words found may be substrings of longer words on that line, for example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">---</span> <span class="n">found</span> <span class="n">word</span><span class="o">:</span> <span class="n">par</span> <span class="n">with</span> <span class="mi">5</span> <span class="n">pts</span> <span class="n">ending</span> <span class="n">at</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span>
+<span class="o">---</span> <span class="n">found</span> <span class="n">word</span><span class="o">:</span> <span class="n">parse</span> <span class="n">with</span> <span class="mi">7</span> <span class="n">pts</span> <span class="n">ending</span> <span class="n">at</span> <span class="mi">0</span><span class="p">,</span><span class="mi">4</span>
+<span class="o">---</span> <span class="n">found</span> <span class="n">word</span><span class="o">:</span> <span class="n">par</span> <span class="n">with</span> <span class="mi">5</span> <span class="n">pts</span> <span class="n">ending</span> <span class="n">at</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+</code></pre></div></div>
+
+<p>Found words should be reported in order of occurrence of the first letter in the search word, when the grid is read row-by-row from left to right, starting with row 0.</p>
+
+<p>After displaying each new word found, one per line, the program should print an empty line, followed by the overall best word found and its total points using this format:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Best word is parse with 7 points</code></p>
+
+<p>The program must also create an output file that reports on each word found that is better than the previous “best”. The name of the output file must be the same as that of the input file but with “best_” prepended; e.g. if the first command-line argument supplied to the program is “input_grid.txt”, then the output file should be named “best_input_grid.txt”. After listing each new “best” word found, one per line, the program should also display the overall best word and its point value, exactly as it appeared in the standard output (see above). Lastly you must write the character grid to the file, but with the best word CAPITALIZED to make it easy to visually locate.</p>
+
+<p>Note that when reporting a new “best” word, it must only print the best word possible from a particular starting cell in the grid, and only if its point total is higher than the previous best total. You will need to strategically initialize variables in order to find this maximum. For the example above, it wouldn’t report “par” as a best word because “parse” starts in the same location but is better.</p>
+
+<p>We are providing several sample input files, program runs (which include stdout output), and corresponding output files to help you understand these program requirements. Make sure to study them carefully so that you understand the nuances involved. Ask questions in class or on Piazza!</p>
+
+<h3 id="recursion-requirement">Recursion Requirement</h3>
+
+<p>You are required to use recursion when searching the grid for a best word. We have provided a method header to help you structure this search, based on a current position. Here is the method header:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Find best word in grid based on current position [r,c],
+   updating the searched grid to capitalize and the word itself.
+   Parameter list holds the valid words and size is how many are in it.
+   Return the total point value of the word, or 0 if none found.
+*/</span>
+<span class="kt">int</span> <span class="nf">find_best</span><span class="p">(</span><span class="kt">char</span> <span class="n">crnt_grid</span><span class="p">[][</span><span class="n">MAX_GRID</span><span class="p">],</span> <span class="kt">int</span> <span class="n">cols</span><span class="p">,</span> <span class="kt">char</span> <span class="n">word</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">,</span>
+              <span class="kt">char</span> <span class="n">list</span><span class="p">[][</span><span class="n">MAX_LENGTH</span><span class="p">],</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">crnt_grid</code> parameter can be updated with capitalized letters for the best word found at this position. The <code class="language-plaintext highlighter-rouge">cols</code> parameter indicates how many actual columns are used in this character grid. The <code class="language-plaintext highlighter-rouge">word</code> parameter should be used to (recursively) build the longest found word. Note that you will need to undo updates to <code class="language-plaintext highlighter-rouge">crnt_grid</code> and <code class="language-plaintext highlighter-rouge">word</code> when you hit some dead ends during the recursive search. The indices of the current position are indicated by <code class="language-plaintext highlighter-rouge">r</code> and <code class="language-plaintext highlighter-rouge">c</code> (row and column, respectively). The <code class="language-plaintext highlighter-rouge">list</code> contains the list of valid words to use and <code class="language-plaintext highlighter-rouge">size</code> is how many words it holds.</p>
+
+<p>The function should return the total point value of the word that ends at position [r,c]. This is somewhat counter-intuitive because when it is called from main, the current position [r,c] is the start of the search. In that case, the <code class="language-plaintext highlighter-rouge">word</code> should be the empty string. However, as the recursion proceeds, the <code class="language-plaintext highlighter-rouge">word</code> is the longest word found to the left of the current position. In each iteration, the goal is to add the current character to the word if that is still a valid word. Then try to recursively build further by searching one position to the right in the array if you are not at the end of a row.</p>
+
+<p>Here is an algorithm that you can follow.</p>
+
+<pre><code class="language-plain">  // try adding current letter to word                                                 
+
+  // if the resulting word is valid, calculate points &amp; print                          
+
+  // if c is not the last column (implicit base case), try to extend:
+     // recurse using cell to the right                                                
+     // if result is better                                                            
+        // capitalize the current letter                                               
+        // return these better points
+     // otherwise (extend fails) reset extend attempt:
+       // remove next character from word                                              
+       // uncapitalize next character from grid                                        
+
+  // if valid new word ends at r, c:
+    // capitalize current character in grid                                            
+    // return points                                                                   
+  // otherwise undo word inclusion of current character &amp; return 0   
+</code></pre>
+
+<h3 id="examples">Examples</h3>
+
+<p>Here is a list of provided input files, resulting sample runs (terminal output) and created output files. We will also test your solution with other files to cover situations not included in these examples. <strong>It is really important that you study these to understand program operation and also that you follow the output formats exactly as they appear.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grid File</th>
+      <th>Word File</th>
+      <th>Sample Run</th>
+      <th>Output File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>small_grid.txt</td>
+      <td>small_words.txt</td>
+      <td>run_small_small.txt</td>
+      <td>best_small_grid.txt</td>
+    </tr>
+    <tr>
+      <td>tiny_grid.txt</td>
+      <td>small_words.txt</td>
+      <td>run_tiny_small.txt</td>
+      <td>best_tiny_grid.txt</td>
+    </tr>
+    <tr>
+      <td>large_grid.txt</td>
+      <td>clean_large_words.txt</td>
+      <td>run_large_clean.txt</td>
+      <td>best_large_grid.txt</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We have also included sample runs for two error conditions. In these cases an output file may or may not be created. Make sure you understand which conditions they test, since you also must create some distinct error condition checks yourself (see Testing section).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grid File</th>
+      <th>Word File</th>
+      <th>Sample Run</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>small_words.txt</td>
+      <td>small_grid.txt</td>
+      <td>run_words_grid.txt</td>
+    </tr>
+    <tr>
+      <td>small_grid.txt</td>
+      <td>large_words.txt</td>
+      <td>run_small_large.txt</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="implementation-requirements">Implementation Requirements</h3>
+
+<ul>
+  <li>You must use the constants <code class="language-plaintext highlighter-rouge">#define</code>d in the provided header file.</li>
+  <li>You must not use any global (or <code class="language-plaintext highlighter-rouge">extern</code>) variables.</li>
+  <li>
+    <p>Your solution must be split into the three starter files we provide. Specifically: you must implement the functions declared in provided header file <code class="language-plaintext highlighter-rouge">word_funcs.h</code>, coding their definitions in file <code class="language-plaintext highlighter-rouge">word_funcs.c</code>. You are strongly encouraged to add other files to these word_funcs files to further modularize your solution. Your main function must reside in a file named <code class="language-plaintext highlighter-rouge">main.c</code>. Remember to <code class="language-plaintext highlighter-rouge">#include "word_funcs.h"</code> in your <code class="language-plaintext highlighter-rouge">*.c</code> files.</p>
+  </li>
+  <li>Minimally, you must supply functions with exactly the declarations provided for you in scaffolding file <code class="language-plaintext highlighter-rouge">word_funcs.h</code>.</li>
+  <li>
+    <p>You must also declare and define a function to do a binary seach for a word in a list.</p>
+  </li>
+  <li>In addition to the source files mentioned above, you are required to submit additional test situations in a README file, a test program, a working make file, and git log as described below.</li>
+</ul>
+
+<h3 id="testing">Testing</h3>
+
+<p>You are expected to fully test your solution, not only with our provided examples, but also with other examples you create to check its operation in specific cases. For this assignment you must include a README file (plain text, but without any file extension) that describes two error conditions not included in our examples and how you would test to see if your solution handles them correctly.</p>
+
+<p>In addition, you must write and submit a C file named <code class="language-plaintext highlighter-rouge">test_word_funcs.c</code> that will contain a tester <code class="language-plaintext highlighter-rouge">main</code> function and <code class="language-plaintext highlighter-rouge">#include word_funcs.h</code>. This file must have a helper test function to test the declared <code class="language-plaintext highlighter-rouge">points</code> function and another helper test function for the <code class="language-plaintext highlighter-rouge">find_word</code> function you must add. The job of each helper function is to call the corresponding function in <code class="language-plaintext highlighter-rouge">word_funcs.c</code> multiple times to test at least three different situations that each of them will need to handle. Use <code class="language-plaintext highlighter-rouge">assert</code> statements in each tester function to make sure the functions return expected results. Include comments in your code to describe the situations being tested. The main function in <code class="language-plaintext highlighter-rouge">test_word_funcs.c</code> should call each helper test function, and if all the tests pass, output “Passed word function tests!!” on <code class="language-plaintext highlighter-rouge">stdout</code>, advancing to the next line.</p>
+
+<h3 id="makefile">Makefile</h3>
+<p>You must submit a working <code class="language-plaintext highlighter-rouge">Makefile</code> that has a target called <strong><code class="language-plaintext highlighter-rouge">hw3</code></strong> which will be the executable program that is run to test your main program solution. You must also include a target called <strong><code class="language-plaintext highlighter-rouge">test</code></strong> that can be used to execute your test code in <code class="language-plaintext highlighter-rouge">test_word_funcs.c</code>. Create intermediary targets for necessary object files <code class="language-plaintext highlighter-rouge">*.o</code>. Also include a <code class="language-plaintext highlighter-rouge">clean</code> rule to remove <code class="language-plaintext highlighter-rouge">*.o</code> files and the executables <code class="language-plaintext highlighter-rouge">hw3</code> and <code class="language-plaintext highlighter-rouge">test</code>.</p>
+
+<p>To be considered fully functional, your Makefile should correctly build the executables with the appropriate flags when (and only when) one of the relevant source files has changed. The Makefile must be named <code class="language-plaintext highlighter-rouge">Makefile</code> (spelling and case are important).</p>
+
+<h3 id="git-log">Git Log</h3>
+<p>You are expected to use git to backup your progress on this project. Include in your submission a copy of the output of git log showing at least five commits to the repository of code from this assignment, with meaningful commit messages. (You should commit early and often, likely every time you have a version that compiles, so you should probably have many more than five of these). Just before submitting your work, save the output into a file called <code class="language-plaintext highlighter-rouge">gitlog.txt</code> by executing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="o">&gt;</span> gitlog.txt
+</code></pre></div></div>
+
+<h3 id="hints-and-tips">Hints and Tips</h3>
+
+<p>Here are some further hints and tips:</p>
+
+<div class="admonition tip">
+<div class="content">
+<ul>
+<li>Review the in-class exercise from day 7 for hints on writing a recursive binary search when you create and implement a `find_word` function. 
+</li>
+<li>Make use of gdb to help debug your program.</li>
+<li>Write your function tester functions early, rather than waiting until the last minute. Their purpose is to help you catch bugs in the functions early on, so the bugs don't cause problems when used by main. Using this approach as intended will help you track down bugs more easily.</li>
+<li>If in testing your program's output, you want to determine whether two files are identical (e.g. when one file contains your program's actual output and the other contains the expected output) you can use the unix `diff` function: `diff file1 file2` will display symbols, line and character numbers along with the differing characters. Remember you can use the manual pages to get more information on unix commands (`man diff`).  
+</li>
+<li>In addition to writing tests for individual helper functions that are included in your submission, you should always create and utilize "end-to-end" tests for your complete word search as well. By "end-to-end" testing, we simply mean running the entire program and checking if it behaves as desired on a number of different inputs. Your end-to-end tests do not need to be handed in.</li>
+</ul>
+</div>
+</div>
+
+<h3 id="grading">Grading</h3>
+
+<p>The 60 points for this assignment will be applied as follows (tbd):</p>
+
+<ul>
+  <li>submission, including gitlog [4]</li>
+  <li>Makefile [5]</li>
+  <li>testing [5]</li>
+  <li>error handling [5]</li>
+  <li>file input [6]</li>
+  <li>function implementations [18]</li>
+  <li>output found word results to stdout [5]</li>
+  <li>output best results to file [2]</li>
+  <li>output grid with capitalized best word to file [5]</li>
+  <li>style, including appropriate use of functions (modularization) [5]</li>
+</ul>
+
+<h3 id="submission">Submission</h3>
+<p>Your Gradescope submission should contain at least the following files:</p>
+
+<pre><code class="language-plain">* main.c
+* word_funcs.h
+* word_funcs.c
+* test_word_funcs.c
+* README
+* Makefile
+* gitlog.txt
+* any data files created by you that your tester functions require
+</code></pre>
+<p>Create a <em>.zip</em> file named <em>hw3.zip</em> which contains all the requested files mentioned above. (Do not zip your entire hw3 folder - only the files.) Copy the <em>hw3.zip</em> file to your local machine and submit it as Homework 3 on Gradescope.</p>
+
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<br />When you submit, Gradescope conducts a series of automatic tests.  These tests do basic checks like making sure that you submitted the right files and that your `.c` files compile properly.  If you see error messages here (look for red), address them and resubmit. 
+</div>
+</div>
+
+<p>Two notes regarding automatic checks for programming assignments:</p>
+<ul>
+  <li>Passing an automatic check is not itself worth points. (There might be a nominal, low point value like 0.01 associated with a check, but that will not count in the end.) The checks exist to help you and the graders find obvious errors. This will be true for most of the assignments; the actual grades are given manually by the graders, along with comments.</li>
+  <li>The automatic checks cover some of the requirements set out in the assignment, but not all. There will be hidden tests that test edge cases. In general, it is up to you to test your own work and ensure your programs satisfy all stated requirements. Passing all the automatic checks does not necessarily mean you will earn all the points. Also remember that the course staff can <em>not</em> reveal the tests or their outcomes to you.</li>
+</ul>
+
+<div class="admonition tip">
+<div class="title">Tips and Hints</div>
+<div class="content">
+<ul>
+<li>You may re-submit any number of times prior to the deadline; only your latest submission will be graded.</li>
+<li>Review the course syllabus and Piazza for late submission policies.</li>
+</ul>
+</div>
+</div>
+
+<div class="admonition caution">
+<div class="title">No-compile policy</div>
+<div class="content">
+<br />Remember that if your final submitted code does not compile, you will earn a zero score for the assignment.
+</div>
+</div>
+
+<div class="admonition tip">
+<div class="title">Code Styling - Style Matters!</div>
+<div class="content">
+<br />
+You should always make sure that your code has good style. You can look at the coding style guidelines from a course you will take later that also applies to this course: https://jhucsf.github.io/fall2025/resources/style.html In brief, you should make sure that your submission is well formed:
+<ul>
+<li>it is not overcommented or undercommented</li>
+<li>there are no ambiguous variable names </li>
+<li>there is proper/consistent bracket placements and indentation</li>
+<li>there are no global variables</li>
+<li>lines and functions are a reasonable length</li>
+</ul>
+</div>
+</div>
+
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>
