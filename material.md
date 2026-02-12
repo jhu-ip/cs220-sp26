@@ -219,17 +219,15 @@ the materials for that week.
 </table>
 </div>
 
-<!--
-
-<button type="button" id="week_5_toggle" class="week_control_button">Week 5 (17-Feb to 21-Feb)</button>
+<button type="button" id="week_5_toggle" class="week_control_button">Week 5 (16-Feb to 20-Feb)</button>
 <div id="week_5" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 12 (17-Feb)</th>
-      <th>Day 13 (19-Feb)</th>
-      <th>Day 14 (21-Feb)</th>
+      <th>Day 12 (16-Feb)</th>
+      <th>Day 13 (18-Feb)</th>
+      <th>Day 14 (20-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -258,13 +256,20 @@ the materials for that week.
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><a href='notes/notes-pointers.html'>NOTES: Pointers & Dynamic Memory Allocation</a> (includes valgrind)</td>
+      <td><a href='notes/notes-storage.html'>NOTES: Storage Classes</a><br />
+      <a href='notes/notes-Cstructs.html'>NOTES: Struct Definitions</a><br />
+      <a href='notes/notes-Cfunctions.html'>NOTES: Functions</a> (includes rand())</td>
+      <td><a href='notes/notes-C-IO.html'>NOTES: C I/O</a> (includes binary files)<br />
+      <a href='notes/notes-Cbasics.html'>NOTES: C Basics</a> (includes bitwise ops)
+      </td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<!--
+
 <button type="button" id="week_6_toggle" class="week_control_button">Week 6 (24-Feb to 28-Feb)</button>
 <div id="week_6" class="collapsible">
 <table>
