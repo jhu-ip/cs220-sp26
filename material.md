@@ -268,17 +268,15 @@ the materials for that week.
 </table>
 </div>
 
-<!--
-
-<button type="button" id="week_6_toggle" class="week_control_button">Week 6 (24-Feb to 28-Feb)</button>
+<button type="button" id="week_6_toggle" class="week_control_button">Week 6 (23-Feb to 27-Feb)</button>
 <div id="week_6" class="collapsible">
 <table>
   <thead>
     <tr>
       <th></th>
-      <th>Day 15 (24-Feb)</th>
-      <th>Day 16 (26-Feb)</th>
-      <th>Day 17 (28-Feb)</th>
+      <th>Day 15 (23-Feb)</th>
+      <th>Day 16 (25-Feb)</th>
+      <th>Day 17 (27-Feb)</th>
     </tr>
   </thead>
   <tbody>
@@ -304,17 +302,20 @@ the materials for that week.
       <td>Exercise</td>
       <td><a href='exercise/ex15.html'>Exercise 15</a></td>
       <td><a href='exercise/ex16.html'>Exercise 16</a></td>
-      <td><a href='assign/midterm.html'>Midterm Project</a></td>
+      <td><a href='assign/midterm.html'>Midterm Project</a> Coming soon! </td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td></td>
+      <td><a href='notes/notes-Cbasics.html'>NOTES: C Basics</a> (includes typecasting)</td>
       <td></td>
       <td></td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<!--
+
 <button type="button" id="week_7_toggle" class="week_control_button">Week 7 (3-March to 7-March)</button>
 <div id="week_7" class="collapsible">
 <table>
