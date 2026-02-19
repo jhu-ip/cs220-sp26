@@ -173,7 +173,7 @@ We have also included sample runs for two error conditions. In these cases an ou
 
 * You must use the constants `#define`d in the provided header file.
 * You must not use any global (or `extern`) variables.
-* Your solution must be split into the three starter files we provide. Specifically: you must implement the functions declared in provided header file `word_funcs.h`, coding their definitions in file `word_funcs.c`. You are strongly encouraged to add other files to these word_funcs files to further modularize your solution. Your main function must reside in a file named `main.c`. Remember to `#include "word_funcs.h"` in your `*.c` files.
+* Your solution must be split into the three starter files we provide. Specifically: you must implement the functions declared in provided header file `word_funcs.h`, coding their definitions in file `word_funcs.c`. You are strongly encouraged to add other functions to these `word_funcs` files to further modularize your solution. Your main function must reside in a file named `main.c`. Remember to `#include "word_funcs.h"` in your `*.c` files.
 
 * Minimally, you must supply functions with exactly the declarations provided for you in scaffolding file `word_funcs.h`.
 * You must also declare and define a function to do a binary seach for a word in a list.
