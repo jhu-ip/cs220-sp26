@@ -302,7 +302,7 @@ the materials for that week.
       <td>Exercise</td>
       <td><a href='exercise/ex15.html'>Exercise 15</a></td>
       <td><a href='exercise/ex16.html'>Exercise 16</a></td>
-      <td><a href='assign/midterm.html'>Midterm Project</a> Coming soon! </td>
+      <td><a href='assign/midterm.html'>Midterm Project</a></td>
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
@@ -313,8 +313,6 @@ the materials for that week.
   </tbody>
 </table>
 </div>
-
-<!--
 
 <button type="button" id="week_7_toggle" class="week_control_button">Week 7 (3-March to 7-March)</button>
 <div id="week_7" class="collapsible">
@@ -336,19 +334,19 @@ the materials for that week.
     </tr>
     <tr>
       <td>Slides</td>
-      <td><a href='slides/day17_more_linked_lists.pdf'>More Linked lists</a></td>
+      <td><a href='slides/day18_more_linked_lists.pdf'>More Linked lists</a></td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Recap<br>Questions</td>
-      <td><a href='questions/day17.html'>Day 18</a></td>
+      <td><a href='questions/day18.html'>Day 18</a></td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Exercise</td>
-      <td><a href='exercise/ex17.html'>Exercise 17</a></td>
+      <td><a href='exercise/ex18.html'>Exercise 18</a></td>
       <td>Work on midterm project</td>
       <td>Work on midterm project</td>
     </tr>
@@ -362,6 +360,7 @@ the materials for that week.
 </table>
 </div>
 
+<!--
 <button type="button" id="week_8_toggle" class="week_control_button">Week 8 (10-March to 14-March)</button>
 <div id="week_8" class="collapsible">
 <table>
