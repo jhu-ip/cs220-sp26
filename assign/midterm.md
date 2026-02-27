@@ -482,7 +482,7 @@ For each function, it's important to think about precisely what it should do, an
 
 ### Development Plan
 
-Submit your development plan in a plain text file called README.md to Gradescope before the October 10th deadline. As noted above, you can use Markdown formatting to make this look nice. Remember to include all team member full names and JHED IDs in your submission. 
+Submit your development plan in a plain text file called README.md to Gradescope before the March 6th deadline. As noted above, you can use Markdown formatting to make this look nice. Remember to include all team member full names and JHED IDs in your submission. 
 
 ### Midterm Project Partner Evaluation Form
 
@@ -505,7 +505,7 @@ ONE team member should submit your project via Gradescope, adding their partner'
 
 The 150 project points will be divided as follows during grading:
 
-* [10] Development Plan (README file due Friday Oct 10th; separate Gradescope submission)
+* [10] Development Plan (README file due Friday Mar 6th; separate Gradescope submission)
 * [10] Submission (includes gitlog, Makefile, updated README)
 * [10] write_ppm function (in `ppm_io.c`)
 * [15] grayscale function
