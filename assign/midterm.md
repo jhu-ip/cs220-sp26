@@ -238,7 +238,7 @@ This section contains detailed descriptions of the image processing operations t
 ### Grayscale
 
 This is a fairly simple operation, but it does require a little math. Basically, for each pixel, you will calculate a single
- value based on the three color values (red, green and blue), and then assign that same value to all three color channels (if all three color channels have the same value, you know the pixel will show up as some shade of gray). For this program, we will use the NTSC standard conversion formula: *.299 x red .587 x green + .114 x blue*.
+ value based on the three color values (red, green and blue), and then assign that same value to all three color channels (if all three color channels have the same value, you know the pixel will show up as some shade of gray). For this program, we will use the NTSC standard conversion formula: *.299 x red + .587 x green + .114 x blue*.
 (If you look around online, you will discover that there are actually several different formulas that can be used, which result in slightly different results; please use the NTSC version for this assignment.)
 
 <div class='admonition tip'>
