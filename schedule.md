@@ -16,11 +16,11 @@ Assignment/Exam | Posted | Due Date
 [Homework 3](assign/hw3.html) | Fri Feb 13 | Fri Feb 20
 [Homework 4](https://www.gradescope.com/courses/1222412/assignments/7702221/) | Fri Feb 20 | Fri Feb 27
 [Midterm Project](assign/midterm.html) | Fri Feb 27 | Fri Mar 6: Dev Plan 
-| | Wed Mar 25: Code 
-| | Mon Mar 30: Partner Eval
+                                       |            | Wed Mar 25: Code 
+                                       |            | Mon Mar 30: Partner Eval
+Midterm (C material) | N/A | Mon Mar 9 (in section)
 
 <!--
-Midterm (C material) | n/a | Monday Oct 13th, in section
 [Homework 5](assign/hw5.html) | 10/20 | Friday Oct 31, 11pm
 [Homework 6](https://www.gradescope.com/courses/1070771/assignments/7035238/) | 10/31 | Friday Nov 7, 11pm
 [Homework 7](https://jhu-ip.github.io/cs220-f25/assign/hw7.html) | 11/6 | Friday Nov 14, 11pm
