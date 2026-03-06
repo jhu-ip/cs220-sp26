@@ -360,7 +360,6 @@ the materials for that week.
 </table>
 </div>
 
-<!--
 <button type="button" id="week_8_toggle" class="week_control_button">Week 8 (10-March to 14-March)</button>
 <div id="week_8" class="collapsible">
 <table>
@@ -400,13 +399,16 @@ the materials for that week.
     <tr>
       <td>Additional<br>Resources</td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td><a href='notes/notes-CppBasics.html'>NOTES: C++ Basics</a>,
+      <a href='notes/notes-CppIO.html'>NOTES: I/O in C++</a>,
+      <a href='notes/notes-CppStrings.html'>NOTES: C++ string class</a></td>
+      <td><a href='notes/notes-CppSTL.html'>NOTES: STL</a></td>
     </tr>
   </tbody>
 </table>
 </div>
 
+<!--
 <button type="button" id="week_9_toggle" class="week_control_button">Week 9 (24-March to 28-March)</button>
 <div id="week_9" class="collapsible">
 <table>

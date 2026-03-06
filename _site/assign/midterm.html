@@ -279,7 +279,7 @@ it should tell you how many pair of pixels in `checkerboard1.ppm` and `checkerbo
 <h3 id="grayscale">Grayscale</h3>
 
 <p>This is a fairly simple operation, but it does require a little math. Basically, for each pixel, you will calculate a single
- value based on the three color values (red, green and blue), and then assign that same value to all three color channels (if all three color channels have the same value, you know the pixel will show up as some shade of gray). For this program, we will use the NTSC standard conversion formula: <em>.299 x red .587 x green + .114 x blue</em>.
+ value based on the three color values (red, green and blue), and then assign that same value to all three color channels (if all three color channels have the same value, you know the pixel will show up as some shade of gray). For this program, we will use the NTSC standard conversion formula: <em>.299 x red + .587 x green + .114 x blue</em>.
 (If you look around online, you will discover that there are actually several different formulas that can be used, which result in slightly different results; please use the NTSC version for this assignment.)</p>
 
 <div class="admonition tip">
@@ -667,7 +667,7 @@ When implementing this operation, you will need to generate random numbers. Use 
 
 <h3 id="development-plan-1">Development Plan</h3>
 
-<p>Submit your development plan in a plain text file called README.md to Gradescope before the October 10th deadline. As noted above, you can use Markdown formatting to make this look nice. Remember to include all team member full names and JHED IDs in your submission.</p>
+<p>Submit your development plan in a plain text file called README.md to Gradescope before the March 6th deadline. As noted above, you can use Markdown formatting to make this look nice. Remember to include all team member full names and JHED IDs in your submission.</p>
 
 <h3 id="midterm-project-partner-evaluation-form">Midterm Project Partner Evaluation Form</h3>
 
@@ -689,7 +689,7 @@ When implementing this operation, you will need to generate random numbers. Use 
 <p>The 150 project points will be divided as follows during grading:</p>
 
 <ul>
-  <li>[10] Development Plan (README file due Friday Oct 10th; separate Gradescope submission)</li>
+  <li>[10] Development Plan (README file due Friday Mar 6th; separate Gradescope submission)</li>
   <li>[10] Submission (includes gitlog, Makefile, updated README)</li>
   <li>[10] write_ppm function (in <code class="language-plaintext highlighter-rouge">ppm_io.c</code>)</li>
   <li>[15] grayscale function</li>
