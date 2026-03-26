@@ -1,0 +1,378 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Homework 5</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Homework 5</div>
+
+    <div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<ul>
+<li>You are expected to work individually.</li>
+<li>Due: Fri Apr 3 at 11pm (Baltimore time).</li>
+<li>This assignment is worth 70 points.</li>
+</ul>
+</div>
+</div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="admonition success">
+<div class="title">Objectives</div>
+<div class="content">
+<p>To practice with:</p>
+<ul>
+<li>C++ STL containers</li>
+<li>the `string` class</li>
+<li>file I/O</li>
+<li>command-line arguments</li>
+<li>input validation</li>
+</ul>
+</div>
+</div>
+
+<div class="admonition danger">
+<div class="title">Individual Assignment</div>
+<div class="content">
+<p>
+This is an individual assignment. This means you must NOT show your working code to another student, and should discuss with each other only the assignment requirements and expectations. See course staff for coding help.</p>
+</div>
+</div>
+
+<h2 id="overview">Overview</h2>
+
+<div class="admonition caution">
+<div class="title">Caution</div>
+<div class="content">
+<p>
+Before you start working on this homework, make sure you do a `git pull` on the `public` repo to get a copy of the starter code that comes with this assignment. The starter code is very minimal that includes one file only named `wordgen.cpp` and a few text files for testing with.</p>
+</div>
+</div>
+
+<p>The <em>infinite monkey theorem</em> states that given enough time, a monkey typing randomly on a typewriter will eventually produce the complete works of William Shakespeare (or any other literary work, for that matter).  Of course, the length of time one would have to wait for that to occur is rather long; e.g., the universe would probably end before it actually happened.  Although we don’t have time to test the theorem in its original form, we will test a modified theorem involving a more clever typewriter monkey.  This particular monkey has been browsing  books by well-known authors and remembers how often certain letter sequences appear.  Rather than typing purely randomly, the monkey tries to mimic great authors by repeating patterns it has seen before (though it does not understand the actual meaning of anything that it types).  The monkey may still not produce <em>Hamlet</em> itself, but might at least be able to produce something passing as Shakespearean.</p>
+
+<p>More practically, this project will give you experience writing programs using multiple classes, working with STL containers, and performing file I/O in C++.  You should read through the entire handout before proceeding with the project!  Remember to <em>plan</em> your classes and methods before beginning to code!</p>
+
+<p>Consider the following three excerpts of text:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Call me Ishmael.  Some years ago--never mind how long
+precisely--having repeatedly smelt the spleen respectfully, not to
+say reverentially, of a bad cold in his grego pockets, and throwing
+grim about with his tomahawk from the bowsprit?
+
+
+Call me Ishmael.  Some years ago--never mind how long
+precisely--having little or no money in my purse, and nothing
+particular to interest me on shore, I thought I would sail about a
+little and see the watery part of the world.
+
+
+Call me Ishmael, said I to myself.  We hast seen that the lesser man is
+far more prevalent than winds from the fishery.
+</code></pre></div></div>
+
+<p>The second excerpt is the first sentence of Herman Melville’s <em>Moby Dick</em>.  The other two excerpts were generated in Melville’s style using a simple algorithm (Claude Shannon, <em>A mathematical theory of communication</em>).  In this homework, you will implement Shannon’s algorithm, allowing you to programmatically generate text in the style of real authors!</p>
+
+<p>Shannon’s algorithm is based on letter probability distributions.  Imagine
+taking the book <em>Tom Sawyer</em> and determining the probability with
+which each character occurs (we’ll call this a <em>level-0</em> analysis).  You’d 
+probably find that spaces are the most common,
+that the character <code class="language-plaintext highlighter-rouge">e</code> is fairly common, and that the character <code class="language-plaintext highlighter-rouge">q</code> is
+rather uncommon. After completing this analysis, you’d
+be able to produce random <em>Tom Sawyer</em> text based on character
+probabilities by just sampling one character at a time. It wouldn’t have much in common with the real thing,
+but at least the characters would tend to occur in the proper
+proportion. In fact, here’s an example of what you might produce:</p>
+
+<p><strong>Level 0:</strong>  rla bsht eS ststofo hhfosdsdewno oe wee h .mr
+ae irii ela iad o r te u t mnyto onmalysnce, ifu en c fDwn oee iteo</p>
+
+<p>Now imagine doing a slightly more sophisticated
+analysis by determining the probability with which each character
+follows every other character – we’ll call this a <em>level-1</em> analysis. You would probably discover that <code class="language-plaintext highlighter-rouge">h</code>
+follows <code class="language-plaintext highlighter-rouge">t</code> more frequently than <code class="language-plaintext highlighter-rouge">x</code> does, and that a space follows <code class="language-plaintext highlighter-rouge">.</code> more frequently than <code class="language-plaintext highlighter-rouge">,</code> does.  For example, if you are analyzing the text <code class="language-plaintext highlighter-rouge">the theater is their
+thing</code> and considering the letter <code class="language-plaintext highlighter-rouge">h</code>, then <code class="language-plaintext highlighter-rouge">e</code> appears after <code class="language-plaintext highlighter-rouge">h</code> three times, <code class="language-plaintext highlighter-rouge">i</code> appears after
+<code class="language-plaintext highlighter-rouge">h</code> one time, and no other letters ever appear after <code class="language-plaintext highlighter-rouge">h.</code>  So the
+probability that <code class="language-plaintext highlighter-rouge">e</code> follows <code class="language-plaintext highlighter-rouge">h</code> is 0.75 (75%); the probability that <code class="language-plaintext highlighter-rouge">i</code>
+follows <code class="language-plaintext highlighter-rouge">h</code> is 0.25 (25%); the probability that any other letter follows
+<code class="language-plaintext highlighter-rouge">h</code> is 0.</p>
+
+<p>Using a <em>level-1</em> analysis, you could produce some randomly
+generated <em>Tom Sawyer</em> text by picking some character to begin with
+and then repeatedly choosing the next character based on the previous one
+and the probabilities revealed by the original text analysis. Here’s an example:</p>
+
+<p><strong>Level 1:</strong> Shand tucthiney m? le ollds mind Theybooure
+He, he s whit Pereg lenigabo Jodind alllld ashanthe ainofevids tre
+lin–p asto oun theanthadomoere</p>
+
+<p>Now imagine doing a <em>level-k</em> analysis by determining the
+probability with which each character follows every possible sequence
+of characters of length <code class="language-plaintext highlighter-rouge">k</code>. For example, a <em>level-5</em> analysis of <em>Tom Sawyer</em>
+would reveal that <code class="language-plaintext highlighter-rouge">r</code> follows <code class="language-plaintext highlighter-rouge">Sawye</code> more frequently than any other
+character. After such an analysis, you’d be able to produce
+random <em>Tom Sawyer</em> text by always choosing the next character based
+on the previous <code class="language-plaintext highlighter-rouge">k</code> characters and the probabilities
+revealed by the analysis.</p>
+
+<p>At somewhat higher levels of analysis (e.g., levels 5–7), the randomly
+generated text begins to take on many of the characteristics of the
+source text. It probably won’t make complete sense, but you’ll be able
+to tell that it was derived from <em>Tom Sawyer</em> as opposed to, say, <em>Hamlet</em> or <em>Moby Dick</em>. Here are some more <em>Tom Sawyer</em> examples:</p>
+
+<p><strong>Level 2:</strong> “Yess been.” for gothin, Tome oso; ing, in to
+    weliss of an’te cle – armit. Papper a comeasione, and smomenty,
+    fropeck hinticer, sid, a was Tom, be suck tied. He sis tred a
+    youck to themen</p>
+
+<p><strong>Level 4:</strong> en themself, Mr. Welshman, but him awoke, the
+    balmy shore. I’ll give him that he couple overy because in the
+    slated snufflindeed structure’s kind was rath. She said that the
+    wound the door a fever eyes that WITH him.</p>
+
+<p><strong>Level 6:</strong> people had eaten, leaving. Come – didn’t stand it
+    better judgment; His hands and bury it again, tramped herself!
+    She’d never would be. He found her spite of anything the one was a
+    prime feature sunset, and hit upon that of the forever.</p>
+
+<p><strong>Level 8:</strong> look-a-here – I told you before, Joe. I’ve heard
+    a pin drop. The stillness was complete, how- ever, this is awful
+    crime, beyond the village was sufficient. He would be a good
+    enough to get that night, Tom and Becky.</p>
+
+<p><strong>Level 10:</strong> you understanding that they don’t come around in
+    the cave should get the word “beauteous” was over-fondled, and
+    that together” and decided that he might as we used to do – it’s
+    nobby fun. I’ll learn you.”</p>
+
+<p>To summarize the algorithm: given some input text (e.g., the text of <em>Tom Sawyer</em>)
+and the level <code class="language-plaintext highlighter-rouge">k</code> of the desired analysis, we first process the input text and store
+the probabilities of every possible character that follows each <code class="language-plaintext highlighter-rouge">k</code>-length sequence
+encountered in the input text.  Following this analysis, we can generate random text as follows:
+first, pick the first <code class="language-plaintext highlighter-rouge">k</code> letters from the input text to bootstrap the random text (<strong>note: that the previous examples do not include this aspect.</strong>)
+Then, repeatedly choose the next character by looking at the preceding <code class="language-plaintext highlighter-rouge">k</code> characters in the random
+text and selecting randomly given the probability information from the input text analysis.  We can
+continue to select random characters in this way to generate as much output text as desired.</p>
+
+<h2 id="program-specification">Program Specification</h2>
+
+<p>Your program will take three command-line arguments: the file to read, the desired maximum level <code class="language-plaintext highlighter-rouge">k</code>, 
+and the number of characters of text to generate (<code class="language-plaintext highlighter-rouge">n</code>).  Your program should do some basic 
+error checking on the inputs.  If the entered file can’t be read, if the value of <code class="language-plaintext highlighter-rouge">k</code> is 
+invalid (non-numeric, or less than 1), or if the amount of random text is invalid 
+(non-numeric, or less than <code class="language-plaintext highlighter-rouge">k</code>), your program should print an error message to the standard error stream (<code class="language-plaintext highlighter-rouge">cerr</code>) and exit 
+with a non-zero exit code.  Exact error messages and exit codes are up to you.</p>
+
+<p>You are <strong>strongly encouraged</strong>, however, to not do 
+all of this right from the start.  Instead, first write a program that works from just a 
+single input file and uses a constant value of <code class="language-plaintext highlighter-rouge">k</code>. Once that works, generalize it to the more complete scenario.</p>
+
+<p>Your program must perform a <em>level-i</em> analysis for each <code class="language-plaintext highlighter-rouge">i</code> between 1 and <code class="language-plaintext highlighter-rouge">k</code> (inclusive), 
+printing <code class="language-plaintext highlighter-rouge">n</code> characters of text from each analysis, as shown in the examples 
+above.  For example, running your program as <code class="language-plaintext highlighter-rouge">./wordgen text-files/poe.txt 4 75</code> could produce the following output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Level 1: Ond, hengison my  ep he oredre   so  he that Ghe  as  lloristhere Dirr aiey
+~~~
+Level 2: Only and said by hisit gen be whom ingels gre."
+On baciesom tappit ontor e
+~~~
+Level 3: Oncert all me upon agreeing lore blease floor--
+Take the shall me utterely
+~~~
+Level 4: Once it is, and radiant in there still I scarce was unbroken was napping,
+</code></pre></div></div>
+
+<p>Newlines and other space characters are an expected part of the output 
+(as long as your source text also contains them, of course). Thus, to help make the boundaries between each level analysis clear, your program should print a line with three tilde (<code class="language-plaintext highlighter-rouge">~</code>) characters between each different level of output text.</p>
+
+<p>In addition to generating random text, as described above, your program must also support 
+a <code class="language-plaintext highlighter-rouge">-m</code> flag, which replaces the <code class="language-plaintext highlighter-rouge">n</code> value when the program is run (that is, run the program with a command line <code class="language-plaintext highlighter-rouge">./wordgen text-files/poe.txt 4 -m</code>).
+When this flag is used, your program should print out the character distribution map, 
+ in JSON format, as shown in the Hints and Suggestions section below.
+It should do so <em>only</em> for the value of <code class="language-plaintext highlighter-rouge">k</code> provided, rather than all values up to and including <code class="language-plaintext highlighter-rouge">k</code>.</p>
+
+<p>NOTE: The autograder will test your code by parsing the output as JSON and then comparing it against the expected output,
+so indentation and the order of key/value pairs <em>does not matter</em>, but your output must be valid JSON or the autograder
+will have a parse error.  Make sure to <a href="https://jsonformatter.org/json-parser">test it</a> to make sure.  If you’ve not worked with JSON before, the section below shows the character distrubtions of several strings in JSON format.  You can also read a bit more about it online, such as <a href="https://en.wikipedia.org/wiki/JSON#Syntax">here</a> or <a href="https://www.json.org/json-en.html">here</a>.  <strong>There are certain characters that have special meaning in JSON</strong> – things like newlines, quotes, slashes – that without special effort, will cause parse errors.  The autograder will not test your implementation with any of these characters, and you do not need to worry about them here.  We’ll only test “normal” characters (things like letters, numbers, punctuation, spaces, etc) that doesn’t cause problems with the JSON.  When generating random text, your program should still work fine for these characters, however.</p>
+
+<h2 id="hints-and-suggestions">Hints and Suggestions</h2>
+
+<p>As always, you should start with design before you jump into the implementation.  A good way to approach the design is to think about the two stages of the program: first, processing the input text to calculate the probability information (stage #1), and second, using that probability information to generate random text (stage #2).  Thus, your program will need to repeatedly perform the following two operations:</p>
+<ul>
+  <li>Given a string of <code class="language-plaintext highlighter-rouge">k</code> characters and the following (<code class="language-plaintext highlighter-rouge">k+1</code>) character from the input text, update the probabilities in your probability table.  This operation will be used when reading the text input and building the table (stage #1).</li>
+  <li>Given a string of <code class="language-plaintext highlighter-rouge">k</code> characters and using the probabilities previously computed and stored in the table, select the next (i.e., <code class="language-plaintext highlighter-rouge">k+1</code>) character to follow in the generated text.  This operation will be used when generating the output text (stage #2).</li>
+</ul>
+
+<p>After you implement stage #1, we <em>strongly</em> encourage you to test your implementation to make sure that it builds the correct character distributions.<br />
+To do so, you should come up with a <em>small</em> amount of text, with a decent amount of repetition (in order to make frequencies more than just 0s and 1s) 
+and calculate the character distributions <em>by hand</em>.  For instance, you might use the input text <code class="language-plaintext highlighter-rouge">abcdabcbaa</code>.  A level-1 analysis of this text would produce the following distribution:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "a": {
+        "a": 1,
+        "b": 2
+    }, 
+    "b": {
+        "a": 1,
+        "c": 2
+    },
+    "c": {
+        "b": 1,
+        "d": 1
+    },
+    "d": {
+        "a": 1
+    }
+}
+</code></pre></div></div>
+<p>This shows that, after an <code class="language-plaintext highlighter-rouge">a</code>, the input text contained two <code class="language-plaintext highlighter-rouge">b</code>s and one <code class="language-plaintext highlighter-rouge">a</code>.  After a <code class="language-plaintext highlighter-rouge">b</code>, the text contained two <code class="language-plaintext highlighter-rouge">c</code>s and one <code class="language-plaintext highlighter-rouge">a</code>.  Results for <code class="language-plaintext highlighter-rouge">c</code> and <code class="language-plaintext highlighter-rouge">d</code> can be read similarly. [Reminder as mentioned above that the order of the children of each element in this JSON notation will not matter.]</p>
+
+<p>A level-3 analysis of the same text would produce the following distribution:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "abc": {
+        "b": 1,
+        "d": 1
+    },
+    "bcb": {
+        "a": 1
+    },
+    "bcd": {
+        "a": 1
+    },
+    "cba": {
+        "a": 1
+    },
+    "cda": {
+        "b": 1
+    },
+    "dab": {
+        "c": 1
+    }
+}
+</code></pre></div></div>
+
+<p><strong>Note:</strong> the distribution examples above do <strong>not</strong> incorporate the “Special Cases” fix discussed below.</p>
+
+<div class="admonition caution">
+<div class="title">Important Note</div>
+<div class="content">
+<p>
+The program must use container classes from the C++ Standard Template Library (STL) to keep track of character distributions.  You must at least use `std::string` and `std::map`, but you are free to use others as well. Take the time to understand the STL containers; selecting the right ones will make your code cleaner and easier to write and debug.</p>
+</div>
+</div>
+
+<div class="admonition caution">
+<div class="title">Special Cases</div>
+<div class="content">
+One particular complication to note is any situation in which you generate a random `k`-length sequence that has no known following characters.  In 
+particular, this situation can arise if your input ends in a `k`-length sequence 
+that appears nowhere else in the input.  In this case, if you randomly generate this particular `k`-length sequence, 
+the program will have no probability information to decide what character should follow it.  
+A straightforward fix to this problem is to prepend (i.e., add to the beginning) the final 
+`k`-length sequence of the input to itself before processing.  That way, there will never be a unique `k`-length sequence appearing at the end of the input. **NOTE: all subsequences starting in the prepended text of length `k` should appear in the JSON distribution output.** In other words, fully process the updated text with the preprended portion. For the example above, the level-3 analysis would also include distributions for "baa", "aaa", and "aab". 
+</div>
+</div>
+
+<h2 id="git-log">Git log</h2>
+<p>
+In the assignments folder of your private repository, create a new subfolder named `hw5`.  Do your work in that subfolder and use `git add`, `git commit` and `git push` regularly to backup your work as you make progress!</p>
+
+<h2 id="readme">README</h2>
+<p>
+You need to submit a file called `README` (not `README.txt` or `README.md`, etc -- just `README`), including information about additional changes you made (besides the program specification) and anything the graders should know about your submission. In your `README` you should write your Hopkins ID (random 6 character code) at the top of the file, briefly justify the structure of your program; why you defined the functions you did, etc., and if applicable tell the graders if you couldn't do everything.  Where did you stop?  What did you get stuck on?  What are the parts you already know do not work according to the requirements?</p>
+
+<h2 id="specific-requirements">Specific Requirements</h2>
+
+<ul>
+
+<li>Your program must have all the functionality described above.</li>
+<li>You must use `std::cin`, `std::cout`, `std::cerr`, the insertion operator `&lt;&lt;` and the extraction operator `&gt;&gt;` for all input and output.  Don't use `printf`, `scanf` or other C I/O functions.</li>
+<li>Your program should not directly allocate or deallocate any heap memory.  That is, you should not directly call `malloc`, `free`, `realloc`, `calloc`, `new`, `delete` or similar functions.  STL containers or other parts of the C++ library might call these functions, which is fine.</li>
+<li>Your solution should run very quickly, even on large input texts. If your solution is running slowly (more than a couple seconds) think again about whether you are making good use of iterators and the STL containers.</li>
+<li>Factor your code into functions, each function performing a distinct task.  Don't do everything in main.</li>
+<li>All variables must be declared inside functions. No variables should be global or extern.</li>
+<li>Do not use auto.</li>
+<li>Use header guards in all header (.h) files.</li>
+<li>Do not use `using` in header (.h) files.</li>
+<li>In C++ source files (.cpp files), you may import individual symbols using statements like `using std::string`. </li> 
+<li>Do not use `using namespace ID`, either in headers or in source files.</li>
+<li>You do not need to handle or report any errors other than what is mentioned above. </li>
+</ul>
+
+<h3 id="makefile">Makefile</h3>
+
+<div class="admonition caution">
+<div class="title">Important Note</div>
+<div class="content"><p>
+You need to write your own Makefile. Make sure you have defined the target `wordgen` properly to compile your program. We will run `make wordgen` to compile your program and produce an executable named `wordgen`. Failure to comply with this requirement will result in a <strong>zero</strong> score.</p>
+</div>
+</div>
+
+<h3 id="your-submission-to-gradescope">Your submission to Gradescope</h3>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">.zip</code> file named <code class="language-plaintext highlighter-rouge">hw5.zip</code> containing your source/header files, <code class="language-plaintext highlighter-rouge">Makefile</code>, <code class="language-plaintext highlighter-rouge">gitlog.txt</code>, and <code class="language-plaintext highlighter-rouge">README</code>. Do not include any <code class="language-plaintext highlighter-rouge">.txt</code> files  and never submit any executable or object files!</p>
+
+<p>Copy the <code class="language-plaintext highlighter-rouge">hw5.zip</code> file to your local machine (using <code class="language-plaintext highlighter-rouge">scp</code> or <code class="language-plaintext highlighter-rouge">pscp</code>), and submit it to Gradescope. When you submit, Gradescope conducts a series of automatic tests. These do basic checks, e.g. to check that you submitted the right files. If you see error messages (in red), address them and resubmit. You may resubmit any number of times prior to the deadline; only your latest submission will be graded. Review the course syllabus for late submission policies (grace period and late days).</p>
+
+<div class="admonition danger">
+<div class="title">Danger</div>
+<div class="content">
+<p>Remember that if your final submitted code does not compile, you will
+earn a zero score for the entire assignment.</p>
+</div>
+</div>
+
+<div class="admonition info">
+<div class="title">Info</div>
+<div class="content">
+<p>Two notes regarding automatic checks for programming assignments:</p>
+<ul>
+<li>Passing an automatic check is not itself worth points. (There might
+be a nominal, low point value like 0.01 associated with a check, but
+that won’t count in the end.) The checks exist to help you and the
+graders find obvious errors.</li>
+<li>The automatic checks cover some of the requirements set out in the
+assignment, but not all. It is up to you to test your own work and ensure
+your programs satisfy all stated requirements. Passing all the automatic
+checks does not mean you have earned all the points.</li>
+</ul>
+</div>
+</div>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>
