@@ -44,11 +44,12 @@ well. You must join the Gradescope course page through Canvas.
 <!--
 * **November 13** — [Final Project](https://jhu-ip.github.io/cs220-f25/assign/final.html) is posted!
 * **November 6** — [Homework 7](https://jhu-ip.github.io/cs220-f25/assign/hw7.html) is posted!
-* **October 31** — [Homework 6](https://www.gradescope.com/courses/1070771/assignments/7035238/) is posted!
 -->
 
+* **April 2** — [Homework 6](https://www.gradescope.com/courses/1222412/assignments/7930454/) is posted.
+* **April 1** — Final exam location information has been added to syllabus.
 * **March 27** — [Homework 5](assign/hw5.html) is posted.
-* **Reminder:** the midterm exam will be held during class Mon Mar 9.
+* **Reminder** — the midterm exam will be held during class Mon Mar 9.
 * **February 27** — [Midterm project](assign/midterm.html) is posted.
 * **February 20** — [Homework 4](https://www.gradescope.com/courses/1222412/assignments/7702221/) is posted.
 * **February 13** — [Homework 3](assign/hw3.html) is posted.

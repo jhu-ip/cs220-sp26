@@ -20,9 +20,9 @@ Assignment/Exam | Posted | Due Date
                                        |            | Mon Mar 30: Partner Eval
 Midterm (C material) | N/A | Mon Mar 9 (in section)
 [Homework 5](assign/hw5.html) | Fri Mar 27 | Fri Apr 3
+[Homework 6](https://www.gradescope.com/courses/1222412/assignments/7930454/) | Fri Apr 3 | Fri Apr 10
 
 <!--
-[Homework 6](https://www.gradescope.com/courses/1070771/assignments/7035238/) | 10/31 | Friday Nov 7, 11pm
 [Homework 7](https://jhu-ip.github.io/cs220-f25/assign/hw7.html) | 11/6 | Friday Nov 14, 11pm
 [Final Project](assign/final.html) | 11/13 | Fri 11/21 (plan and UML diagram), Fri 12/5 (code, partner eval form) 11pm
 -->
