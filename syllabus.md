@@ -355,7 +355,7 @@ points towards your final grade.
 
 -   7% - final coding project (in teams, due approx. Apr. 27)
 
--   30% - final exam (2pm, May 6, location TBD)
+-   30% - final exam (2pm, May 6, Mudd Hall Room 26)
 
 All scores and grader commentary on your homework and project
 submissions, as well as exams, will be available via Gradescope. Please
