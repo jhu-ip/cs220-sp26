@@ -503,7 +503,6 @@ the materials for that week.
 </table>
 </div>
 
-<!--
 <button type="button" id="week_11_toggle" class="week_control_button">Week 11 (6-April to 10-April)</button>
 <div id="week_11" class="collapsible">
 <table>
@@ -545,12 +544,14 @@ the materials for that week.
     <tr>
       <td>Additional<br>Resources</td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td><a href='notes/notes-templates.html'>NOTES: Function & Class Templates</a></td>
+      <td><a href='notes/notes-polymorphism.html'>NOTES: Inheritance & Polymorphism</a></td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<!--
 <button type="button" id="week_12_toggle" class="week_control_button">Week 12 (13-April to 17-April)</button>
 <div id="week_12" class="collapsible">
 <table>
