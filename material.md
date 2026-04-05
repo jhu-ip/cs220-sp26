@@ -543,7 +543,7 @@ the materials for that week.
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td></td>
+      <td><a href='https://forms.gle/drjSok3MJ9TvSAam7'>Final Project Team Declaration/Team Placement Request Form</a></td>
       <td><a href='notes/notes-templates.html'>NOTES: Function & Class Templates</a></td>
       <td><a href='notes/notes-polymorphism.html'>NOTES: Inheritance & Polymorphism</a></td>
     </tr>
