@@ -10,7 +10,7 @@ title: Homework 5
 <ul>
 <li>You are expected to work individually.</li>
 <li>Due: Fri Apr 3 at 11pm (Baltimore time).</li>
-<li>This assignment is worth 70 points.</li>
+<li>This assignment is graded out of 70 points.</li>
 </ul>
 </div>
 </div>
