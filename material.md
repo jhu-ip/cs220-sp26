@@ -551,7 +551,6 @@ the materials for that week.
 </table>
 </div>
 
-<!--
 <button type="button" id="week_12_toggle" class="week_control_button">Week 12 (13-April to 17-April)</button>
 <div id="week_12" class="collapsible">
 <table>
@@ -594,13 +593,15 @@ the materials for that week.
     </tr>
     <tr>
       <td>Additional<br>Resources</td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><a href='notes/notes-polymorphism.html'>NOTES: Inheritance & Polymorphism</a></td>
+      <td><a href='notes/notes-OOdesign.html'>NOTES: Object Oriented Design</a></td>
+      <td><a href='notes/notes-exceptions.html'>NOTES: Error & Exception Handling</a></td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<!--
 <button type="button" id="week_13_toggle" class="week_control_button">Week 13 (20-April to 24-April)</button>
 <div id="week_13" class="collapsible">
 <table>
