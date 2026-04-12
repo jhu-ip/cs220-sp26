@@ -22,7 +22,5 @@ Midterm (C material) | N/A | Mon Mar 9 (in section)
 [Homework 5](assign/hw5.html) | Fri Mar 27 | Fri Apr 3
 [Homework 6](https://www.gradescope.com/courses/1222412/assignments/7930454/) | Fri Apr 3 | Fri Apr 10
 [Homework 7](assign/hw7.html) | Fri Apr 10 | Fri Apr 17
-
-<!--
-[Final Project](assign/final.html) | 11/13 | Fri 11/21 (plan and UML diagram), Fri 12/5 (code, partner eval form) 11pm
--->
+[Final Project](assign/final.html) | Mon Apr 13 | Sun Apr 19: Dev Plan and UML
+                                   |            | Mon Apr 27: Code and Partner Eval

@@ -1,0 +1,481 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>EN.601.220: Final Project</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Liberation+Mono' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/intprog.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <script type="text/javascript" src="/js/intprog.js"></script>
+</head>
+
+<body>
+  <div id="navbar_container">
+    <ul id="navbar">
+      <li><a id="navbar_home" href="/index.html">CS220@JHU</a></li>
+      <li><a id="navbar_syllabus" href="/syllabus.html">Syllabus</a></li>
+      <li><a id="navbar_staff"
+      href="/staff.html">Staff Office Hours</a></li>
+      <li><a id="navbar_material" href="/material.html">Course Material</a></li>
+      <li><a id="navbar_schedule" href="/schedule.html">Assessments</a><li>
+      <li><a id="navbar_resources" href="/resources.html">Resources</a></li>
+    </ul>
+    <hr id="headerSep">
+  </div>
+
+  <div id="content">
+    <div id="pageTitle"><img id="cpp_logo" alt="C++ logo" src="/img/logo_cpp.svg">Final Project</div>
+
+    <div class="admonition caution">
+<div class="title">Important Details</div>
+<div class="content">
+<ul>
+<li>You are expected to work in a team of three.</li>
+<li>Deadlines (Baltimore time):</li>
+<ul>
+<li><strong>Development Plan &amp; UML Diagram: Sun Apr 19 at 11pm.</strong></li>
+<li><strong>Implementation: Mon Apr 27 at 11pm.</strong></li>
+<li><strong>Partner Evaluation Form: Mon Apr 27 at 11:59pm.</strong></li>
+</ul>
+<li>This assignment is worth 165 points.</li>
+<li>No late days may be used!</li>
+</ul>
+</div>
+</div>
+
+<h2 id="quick-links">Quick Links</h2>
+
+<p><a href="#the-game">Rules of Chess</a></p>
+
+<p><a href="#implementation-details">Implementation Details</a></p>
+
+<p><a href="#code-submission-team">Code Submission</a></p>
+
+<p><a href="#additional-deliverables">Additional Deliverables</a></p>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+
+<p>This project is intended for you to utilize techniques we’ve learned throughout the course, with a focus on object-oriented design in C++.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>You will work in your team of two or three people to implement a version of the board game chess in C++.  This is an exercise both in object-oriented design and in the proper application of the programming techniques we’ve learned throughout the course.  A portion of your grade will be based on the merits of your design, including reducing code duplication. Your code must be well documented and tested, with all memory leaks eliminated.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<h3 id="register-or-request-a-team">Register or request a team</h3>
+
+<p>You will be working in teams of two or three students (strictly). If you have not yet done so, use the already-published team registration form to register your team or request partners (do <strong>not</strong> submit the form multiple times.) Read the form instructions carefully before completing it.</p>
+
+<h3 id="set-up-your-final-project-git-repository">Set up your final project git repository</h3>
+
+<p>You will be invited to a private repo under your repositories on GitHub. If your team was assigned by course staff, you will also receive a private post from us about your assigned partners on Piazza. You should reply to the post to exchange your contact information with your teammates and let us know all members are connected.</p>
+
+<p>Once you have access to the group repo, you should clone it to your ugrad Unix account (and optionally local machine) the same way you cloned your personal repo in Ex2 Part 4.</p>
+
+<div class="admonition tip">
+<div class="title">Good Practices</div>
+<div class="content">
+If you have opted to use <a href="/docs/resources/github-ssh">SSH authentication</a>, remember to clone it with the `git@` link. Otherwise, you should use the `https://` one.
+</div>
+</div>
+
+<h3 id="get-the-starter-files-from-the-course-public-repo">Get the starter files from the course public repo</h3>
+
+<ol>
+  <li>
+    <p>Use <code class="language-plaintext highlighter-rouge">cd</code> to move into the course public repo on your unix account, type <code class="language-plaintext highlighter-rouge">git status</code> and confirm you have not modified any files or accidentally committed to the public repo. Ask for help, if you need to undo those accidental changes.</p>
+  </li>
+  <li>
+    <p>Type <code class="language-plaintext highlighter-rouge">git pull</code> to synchronize your local repo with the remote repo.</p>
+  </li>
+  <li>
+    <p>You should see a new directory, <code class="language-plaintext highlighter-rouge">project/final</code>, which contains the starter code and example files.</p>
+  </li>
+  <li>
+    <p>Clone the final project repo (created for you by course staff) and use <code class="language-plaintext highlighter-rouge">cd</code> to move into the folder created.</p>
+  </li>
+  <li>
+    <p>Copy to your location the files found in <code class="language-plaintext highlighter-rouge">project/final</code>. Type <code class="language-plaintext highlighter-rouge">git status</code> and confirm you see all the starter files.</p>
+  </li>
+  <li>
+    <p>Do your first commit to add the starter files to the repo and push them to the remote repo. You can do so by running <code class="language-plaintext highlighter-rouge">git add .</code>, <code class="language-plaintext highlighter-rouge">git commit -m "initialized with starter files"</code>, and <code class="language-plaintext highlighter-rouge">git push</code>.</p>
+  </li>
+</ol>
+
+<p>Your final repo is now ready for development!</p>
+
+<div class="admonition caution">
+<div class="title">Reminder</div>
+<div class="content">
+Only one team member needs to set up the repo when it is the first use. Once it has been set up, the partners can get the starter files directly by cloning the remote repo or synchronizing their local repositories (`pull`).
+</div>
+</div>
+
+<p>You will now work in a team. You may encounter conflicts more often when you push your code from local to remote. This happens when your teammates have changed the same files and same segments as you have done. If it happens, you will need to resolve the conflicts, compile, and test your code before committing the conflict-resolved version. Typically you will see something like below in the file that has a conflict:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This is how the file in the current remote (github) repo looks
+
+=======
+This is how the file in your local repo looks
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;a commit id&gt;
+</code></pre></div></div>
+
+<p>To resolve the conflict, you need to decide which version to use or how they should be merged. To minimize the conflicts, you should</p>
+<ul>
+  <li>Communicate with your teammates to avoid editing a file at the same time,</li>
+  <li>Always sync with the remote (pull) before you start working, and</li>
+  <li>Commit and push often.</li>
+</ul>
+
+<h3 id="development-plan">Development Plan</h3>
+
+<p>This project is similar to or even somewhat larger than the midterm project and having teammates to help means that you can all benefit from your teammates’ expertise, but also need to plan more carefully.  Thus, as part of this project, you are expected to create a <strong>development plan</strong> to keep track of tasks that need to be completed.  We suggest the following process:</p>
+
+<ul>
+  <li>
+    <p>Start by brainstorming the tasks that are required to complete the project successfully.  The sections below detail the functionalities that your project is required to support, and some requirements regarding how you should break these down into individual files.  These functionalities and files are a good starting point – but, they may need to be broken down into smaller tasks.  Make sure you consider testing as well!  You do <strong>not</strong> want to turn in a project that has not been tested!</p>
+  </li>
+  <li>
+    <p>Consider the relative difficulty of tasks.  Some of the functionalities are expected to be considerably easier than others.  How much easier?  That’s up for you and your partner(s) to discuss.  Header files are likely to be relatively small tasks, particularly in comparison to the actual implementation.  We are not expecting you to come up with exact estimates here.  Instead, try to identify (approximate) relative difficulties.</p>
+  </li>
+  <li>
+    <p>Estimate <em>task dependencies</em>.  What tasks depend on each other?  For each task that you complete, what new tasks can now be completed?  Do you think that any of the other functions you’re supposed to implement depend on each other?  If so, how?</p>
+  </li>
+  <li>
+    <p>Assign owners and deadlines.  Based on the tasks, difficulties, and dependencies you estimated above, figure out a reasonable plan for who is going to get what done, and when.  Try to make sure that each member on your team has approximately the same amount of work.  Prioritize tasks that many other tasks depend on, so that you don’t end up with a bottleneck later on where many tasks are all blocked waiting on one to be completed.  Having deadlines helps you and your partner(s) hold yourselves accountable, and makes sure that you don’t end up with too much work pushed towards the latter end of the project.</p>
+  </li>
+</ul>
+
+<p>After completing these steps, record your development plan in the README.md file of your team’s repository.  For each task, list the task name, difficulty, dependencies, owner, due date, and status.  We suggest that you use a <a href="https://www.tablesgenerator.com/markdown_tables">Markdown Table</a> to keep all of the tasks nicely formatted, just like what you did for the midterm project.  You should keep your development plan consistently updated – after all, a plan that doesn’t match reality doesn’t do much to help everyone see where the project stands.</p>
+
+<p>We expect your development plan to contain <em>at least 15</em> tasks, but you are welcome to add more if it makes sense to you.  Please keep tasks ordered by due date, so it’s easier for everyone (and particularly you!) to make sure you’re staying on schedule.</p>
+
+<p>The content of the development plan is largely in your hands. You should rigorously test your code, but you are not required to hand in specific tests with your submission. Beyond that, it is largely up to you how to structure your project, and in what order to implement features, but you <strong>must take a modular approach</strong>, and make proper use of object-oriented programming!</p>
+
+<p>We recommend that you break your code into several files, and have as little code as possible in your <code class="language-plaintext highlighter-rouge">main</code> function (and more broadly, in the <code class="language-plaintext highlighter-rouge">.cpp</code> file that houses it).</p>
+
+<div class="admonition tip">
+<div class="title">Good Practices</div>
+<div class="content">
+<p>Aim to write small, clean helper functions for better readability and easier testing, as well as greater reusability. Then, make a plan for what order you will implement the modules in. You will also want to test your modules; it's a good idea to use test-driven design, which means that you will design tests for your functions before you actually start trying to write the functions themselves.</p>
+</div>
+</div>
+
+<p>For each class and the methods defined in it, it’s important to think about precisely what they should do, and also how you can test them to be sure they are doing what you want. It would be a good idea to write unit tests with <code class="language-plaintext highlighter-rouge">assert</code> statements, but we do not require you to do so.  But, in either case, you ultimately need to run the program you write numerous times and test its different functionalities.</p>
+
+<h3 id="uml-diagram-team">UML Diagram (Team)</h3>
+
+<p>Create a simplified UML diagram that represents all the classes and their relationships in this final project. Use the format of the examples in the OO Design &amp; UML Diagrams lesson. Here, each class name should appear in a rectangle. Use arrows from each derived class to its base class to indicate an inheritance relationship. Use diamonds at each containing class with a line to the class it contains. You are not expected to include class members in the diagram, but you may if that aids your understanding.</p>
+
+<p>You should create the UML diagram <em>before writing any code</em> to help yourselves visualize and keep track of this large class hierarchy. You can create your diagram with any common document program such as Microsoft Word, PowerPoint, or Google Docs. (Hand-drawn diagrams are not acceptable.) You must save and submit your UML diagram in a pdf file named <code class="language-plaintext highlighter-rouge">chessUML.pdf</code>.</p>
+
+<h2 id="the-game">The Game</h2>
+
+<h3 id="chess-rules">Chess Rules</h3>
+
+<p>A description of the official rules of chess can be found <a class="external" target="_blank" href="https://www.chess.com/learn-how-to-play-chess">here</a>, but we give the main points of the game below, with some adjustments specific to this project.</p>
+
+<h3 id="game-setup">Game Setup</h3>
+
+<ul>
+  <li>The board is a single 2D 8 x 8 grid.</li>
+  <li>There are two players, a white piece player and a black piece player.</li>
+  <li>The board is always oriented so that the starting position of the white pieces is at the bottom, and the starting position of the black pieces is at the top.</li>
+  <li>There are six types of pieces in chess: king (denoted here with K or k), queen (Q/q), bishop (B/b), knight (N/n), rook (R/r) and pawn (P/p). Upper-case letters indicate the white pieces, while lower-case letters denote the black pieces.</li>
+  <li>Each player begins the game with 1 king, 1 queen, 2 bishops, 2 knights, 2 rooks, and 8 pawns.</li>
+  <li>At the start of the game, pieces are placed <a href="https://www.chess.com/article/view/how-to-set-up-a-chessboard">as shown here</a>.</li>
+  <li>The person playing white starts the game by making the first move, then players alternate moves until the game ends.</li>
+</ul>
+
+<h3 id="general-movement-of-pieces">General Movement of Pieces</h3>
+
+<p>When it is their turn, a player may move exactly ONE of their pieces according to the following movement rules, provided that</p>
+
+<ol>
+  <li>the piece does not land on a square already occupied by another piece belonging to that <em>same</em> player, and</li>
+  <li>the move does not cause the player to enter a <em>checked</em> position (defined below).</li>
+</ol>
+
+<p>Movement rules:</p>
+<ul>
+  <li>A king may move in any direction, including diagonally, but may only move one square.</li>
+  <li>A queen may move any number of spaces in one direction, including diagonally. A queen may not move through other pieces.</li>
+  <li>A bishop may move diagonally only but may move any number of spaces. A bishop may not move through other pieces.</li>
+  <li>A knight may move in an <a href="https://en.wikipedia.org/wiki/Knight_(chess)#Movement">L-shape</a>, of length either two-by-one or one-by-two. The knight is the only piece that is not stopped by other pieces in its way (i.e. it <em>can</em> move through other pieces to get to an open square).</li>
+  <li>A rook may move any number of squares, but only along a horizontal or vertical line on the board. A rook may not move through other pieces.</li>
+  <li>A pawn can move only forward towards the opponent’s side of the board, but with restrictions. On its first move of the game, a pawn may move forward either one or two squares; on subsequent moves, a pawn may only move forward one square. A pawn may not move through other pieces. Furthermore, the pawn may not use a forward move to land in a square that is occupied by any player’s piece.  In a separate type of action, a pawn may make a special move to “capture” an opponent piece (discussed below). (Finally, in official chess, the pawn sometimes has another move option called <em>en passant</em>. This is a fairly advanced rule, and we won’t implement it in our game.)</li>
+</ul>
+
+<p>The rules are also summarized in the following image. Note that the pawn has distinct ways of moving (x’s) and capturing (circles):</p>
+
+<p><img src="/img/final/chess.jpg" alt="Chess Moves" /></p>
+
+<p>From: <a href="https://alchetron.com/Tron/CHESS-The-Games-for-the-Brain-576-UW#-">Alchetron.com, “Chess: The Games for the Brain”</a></p>
+
+<h3 id="capture">Capture</h3>
+
+<p>If any piece other than a pawn moves according to the movement rules above, and ends up in a square occupied by a piece owned by the opposing player, then the opponent’s piece is “captured” and removed from the board for the remainder of the game.</p>
+
+<p>Pawns have different shapes for normal movement versus for capturing. Pawn <em>movement</em> is always forward (one or two squares, depending on the original position), whereas <em>pawn capturing</em> is always diagonal. See <a href="https://en.wikipedia.org/wiki/Pawn_(chess)#Capturing">here</a>.</p>
+
+<h3 id="special-movement-of-pieces">Special Movement of Pieces</h3>
+
+<p>During gameplay, if a pawn ever reaches the last row of the board (the opposite side from its starting position), it immediately becomes a queen.  This is called piece promotion. <a href="https://en.wikipedia.org/wiki/Pawn_(chess)#Promotion">See here</a>. (Actually, in standard chess, the player who owns the pawn gets to select to what type of piece they wish to upgrade, but nearly everyone selects queen, so we’ll just make that the requirement.)</p>
+
+<p>In standard chess, players are also permitted two special moves named <a href="https://en.wikipedia.org/wiki/Castling">castling</a> and <a href="https://en.wikipedia.org/wiki/Pawn_(chess)#Capturing">en passant</a>. In this project, these moves are explicitly disallowed. (They are quite complicated to implement.)</p>
+
+<h3 id="checked-positions-checkmate-and-end-of-game-situations">Checked Positions, Checkmate and End-of-Game Situations</h3>
+
+<ul>
+  <li>If a king is ever threatened by any piece of the opposing player in such a way that a single move by the opponent could result in the king’s immediate capture, this is considered a <em>checked position</em>. Getting out of a checked position is the highest priority for the player who is checked — while a player is in a checked position, their only option is to make a move that gets the king out of danger; no other move is permitted. (This can be done either by moving the king out of check or blocking the check with another piece or capturing the checking piece of the opponent.)</li>
+  <li>No player is permitted to make a move that places himself or herself in a checked position. This includes a player moving their king into danger, but also includes moving out of the way a piece which had been sheltering the king, leaving the king unprotected. This rule means that a player can only be checked by a move made by the opposing player.</li>
+  <li>If a player is checked, and the checked player has no way of removing the check condition, this is called a <em>checkmate</em>, and the checking player is declared the winner of the game. The overall goal of a player is thus to checkmate the opposing player.</li>
+  <li>If any player is not in a checked position but has no legal moves available, the game is declared a stalemate. The game ends without a winner.</li>
+</ul>
+
+<div class="admonition tip">
+<div class="title">Hint</div>
+<div class="content">
+Note: To determine if it is a check or checkmate, <b>a brute-force approach to check all possible moves is enough. You don't need to implement any sophisticated algorithm.</b>
+</div>
+</div>
+
+<h3 id="hints-for-implementing-game-rules">Hints for Implementing Game Rules</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">make_move</code> member function in the <code class="language-plaintext highlighter-rouge">Game</code> class is required to determine whether or not the move being proposed is legal. This includes checking whether the shape of the move is legal, and separately (for applicable piece types) whether the path along the move is clear. (Note that <code class="language-plaintext highlighter-rouge">legal_move_shape</code> should <em>only</em> check the ending position, not the full path. In particular, the <code class="language-plaintext highlighter-rouge">Mystery</code> piece’s <code class="language-plaintext highlighter-rouge">legal_move_shape</code> will not check if the path is clear.)</p>
+
+<p>One important aspect of determining whether a move is legal is checking whether the move would place the player’s king in check.  One fairly straightforward way to do this is to create a copy of the current game state (i.e., a replica <code class="language-plaintext highlighter-rouge">Game</code> object), carry out the proposed move, and then determine whether the player’s king is in check in the replica. This approach avoids the need to implement special-purpose logic to determine whether the player’s king <em>would be</em> in check.</p>
+
+<h3 id="hints-for-iterating-the-board">Hints for Iterating the Board</h3>
+
+<p>To iterate the board, you can iterate each <code class="language-plaintext highlighter-rouge">Position</code> (<code class="language-plaintext highlighter-rouge">std::pair&lt;char, char&gt;</code>) where the pair has its first value in {‘A’,’B’,’C’,’D’,’E’,’F’,’G’,’H’} and second in {‘1’,’2’,’3’,’4’,’5’,’6’,’7’,’8’}. It will be helpful and better to have an iterator class (<code class="language-plaintext highlighter-rouge">Board::iterator</code>) that encapsulates the board iteration logic. Instead of copying the iteration logic all over the place, you should use the standard iterator for loop to traverse each square of the board e.g.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="n">Board</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">board</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">board</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// *it should return you the position of the current square on the board</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="user-interface">User Interface</h2>
+
+<p>To launch the program, the user will type <code class="language-plaintext highlighter-rouge">./chess</code> at the command line, optionally followed by a filename command-line argument. If a filename is supplied on the command-line, then upon completion of the game (checkmate or stalemate) or if the user elects to quit playing a game that hasn’t ended yet, the current status of the game should always be output to the specified file. If no filename is specified, no output is written, and no output file is created. This is independent of the user selecting the ‘S’ave operation below.</p>
+
+<p>Once the program is running, a chess game using the default chess board is created, and the user is presented with a list of possible actions as follows:</p>
+
+<ul>
+  <li>? — display the list of actions</li>
+  <li>Q — quit the game</li>
+  <li>L &lt;filename&gt; — load a game from the specified file</li>
+  <li>S &lt;filename&gt; — save the current game to the specified file</li>
+  <li>M &lt;move&gt; — try to make the specified move, where &lt;move&gt; is a four-character string giving the column (‘A’-‘H’) (must be an upper case to be valid!) and row (‘1’-‘8’) of the start position, followed by the column and row of the end position.</li>
+</ul>
+
+<p>Note that your program should work for both upper-case and lower-case action user input.</p>
+
+<p>Prior to the user selecting an action, the current state of the board is presented to the user on standard output. The user can repeatedly enter one of the above action specifiers until the program ends, which happens when the game reaches checkmate or stalemate, or the user elects to quit.</p>
+
+<p>Sample Runs are linked here with interactive user input shown (in bold) interleaved with program output.</p>
+<ul>
+  <li><a href="chess_sample1.html">Sample run #1</a></li>
+  <li><a href="chess_sample2.html">Sample run #2</a></li>
+  <li><a href="chess_sample3.html">Sample run #3</a></li>
+</ul>
+
+<p><strong>Note</strong> Your board does not need to look exactly like ours - see Customizing the Board Style below. We just illustrate one possibility for how you might format things so that the game state and prompts are clear.</p>
+
+<p>The format of the game board may look wonky in the sample files above due to the size of the chess pieces relative to empty game spaces, so the following image better illustrates a properly-formatted sample board:</p>
+
+<p><img src="/img/final/chess-game.png" alt="Chess Board -- one pawn moved" /></p>
+
+<h3 id="exception-handling">Exception Handling</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">main.cpp</code>, you will note a <code class="language-plaintext highlighter-rouge">TODO</code> comment where <code class="language-plaintext highlighter-rouge">operator&gt;&gt;</code> is used to load the game from a file. The <code class="language-plaintext highlighter-rouge">operator&gt;&gt;</code> should throw an <code class="language-plaintext highlighter-rouge">Exception</code> if it fails to load the game for any file I/O error, or any formatting issue. You should add exception handling code using <code class="language-plaintext highlighter-rouge">try</code> and <code class="language-plaintext highlighter-rouge">catch</code> to catch this exception, print the error message (using <code class="language-plaintext highlighter-rouge">what()</code>) to <code class="language-plaintext highlighter-rouge">std::cerr</code>, and terminate the program with return code <code class="language-plaintext highlighter-rouge">-1</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">make_move</code> member function of the <code class="language-plaintext highlighter-rouge">Game</code> class is responsible for carrying out a move specified by the user.</p>
+
+<p>If the requested move is illegal (according to the game rules described above), <code class="language-plaintext highlighter-rouge">make_move</code> should throw an <code class="language-plaintext highlighter-rouge">Exception</code>.  (<code class="language-plaintext highlighter-rouge">Exception</code> is an exception class defined in <code class="language-plaintext highlighter-rouge">Exceptions.h</code>.)  When an exception is thrown, use code of the following form:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">throw</span> <span class="nf">Exception</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">message</code> is one of the following messages:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>start position is not on board
+end position is not on board
+no piece at start position
+piece color and turn do not match
+illegal move shape
+cannot capture own piece
+illegal capture shape
+path is not clear
+move exposes check
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">main.cpp</code>, you will note a <code class="language-plaintext highlighter-rouge">TODO</code> comment where the <code class="language-plaintext highlighter-rouge">make_move</code> member function is called.  You should add exception handling code using <code class="language-plaintext highlighter-rouge">try</code> and <code class="language-plaintext highlighter-rouge">catch</code> so that if <code class="language-plaintext highlighter-rouge">make_move</code> throws an <code class="language-plaintext highlighter-rouge">Exception</code>, an error message of the form</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Could not make move: message
+</code></pre></div></div>
+
+<p>is printed to <code class="language-plaintext highlighter-rouge">std::cerr</code>, where <code class="language-plaintext highlighter-rouge">message</code> is one of the error messages listed above. <strong>Important</strong>: make sure that the error message is printed <em>exactly</em> as specified above.</p>
+
+<p>An attempt to make an illegal move should not change the game state in any way.  So, if an illegal move is entered, the exception thrown by <code class="language-plaintext highlighter-rouge">make_move</code> is caught and handled (by printing the error message), and the user will have an opportunity to continue the game by entering a legal move.</p>
+
+<p>In addition, the <code class="language-plaintext highlighter-rouge">add_piece</code> member function of the <code class="language-plaintext highlighter-rouge">Board</code> class should also throw an <code class="language-plaintext highlighter-rouge">Exception</code> when it fails to add a piece to the board. These situations include:</p>
+
+<ul>
+  <li>An invalid piece designator is provided. An exception with an error message “invalid designator” should be thrown.</li>
+  <li>The specified position is not on the board. An exception with an error message “invalid position” should be thrown.</li>
+  <li>The specified position is already occupied on the board. An exception with an error message “position is occupied” should be thrown.</li>
+</ul>
+
+<h3 id="file-format-for-loadingsaving-games">File Format for Loading/Saving Games</h3>
+
+<p>The format of a file specifying a game contains nine lines. The first eight lines in the file indicate the contents of row 8 down through row 1. In each of these first 8 rows, there are 8 characters present before a newline, one character per column from ‘A’ through ‘H’.  The special symbol ‘-‘ is used to denote an empty location on the board, while the standard single-character piece designators represent each piece present on the board. Finally, on the ninth line, there is a single character which is one of ‘w’ or ‘b’, where ‘w’ denotes the player with white pieces and ‘b’ denotes the player with black pieces. For files representing in-progress games, this character indicates which player’s turn is next, but in the case of a game that has reached checkmate or stalemate, the letter on the ninth line will indicate the player whose turn it was when the game ended.</p>
+
+<p>In your code, the program may fail to load the game. If it happens, it will be handled by exceptions.  Refer to the <a href="#exception-handling">Exception Handling</a> section for details.  After successfully loading the game, the <code class="language-plaintext highlighter-rouge">main</code> function will assert if it is a valid game by calling <code class="language-plaintext highlighter-rouge">is_valid_game()</code>.</p>
+
+<p>In the public course repository’s <code class="language-plaintext highlighter-rouge">project/final</code> directory, we have provided several example files (<code class="language-plaintext highlighter-rouge">stalemate.txt</code>, <code class="language-plaintext highlighter-rouge">checkmate.txt</code>, <code class="language-plaintext highlighter-rouge">check.txt</code>) illustrating different important game situations. Your program should be able to load in these files and report the conditions they represent.</p>
+
+<p>Additionally, we have supplied you with several files (<code class="language-plaintext highlighter-rouge">mate_in_two.txt</code> and <code class="language-plaintext highlighter-rouge">promotion_to_mate.txt</code>) indicating series of moves that a user might enter interactively while running the program. (The additional file <code class="language-plaintext highlighter-rouge">pre_promotion.txt</code> is utilized if commands in <code class="language-plaintext highlighter-rouge">promotion_to_mate.txt</code> are executed.) You are encouraged to use <code class="language-plaintext highlighter-rouge">cat</code> and the Unix pipe operator (<code class="language-plaintext highlighter-rouge">|</code>) to run these commands from the command line and then to check your program’s output. You should also, of course, create and utilize other tests as you are developing your code.</p>
+
+<h2 id="implementation-details">Implementation Details</h2>
+
+<p>In the public course repository’s <code class="language-plaintext highlighter-rouge">project/final</code> directory, we have supplied you with the following starter files, at the top of which you must add comments giving the names and JHED IDs of each of your team members, and which you may further modify as needed except where indicated:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Piece.h</code> (do not modify this file) — contains the definition of an abstract class named <code class="language-plaintext highlighter-rouge">Piece</code> which represents a chess piece. This class is fully implemented in <code class="language-plaintext highlighter-rouge">Piece.h</code> (so there is no need for a file named <code class="language-plaintext highlighter-rouge">Piece.cpp</code>). It contains three pure virtual functions which must be implemented in each subclass of <code class="language-plaintext highlighter-rouge">Piece</code> (two provided in various subclasses).</li>
+  <li><code class="language-plaintext highlighter-rouge">King.h</code>, <code class="language-plaintext highlighter-rouge">Queen.h</code>, <code class="language-plaintext highlighter-rouge">Rook.h</code>, <code class="language-plaintext highlighter-rouge">Knight.h</code>, <code class="language-plaintext highlighter-rouge">Bishop.h</code>, <code class="language-plaintext highlighter-rouge">Pawn.h</code> — contain, respectively, class definitions of subclasses of <code class="language-plaintext highlighter-rouge">Piece</code> representing various specific chess pieces. You may modify these files as needed, including by changing the stub (incomplete) function definition for <code class="language-plaintext highlighter-rouge">legal_move_shape</code> in each header into a declaration, overriding <code class="language-plaintext highlighter-rouge">legal_capture_shape</code> in classes where appropriate, or adding additional member functions, so you can fully implement each function properly in its associated <code class="language-plaintext highlighter-rouge">.cpp</code> file.  <strong>Important</strong>: You will need to create a <code class="language-plaintext highlighter-rouge">.cpp</code> file for each subclass of <code class="language-plaintext highlighter-rouge">Piece</code>.  The provided <code class="language-plaintext highlighter-rouge">Makefile</code> will not work fully until all of the <code class="language-plaintext highlighter-rouge">.cpp</code> files have been created.</li>
+  <li><code class="language-plaintext highlighter-rouge">Board.h</code> — contains the class definition of a class named <code class="language-plaintext highlighter-rouge">Board</code> which represents a chess board. Some of the implementations of these member functions are left to you to flesh out in <code class="language-plaintext highlighter-rouge">Board.cpp</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Board.cpp</code> — contains the implementation of <code class="language-plaintext highlighter-rouge">Board</code>’s <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> operator (do not modify this implementation), which will be used in the autograder. It also contains stubs for many member functions declared in <code class="language-plaintext highlighter-rouge">Board.h</code>, which you will need to replace with fully functioning code. Note that the <code class="language-plaintext highlighter-rouge">display</code> member function is a place where you may be creative, including making use of <code class="language-plaintext highlighter-rouge">Terminal.h</code> as described below.</li>
+  <li><code class="language-plaintext highlighter-rouge">Game.h</code> — contains the class definition of a class named <code class="language-plaintext highlighter-rouge">Game</code> representing a chess game, as well as two declarations for overloaded operators related to <code class="language-plaintext highlighter-rouge">Game</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Game.cpp</code> — contains the implementations of a default constructor (do not modify this implementation) and <code class="language-plaintext highlighter-rouge">Game</code>’s <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> operator (do not modify this implementation). Also contains stubs for many member functions declared in <code class="language-plaintext highlighter-rouge">Game.h</code>, which you will need to replace with fully functioning code.</li>
+  <li><code class="language-plaintext highlighter-rouge">main.cpp</code> — contains the basic game loop. You will need to modify the <code class="language-plaintext highlighter-rouge">main</code> function so that exception handling is used to detect and recover from attempts to make an illegal move, and terminate the program upon game loading failure.  See the <a href="#exception-handling">Exception Handling</a> section.</li>
+  <li><code class="language-plaintext highlighter-rouge">Mystery.h</code> (there is no need to hand in this file; we’ll be modifying it when we grade) — contains dummy code for a subclass of Piece which will be replaced after submission by the graders. You won’t use this file in a standard chess game, but we will as we grade your code, to ensure you’re taking full advantage of virtual functions and dynamic binding in your design. See the Mystery Piece section below for details.</li>
+  <li><code class="language-plaintext highlighter-rouge">CreatePiece.h</code> (do not modify this file), <code class="language-plaintext highlighter-rouge">CreatePiece.cpp</code> (do not modify this file) — contain code that allows us to generate pieces from their ASCII representation. We include a Mystery piece as an option here.</li>
+  <li><code class="language-plaintext highlighter-rouge">Terminal.h</code> (do not modify this file) — contains helper functions which allow you to change the background and foreground colors of output to standard out. You may optionally use these functions as you write your custom <code class="language-plaintext highlighter-rouge">Board::display</code> member function.</li>
+  <li><code class="language-plaintext highlighter-rouge">Makefile</code> — this is a complete <code class="language-plaintext highlighter-rouge">Makefile</code> for you to use.  You should not need to modify it.</li>
+</ul>
+
+<p>Note that all classes are in the <code class="language-plaintext highlighter-rouge">Chess</code> namespace.</p>
+
+<p>You must additionally finish implementing the following files provided in the starter code:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">King.cpp</code>, <code class="language-plaintext highlighter-rouge">Queen.cpp</code>, <code class="language-plaintext highlighter-rouge">Rook.cpp</code>, <code class="language-plaintext highlighter-rouge">Knight.cpp</code>, <code class="language-plaintext highlighter-rouge">Bishop.cpp</code>, <code class="language-plaintext highlighter-rouge">Pawn.cpp</code> —  contain implementations of constructors and various functions in the respective header files, which are not given in the class definition itself. As always, only short (i.e. one-line) function definitions should appear inside .h files; the rest should be given in <code class="language-plaintext highlighter-rouge">.cpp</code> files.</li>
+</ul>
+
+<h3 id="player-points-evaluation">Player Points Evaluation</h3>
+
+<p>Chess is a very complicated game and creating an automated player is therefore non-trivial. One heuristic that could be applied is to “measure” the strength of a player’s current game state based on a simple point system for each piece still on the board. Although you will not be implementing an automated player, you must take one small step in that direction by create an evaluation function that looks at the pieces for the current player and computes their total point value. You must use a simple point system, where {1, 3, 3, 5, 9} are the point values for pawn (1), knight (3), bishop (3), rook (5) and queen (9), as proposed by Claude Shannon in his 1949 paper “Programming a Computer for Playing Chess”, <a href="https://www.chessprogramming.org/Point_Value">reference</a>. Apply these point values to each piece still on the board for the indicated player, returning their sum.</p>
+
+<p>You will see code in main to print the current player’s point value, calling function <code class="language-plaintext highlighter-rouge">point_value</code> on the <code class="language-plaintext highlighter-rouge">game</code> object, passing a boolean indicator of whose turn it is. You should think carefully about how best to use polymorphism when implementing this function, adding support functions in other classes accordingly.</p>
+
+<h3 id="piece-creation">Piece Creation</h3>
+
+<p>We include completed code in <code class="language-plaintext highlighter-rouge">CreatePiece.h</code> and <code class="language-plaintext highlighter-rouge">CreatePiece.cpp</code> which will allow you to create pieces of various types to put them on the board at a specified location. While you will not need to modify this code, it may be helpful to review it to try to get a sense of how it functions. We deliberately made the constructors of the <code class="language-plaintext highlighter-rouge">Piece</code> class protected and the different <code class="language-plaintext highlighter-rouge">Piece</code> subclasses private, so you cannot accidentally construct a raw <code class="language-plaintext highlighter-rouge">Piece</code> object — all construction must happen through the <code class="language-plaintext highlighter-rouge">create_piece</code> function. (See, for example, the implementation of <code class="language-plaintext highlighter-rouge">Board::add_piece</code>.) In other words, <code class="language-plaintext highlighter-rouge">Piece</code> is an <em>abstract base class</em>.</p>
+
+<p>In order to load a saved game from a file, you’ll want to read in the information from the file and make repeated appropriate calls to <code class="language-plaintext highlighter-rouge">Board::add_piece</code>, which will call <code class="language-plaintext highlighter-rouge">create_piece</code> from code in <code class="language-plaintext highlighter-rouge">CreatePiece.h/.cpp</code>. Be sure that your game loading mechanism is equipped to handle mystery pieces, as discussed in the next section.</p>
+
+<h3 id="mystery-piece">Mystery Piece</h3>
+
+<p>To illustrate the power of dynamic dispatch in interfacing with existing code, we will compile your code with our additional code to add a “mystery piece” to the chess game. This piece does not exist in the current design when a game is created with a default constructor, but when a game is loaded from a file, any <code class="language-plaintext highlighter-rouge">M</code> or <code class="language-plaintext highlighter-rouge">m</code> designator present indicates that a mystery piece is to be placed on the board. In the starter code, there is a stub of a <code class="language-plaintext highlighter-rouge">Mystery</code> class given to you. At grading time, however, this code will be replaced with a more interesting version of the <code class="language-plaintext highlighter-rouge">Mystery</code> class. This piece will move in some way which is as yet unspecified, but your implementation should be able to handle its workings, no matter its movement pattern. You’ll need to use the common <code class="language-plaintext highlighter-rouge">Piece</code> and <code class="language-plaintext highlighter-rouge">Board</code> member functions to make sure that your code can handle this type of piece.</p>
+
+<p>You may assume that the mystery piece with which we’ll grade your code will include definitions of the member functions supplied to you in the starter code.  The definitions will be different than what you have been given, but there will be definitions. Additionally, you may assume that if the mystery piece’s legal move shape is along a straight line (either horizontal, vertical, or diagonal), it will not be permitted to move through pieces. Furthermore, if the mystery piece’s legal move shape is NOT along a straight line, it will always be permitted to move through pieces. Create your own <code class="language-plaintext highlighter-rouge">Mystery</code> piece class for testing purposes. For example, a mystery piece could be one that could move in a 2x3 or 3x2 L-shape (mimicking what Knight can do, but with moves that can cover more ground).</p>
+
+<p>You should assume that the full definition of the <code class="language-plaintext highlighter-rouge">Mystery</code> piece class will be specified in some file named <code class="language-plaintext highlighter-rouge">Mystery.h</code>. When we grade, we’ll supply a new version of <code class="language-plaintext highlighter-rouge">Mystery.h</code> to replace the <code class="language-plaintext highlighter-rouge">Mystery.h</code> file we released to you, and your <code class="language-plaintext highlighter-rouge">Makefile</code> should already be set up to compile it. In your <code class="language-plaintext highlighter-rouge">Makefile</code>, do not expect any file called <code class="language-plaintext highlighter-rouge">Mystery.cpp</code>. Furthermore, you need not submit the released <code class="language-plaintext highlighter-rouge">Mystery.h</code> to Gradescope.</p>
+
+<h3 id="customizing-the-board-style-displayed-in-interactive-output">Customizing the Board Style Displayed in Interactive Output</h3>
+
+<p>The provided file <code class="language-plaintext highlighter-rouge">Terminal.h</code> contains helper functions which allow you to change the background and foreground colors of output to standard out, e.g. in your <code class="language-plaintext highlighter-rouge">Board::display</code> member function. You can use any of the values of the <code class="language-plaintext highlighter-rouge">Color</code> enum found in <code class="language-plaintext highlighter-rouge">Terminal.h</code> for both foreground and background colors. Foreground colors also have the option of being ‘<code class="language-plaintext highlighter-rouge">bright</code>’, which means you effectively have even more foreground colors at your disposal. Use <code class="language-plaintext highlighter-rouge">Terminal::color_fg</code> to set the foreground color and its bright flag. Use <code class="language-plaintext highlighter-rouge">Terminal::color_bg</code> to set the background colour. <code class="language-plaintext highlighter-rouge">Terminal::color_all</code> allows setting both colors at once, and <code class="language-plaintext highlighter-rouge">Terminal::set_defaults</code> resets you to the normal text colors once you’re done printing your board.</p>
+
+<p>Here’s an example of how you might call the functions using the <code class="language-plaintext highlighter-rouge">Color</code> enum defined in <code class="language-plaintext highlighter-rouge">Terminal.h</code>. Note that since the functions in <code class="language-plaintext highlighter-rouge">Terminal.h</code> are static, we call them using the <code class="language-plaintext highlighter-rouge">Terminal::</code> prefix (rather than on an object). And similarly, since <code class="language-plaintext highlighter-rouge">RED</code> is constant defined in <code class="language-plaintext highlighter-rouge">Terminal.h</code>, we have to prefix it as well. After setting the colors, writing to the display normally using <code class="language-plaintext highlighter-rouge">std::cout</code> will make use of the current color setting.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Terminal</span><span class="o">::</span><span class="n">color_fg</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span> <span class="n">Terminal</span><span class="o">::</span><span class="n">RED</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"some stuff to print"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">Terminal</span><span class="o">::</span><span class="n">set_default</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>You may use any ASCII characters to display your board on standard out, and you should be creative in writing <code class="language-plaintext highlighter-rouge">Board::display</code>. Keep usability in mind when you design your board,  making sure that you include row and column headings so that the users know how to refer to each position when making a move. Lastly, remember that you may not modify the definitions of the <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> operator in <code class="language-plaintext highlighter-rouge">Board</code> or <code class="language-plaintext highlighter-rouge">Game</code>. The purpose of this function is different from that of <code class="language-plaintext highlighter-rouge">Board::display</code>, even though they may have quite a bit of code in common. You cannot write <code class="language-plaintext highlighter-rouge">Board::display</code> by simply calling <code class="language-plaintext highlighter-rouge">operator&lt;&lt;</code>.</p>
+
+<h3 id="general-requirements">General Requirements</h3>
+
+<ul>
+  <li>You may use <code class="language-plaintext highlighter-rouge">std::cin</code>, <code class="language-plaintext highlighter-rouge">std::cout</code>, <code class="language-plaintext highlighter-rouge">std::ifstream</code>, <code class="language-plaintext highlighter-rouge">std::ofstream</code>, the insertion operator (<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>) and the extraction operator (<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>) for all input and output.  Don’t use <code class="language-plaintext highlighter-rouge">printf</code>, <code class="language-plaintext highlighter-rouge">scanf</code> or other C I/O functions.</li>
+  <li>Your program should only use <code class="language-plaintext highlighter-rouge">new</code> and <code class="language-plaintext highlighter-rouge">delete</code> for dynamic memory allocation and deallocation. You may not make direct use of C functions like <code class="language-plaintext highlighter-rouge">malloc</code>, <code class="language-plaintext highlighter-rouge">calloc</code>, or <code class="language-plaintext highlighter-rouge">free</code>.</li>
+  <li>You are expected to factor your code into functions, each function performing a distinct task.  Don’t do everything in one giant function.</li>
+  <li>All variables must be declared inside functions. No variables may be global or <code class="language-plaintext highlighter-rouge">extern</code>.</li>
+  <li>You should only provide implementations of functions in a <code class="language-plaintext highlighter-rouge">.h</code> file if the implementation is <em>very</em> simple. Otherwise, you can change the definition to a prototype in the <code class="language-plaintext highlighter-rouge">.h</code> file, and give its definition in an appropriately-named <code class="language-plaintext highlighter-rouge">.cpp</code> file.</li>
+  <li>You may not use the <code class="language-plaintext highlighter-rouge">auto</code> keyword except for iterator types as discussed in class materials.</li>
+  <li>You must use header guards in all header (<code class="language-plaintext highlighter-rouge">.h</code>) files.</li>
+  <li>You may not use <code class="language-plaintext highlighter-rouge">using</code> in header (<code class="language-plaintext highlighter-rouge">.h</code>) files.</li>
+  <li>In C++ source (<code class="language-plaintext highlighter-rouge">.cpp</code>) files, you may import individual symbols using statements like “<code class="language-plaintext highlighter-rouge">using std::string</code>”.  But you may <em>not</em> use “<code class="language-plaintext highlighter-rouge">using namespace &lt;id&gt;</code>”, either in headers or in source files.</li>
+  <li>You are expected to make use of <strong>gdb</strong> to debug and also to run <strong>valgrind</strong> to make sure there is no memory leakage or invalid memory usage.</li>
+  <li>Each source file you submit should contain several comment lines at the top giving the names and JHEDs of each member of your project team.</li>
+  <li>You are encouraged to begin submitting your work well before the deadline, keeping in mind that <strong>there are no late days available for use with this group assignment</strong>.</li>
+</ul>
+
+<h2 id="code-submission-team">Code Submission (Team)</h2>
+
+<p>Create a zip file named <code class="language-plaintext highlighter-rouge">project.zip</code> containing your source files as well as <code class="language-plaintext highlighter-rouge">chessUML.pdf</code>, <code class="language-plaintext highlighter-rouge">README.md</code>, <code class="language-plaintext highlighter-rouge">Makefile</code> and <code class="language-plaintext highlighter-rouge">gitlog.txt</code>. (While we do absolutely expect you to write code that tests your implementation, you are not expected to submit your tests to us for grading.)</p>
+
+<p>Copy <code class="language-plaintext highlighter-rouge">project.zip</code> to your local machine and submit it as Final Project (Team) on Gradescope. This will be a group submission, where <em>you must indicate each team member’s name on Gradescope when you (first) submit</em>. Please make sure that the same team member submits subsequent versions as well.</p>
+
+<p>As always, when you submit, Gradescope conducts some basica, automatic tests. If you see error messages (in red), address them and resubmit. You may re-submit any number of times prior to the deadline; only your latest submission will be graded.</p>
+
+<p>Two notes regarding automatic checks for programming assignments:</p>
+
+<ul>
+  <li>Passing an automatic check is not itself worth points.  (There might be a nominal, low point value like 0.01 associated with a check, but that won’t count in the end.) The checks exist to help you and the graders find obvious errors.</li>
+  <li>The automatic checks cover some of the requirements set out in the assignment, but not all. It is up to you to test your own work and ensure your programs satisfy <em>all stated requirements</em>.  Passing all automatic checks does not mean you earned all the points.</li>
+</ul>
+
+<h2 id="additional-deliverables">Additional Deliverables</h2>
+
+<h3 id="development-plan-team">Development Plan (Team)</h3>
+
+<p>Submit your initial development plan in a plain text file called README.md to Gradescope before the seperate deadline for this deliverable. As noted above, you can use Markdown formatting to make this look nice; note your file should have a <code class="language-plaintext highlighter-rouge">.md</code> extension for it to be properly formatted when viewing on Github. Include all team members’ full names and JHED IDs in your submission. Keep this file updated as your development progresses and submit again with your final code submission.</p>
+
+<h3 id="uml-diagram-team-1">UML Diagram (Team)</h3>
+
+<p>Submit your initial UML diagram in a pdf file called <code class="language-plaintext highlighter-rouge">chessUML.pdf</code> to Gradescope before the deadline. Remember to include all team member full names and JHED IDs in your submission. Keep this file updated as your development progresses and submit again with your final code submission.</p>
+
+<h3 id="git-log-team">Git Log (Team)</h3>
+
+<p>Each person should be committing their work; it shouldn’t be the case that the same team member is always performing the commits for your team. Your submission must include a copy of the output of <code class="language-plaintext highlighter-rouge">git log</code> showing at least <em>six</em> commits to the repository by each team member. (You’re likely to have significantly more than that!) Save the <code class="language-plaintext highlighter-rouge">git log</code> output into a file called <code class="language-plaintext highlighter-rouge">gitlog.txt</code> (e.g. by doing <code class="language-plaintext highlighter-rouge">git log &gt; gitlog.txt</code>).</p>
+
+<h3 id="final-project-partner-evaluation-form-individual">Final Project Partner Evaluation Form (Individual)</h3>
+
+<p>In addition to submitting your project files (see below), each team member must complete the <a href="https://forms.gle/gqHdrvE3NDpyTn399">Final Project Partner Evaluation Form</a> for each of their team members, including themselves, before the provided deadline. This is to say, if you are in a team of three, you will be submitting the form three times: once for each partner and once for your self evaluatoin.</p>
+
+<p>This is an important part of the project and there will be an individual point penalty for failing to submit each form. The contents of the form you submit will not affect your partners’ grades.</p>
+
+<p>Note that the deadline for this individual submission is the same day as (and only one hour after) the project deadline.</p>
+
+<h2 id="grading-breakdown-165-points-total">Grading Breakdown (165 points total)</h2>
+
+<ul>
+  <li>(13 points) Development Plan</li>
+  <li>(7 points) UML Diagram</li>
+  <li>(15 points) Project Submission &amp; Style (including updated README.md, UML diagram and gitlog)</li>
+  <li>(130 points) Project Code Functionality (including memory usage)</li>
+  <li>(5 point deduction per missing submission) Partner Evaluations</li>
+</ul>
+
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        intprog.pageCategory = "";
+        intprog.onLoad();
+      });
+    </script>
+  </div>
+</body>
+
+</html>
