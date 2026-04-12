@@ -588,7 +588,7 @@ the materials for that week.
     <tr>
       <td>Exercise</td>
       <td><a href='exercise/ex33.html'>Exercise 33</a></td>
-      <td>N/A</td>
+      <td>Work on final project</td>
       <td><a href='exercise/ex35.html'>Exercise 35</a></td>  
     </tr>
     <tr>
@@ -712,7 +712,7 @@ the materials for that week.
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    var active_week_id = 'week_11';
+    var active_week_id = 'week_12';
 
     var content_divs = document.getElementsByClassName("collapsible");
     for (i = 0; i < content_divs.length; i++) {
