@@ -601,7 +601,6 @@ the materials for that week.
 </table>
 </div>
 
-<!--
 <button type="button" id="week_13_toggle" class="week_control_button">Week 13 (20-April to 24-April)</button>
 <div id="week_13" class="collapsible">
 <table>
@@ -642,11 +641,12 @@ the materials for that week.
       <td>Additional<br>Resources</td>
       <td></td>
       <td></td>
-      <td></td>
+      <td><a href='notes/notes-lambdas-misc.html'>Lambdas & Miscellany</a></td>
     </tr>
   </tbody>
 </table>
 </div>
+
 <button type="button" id="week_14_toggle" class="week_control_button">Week 14 (27-April)</button>
 <div id="week_14" class="collapsible">
 <table>
@@ -681,6 +681,7 @@ the materials for that week.
 </table>
 </div>
 
+<!--
 -->
 
 <script type="text/javascript">
