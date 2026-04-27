@@ -267,6 +267,8 @@ path is not clear
 move exposes check
 ```
 
+Errors with message "cannot capture own piece" should be prioritized over "illegal capture/move shapes". So if the user tries to move a piece to capture another one of the same color by moving in an illegal way, the issue raised should be "cannot capture own piece".
+
 In `main.cpp`, you will note a `TODO` comment where the `make_move` member function is called.  You should add exception handling code using `try` and `catch` so that if `make_move` throws an `Exception`, an error message of the form
 
 ```
